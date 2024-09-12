@@ -10,6 +10,8 @@ export default function Footer() {
         py={1} 
         textAlign="center" 
         justifyContent={"center"}
+        position="absolute"
+        bottom={0}
     >
 
       <Image 

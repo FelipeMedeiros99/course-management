@@ -8,9 +8,11 @@ export default function Home() {
     <div className={styles.page}>
       {listaCursos.map(({ nome, preco, cargaHoraria, precoComDesconto, conteudo, imagem }, index) => (
         <div className="container-curso" key={index}>
-          {/* <Link href={conteudo}> */}
-          <Image src={imagem} alt={nome} width={100} height={100}/>
-          {/* </Link> */}
+          <Link href={conteudo} legacyBehavior>
+            <a target="_blank" rel="noopener noreferrer">
+              <Image src={imagem} alt={nome} width={100} height={100}/>
+            </a>
+          </Link>
           <p>{nome}</p>
           <p>{preco}</p>
           <p>{cargaHoraria}</p>

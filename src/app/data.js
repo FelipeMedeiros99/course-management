@@ -1,6 +1,6 @@
 const listaCursos = [
     {
-        imagem: "https://www.google.com/imgres?q=curso%20gestao&imgurl=https%3A%2F%2Fsobresp.edu.br%2Fwp-content%2Fuploads%2F304_GESTAODERH_BANNERSITEMOBILE_EAD.png&imgrefurl=https%3A%2F%2Fsobresp.edu.br%2Fgraduacao-ead%2Fgestao-de-rh%2F&docid=mpk0rfrGSOodGM&tbnid=TejnQC37YmLkMM&vet=12ahUKEwjC8fSGhLyIAxXeJbkGHVZzAKAQM3oECFwQAA..i&w=1080&h=1080&hcb=2&ved=2ahUKEwjC8fSGhLyIAxXeJbkGHVZzAKAQM3oECFwQAA",
+        imagem: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8hExi1X1xmX7UHZyw9b2wx79Xv_fOvXaYAvvqwUtyqeEmrSlQXfMS1sl2COBiU69VR1g&usqp=CAU",
         nome: "Curso de gestão",
         preco: 8567.50,
         cargaHoraria: "120h",
@@ -8,7 +8,7 @@ const listaCursos = [
         conteudo: "https://youtu.be/OedsS_4BnpM?list=PLqZ2ci9UnMnIUFo3Wo_QuQJWhpOf_Q4h5"
     },
     {
-        imagem: "https://www.google.com/imgres?q=curso%20gestao&imgurl=https%3A%2F%2Fsobresp.edu.br%2Fwp-content%2Fuploads%2F304_GESTAODERH_BANNERSITEMOBILE_EAD.png&imgrefurl=https%3A%2F%2Fsobresp.edu.br%2Fgraduacao-ead%2Fgestao-de-rh%2F&docid=mpk0rfrGSOodGM&tbnid=TejnQC37YmLkMM&vet=12ahUKEwjC8fSGhLyIAxXeJbkGHVZzAKAQM3oECFwQAA..i&w=1080&h=1080&hcb=2&ved=2ahUKEwjC8fSGhLyIAxXeJbkGHVZzAKAQM3oECFwQAA",
+        imagem: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8hExi1X1xmX7UHZyw9b2wx79Xv_fOvXaYAvvqwUtyqeEmrSlQXfMS1sl2COBiU69VR1g&usqp=CAU",
         nome: "Curso de gestão",
         preco: 8567.50,
         cargaHoraria: "120h",
@@ -16,7 +16,7 @@ const listaCursos = [
         conteudo: "https://youtu.be/OedsS_4BnpM?list=PLqZ2ci9UnMnIUFo3Wo_QuQJWhpOf_Q4h5"
     },
     {
-        imagem: "https://www.google.com/imgres?q=curso%20gestao&imgurl=https%3A%2F%2Fsobresp.edu.br%2Fwp-content%2Fuploads%2F304_GESTAODERH_BANNERSITEMOBILE_EAD.png&imgrefurl=https%3A%2F%2Fsobresp.edu.br%2Fgraduacao-ead%2Fgestao-de-rh%2F&docid=mpk0rfrGSOodGM&tbnid=TejnQC37YmLkMM&vet=12ahUKEwjC8fSGhLyIAxXeJbkGHVZzAKAQM3oECFwQAA..i&w=1080&h=1080&hcb=2&ved=2ahUKEwjC8fSGhLyIAxXeJbkGHVZzAKAQM3oECFwQAA",
+        imagem: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8hExi1X1xmX7UHZyw9b2wx79Xv_fOvXaYAvvqwUtyqeEmrSlQXfMS1sl2COBiU69VR1g&usqp=CAU",
         nome: "Curso de gestão",
         preco: 8567.50,
         cargaHoraria: "120h",
@@ -24,7 +24,7 @@ const listaCursos = [
         conteudo: "https://youtu.be/OedsS_4BnpM?list=PLqZ2ci9UnMnIUFo3Wo_QuQJWhpOf_Q4h5"
     },
     {
-        imagem: "https://www.google.com/imgres?q=curso%20gestao&imgurl=https%3A%2F%2Fsobresp.edu.br%2Fwp-content%2Fuploads%2F304_GESTAODERH_BANNERSITEMOBILE_EAD.png&imgrefurl=https%3A%2F%2Fsobresp.edu.br%2Fgraduacao-ead%2Fgestao-de-rh%2F&docid=mpk0rfrGSOodGM&tbnid=TejnQC37YmLkMM&vet=12ahUKEwjC8fSGhLyIAxXeJbkGHVZzAKAQM3oECFwQAA..i&w=1080&h=1080&hcb=2&ved=2ahUKEwjC8fSGhLyIAxXeJbkGHVZzAKAQM3oECFwQAA",
+        imagem: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8hExi1X1xmX7UHZyw9b2wx79Xv_fOvXaYAvvqwUtyqeEmrSlQXfMS1sl2COBiU69VR1g&usqp=CAU",
         nome: "Curso de gestão",
         preco: 8567.50,
         cargaHoraria: "120h",
@@ -32,7 +32,7 @@ const listaCursos = [
         conteudo: "https://youtu.be/OedsS_4BnpM?list=PLqZ2ci9UnMnIUFo3Wo_QuQJWhpOf_Q4h5"
     },
     {
-        imagem: "https://www.google.com/imgres?q=curso%20gestao&imgurl=https%3A%2F%2Fsobresp.edu.br%2Fwp-content%2Fuploads%2F304_GESTAODERH_BANNERSITEMOBILE_EAD.png&imgrefurl=https%3A%2F%2Fsobresp.edu.br%2Fgraduacao-ead%2Fgestao-de-rh%2F&docid=mpk0rfrGSOodGM&tbnid=TejnQC37YmLkMM&vet=12ahUKEwjC8fSGhLyIAxXeJbkGHVZzAKAQM3oECFwQAA..i&w=1080&h=1080&hcb=2&ved=2ahUKEwjC8fSGhLyIAxXeJbkGHVZzAKAQM3oECFwQAA",
+        imagem: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8hExi1X1xmX7UHZyw9b2wx79Xv_fOvXaYAvvqwUtyqeEmrSlQXfMS1sl2COBiU69VR1g&usqp=CAU",
         nome: "Curso de gestão",
         preco: 8567.50,
         cargaHoraria: "120h",
@@ -40,7 +40,7 @@ const listaCursos = [
         conteudo: "https://youtu.be/OedsS_4BnpM?list=PLqZ2ci9UnMnIUFo3Wo_QuQJWhpOf_Q4h5"
     },
     {
-        imagem: "https://www.google.com/imgres?q=curso%20gestao&imgurl=https%3A%2F%2Fsobresp.edu.br%2Fwp-content%2Fuploads%2F304_GESTAODERH_BANNERSITEMOBILE_EAD.png&imgrefurl=https%3A%2F%2Fsobresp.edu.br%2Fgraduacao-ead%2Fgestao-de-rh%2F&docid=mpk0rfrGSOodGM&tbnid=TejnQC37YmLkMM&vet=12ahUKEwjC8fSGhLyIAxXeJbkGHVZzAKAQM3oECFwQAA..i&w=1080&h=1080&hcb=2&ved=2ahUKEwjC8fSGhLyIAxXeJbkGHVZzAKAQM3oECFwQAA",
+        imagem: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8hExi1X1xmX7UHZyw9b2wx79Xv_fOvXaYAvvqwUtyqeEmrSlQXfMS1sl2COBiU69VR1g&usqp=CAU",
         nome: "Curso de gestão",
         preco: 8567.50,
         cargaHoraria: "120h",
@@ -48,7 +48,7 @@ const listaCursos = [
         conteudo: "https://youtu.be/OedsS_4BnpM?list=PLqZ2ci9UnMnIUFo3Wo_QuQJWhpOf_Q4h5"
     },
     {
-        imagem: "https://www.google.com/imgres?q=curso%20gestao&imgurl=https%3A%2F%2Fsobresp.edu.br%2Fwp-content%2Fuploads%2F304_GESTAODERH_BANNERSITEMOBILE_EAD.png&imgrefurl=https%3A%2F%2Fsobresp.edu.br%2Fgraduacao-ead%2Fgestao-de-rh%2F&docid=mpk0rfrGSOodGM&tbnid=TejnQC37YmLkMM&vet=12ahUKEwjC8fSGhLyIAxXeJbkGHVZzAKAQM3oECFwQAA..i&w=1080&h=1080&hcb=2&ved=2ahUKEwjC8fSGhLyIAxXeJbkGHVZzAKAQM3oECFwQAA",
+        imagem: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8hExi1X1xmX7UHZyw9b2wx79Xv_fOvXaYAvvqwUtyqeEmrSlQXfMS1sl2COBiU69VR1g&usqp=CAU",
         nome: "Curso de gestão",
         preco: 8567.50,
         cargaHoraria: "120h",
@@ -56,7 +56,7 @@ const listaCursos = [
         conteudo: "https://youtu.be/OedsS_4BnpM?list=PLqZ2ci9UnMnIUFo3Wo_QuQJWhpOf_Q4h5"
     },
     {
-        imagem: "https://www.google.com/imgres?q=curso%20gestao&imgurl=https%3A%2F%2Fsobresp.edu.br%2Fwp-content%2Fuploads%2F304_GESTAODERH_BANNERSITEMOBILE_EAD.png&imgrefurl=https%3A%2F%2Fsobresp.edu.br%2Fgraduacao-ead%2Fgestao-de-rh%2F&docid=mpk0rfrGSOodGM&tbnid=TejnQC37YmLkMM&vet=12ahUKEwjC8fSGhLyIAxXeJbkGHVZzAKAQM3oECFwQAA..i&w=1080&h=1080&hcb=2&ved=2ahUKEwjC8fSGhLyIAxXeJbkGHVZzAKAQM3oECFwQAA",
+        imagem: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8hExi1X1xmX7UHZyw9b2wx79Xv_fOvXaYAvvqwUtyqeEmrSlQXfMS1sl2COBiU69VR1g&usqp=CAU",
         nome: "Curso de gestão",
         preco: 8567.50,
         cargaHoraria: "120h",
@@ -64,7 +64,7 @@ const listaCursos = [
         conteudo: "https://youtu.be/OedsS_4BnpM?list=PLqZ2ci9UnMnIUFo3Wo_QuQJWhpOf_Q4h5"
     },
     {
-        imagem: "https://www.google.com/imgres?q=curso%20gestao&imgurl=https%3A%2F%2Fsobresp.edu.br%2Fwp-content%2Fuploads%2F304_GESTAODERH_BANNERSITEMOBILE_EAD.png&imgrefurl=https%3A%2F%2Fsobresp.edu.br%2Fgraduacao-ead%2Fgestao-de-rh%2F&docid=mpk0rfrGSOodGM&tbnid=TejnQC37YmLkMM&vet=12ahUKEwjC8fSGhLyIAxXeJbkGHVZzAKAQM3oECFwQAA..i&w=1080&h=1080&hcb=2&ved=2ahUKEwjC8fSGhLyIAxXeJbkGHVZzAKAQM3oECFwQAA",
+        imagem: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8hExi1X1xmX7UHZyw9b2wx79Xv_fOvXaYAvvqwUtyqeEmrSlQXfMS1sl2COBiU69VR1g&usqp=CAU",
         nome: "Curso de gestão",
         preco: 8567.50,
         cargaHoraria: "120h",
@@ -72,7 +72,7 @@ const listaCursos = [
         conteudo: "https://youtu.be/OedsS_4BnpM?list=PLqZ2ci9UnMnIUFo3Wo_QuQJWhpOf_Q4h5"
     },
     {
-        imagem: "https://www.google.com/imgres?q=curso%20gestao&imgurl=https%3A%2F%2Fsobresp.edu.br%2Fwp-content%2Fuploads%2F304_GESTAODERH_BANNERSITEMOBILE_EAD.png&imgrefurl=https%3A%2F%2Fsobresp.edu.br%2Fgraduacao-ead%2Fgestao-de-rh%2F&docid=mpk0rfrGSOodGM&tbnid=TejnQC37YmLkMM&vet=12ahUKEwjC8fSGhLyIAxXeJbkGHVZzAKAQM3oECFwQAA..i&w=1080&h=1080&hcb=2&ved=2ahUKEwjC8fSGhLyIAxXeJbkGHVZzAKAQM3oECFwQAA",
+        imagem: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8hExi1X1xmX7UHZyw9b2wx79Xv_fOvXaYAvvqwUtyqeEmrSlQXfMS1sl2COBiU69VR1g&usqp=CAU",
         nome: "Curso de gestão",
         preco: 8567.50,
         cargaHoraria: "120h",
@@ -80,7 +80,7 @@ const listaCursos = [
         conteudo: "https://youtu.be/OedsS_4BnpM?list=PLqZ2ci9UnMnIUFo3Wo_QuQJWhpOf_Q4h5"
     },
     {
-        imagem: "https://www.google.com/imgres?q=curso%20gestao&imgurl=https%3A%2F%2Fsobresp.edu.br%2Fwp-content%2Fuploads%2F304_GESTAODERH_BANNERSITEMOBILE_EAD.png&imgrefurl=https%3A%2F%2Fsobresp.edu.br%2Fgraduacao-ead%2Fgestao-de-rh%2F&docid=mpk0rfrGSOodGM&tbnid=TejnQC37YmLkMM&vet=12ahUKEwjC8fSGhLyIAxXeJbkGHVZzAKAQM3oECFwQAA..i&w=1080&h=1080&hcb=2&ved=2ahUKEwjC8fSGhLyIAxXeJbkGHVZzAKAQM3oECFwQAA",
+        imagem: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8hExi1X1xmX7UHZyw9b2wx79Xv_fOvXaYAvvqwUtyqeEmrSlQXfMS1sl2COBiU69VR1g&usqp=CAU",
         nome: "Curso de gestão",
         preco: 8567.50,
         cargaHoraria: "120h",
@@ -88,7 +88,7 @@ const listaCursos = [
         conteudo: "https://youtu.be/OedsS_4BnpM?list=PLqZ2ci9UnMnIUFo3Wo_QuQJWhpOf_Q4h5"
     },
     {
-        imagem: "https://www.google.com/imgres?q=curso%20gestao&imgurl=https%3A%2F%2Fsobresp.edu.br%2Fwp-content%2Fuploads%2F304_GESTAODERH_BANNERSITEMOBILE_EAD.png&imgrefurl=https%3A%2F%2Fsobresp.edu.br%2Fgraduacao-ead%2Fgestao-de-rh%2F&docid=mpk0rfrGSOodGM&tbnid=TejnQC37YmLkMM&vet=12ahUKEwjC8fSGhLyIAxXeJbkGHVZzAKAQM3oECFwQAA..i&w=1080&h=1080&hcb=2&ved=2ahUKEwjC8fSGhLyIAxXeJbkGHVZzAKAQM3oECFwQAA",
+        imagem: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8hExi1X1xmX7UHZyw9b2wx79Xv_fOvXaYAvvqwUtyqeEmrSlQXfMS1sl2COBiU69VR1g&usqp=CAU",
         nome: "Curso de gestão",
         preco: 8567.50,
         cargaHoraria: "120h",

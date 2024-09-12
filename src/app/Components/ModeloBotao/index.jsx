@@ -16,7 +16,5 @@ export default function ModeloBotao({children, ...props}){
         >
             {children}
         </Button>
-          
-
     )
 }

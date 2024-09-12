@@ -5,7 +5,36 @@ const listaCursos = [
         preco: 8567.50,
         cargaHoraria: "120h",
         precoComDesconto: 8000,
-        conteudo: `descricao do curso`,
+        conteudo: `
+Aqui está uma descrição para um curso de marketing:
+
+Curso de Marketing Digital
+Descrição do Curso:
+
+O Curso de Marketing Digital é projetado para fornecer uma compreensão abrangente e prática das estratégias e ferramentas essenciais para o sucesso no ambiente digital atual. Com uma abordagem prática e teórica, este curso aborda os principais conceitos e técnicas que ajudam a construir e gerenciar campanhas de marketing eficazes.
+
+Aqui está uma descrição para um curso de marketing:
+
+Curso de Marketing Digital
+Descrição do Curso:
+
+O Curso de Marketing Digital é projetado para fornecer uma compreensão abrangente e prática das estratégias e ferramentas essenciais para o sucesso no ambiente digital atual. Com uma abordagem prática e teórica, este curso aborda os principais conceitos e técnicas que ajudam a construir e gerenciar campanhas de marketing eficazes.
+
+Aqui está uma descrição para um curso de marketing:
+
+Curso de Marketing Digital
+Descrição do Curso:
+
+O Curso de Marketing Digital é projetado para fornecer uma compreensão abrangente e prática das estratégias e ferramentas essenciais para o sucesso no ambiente digital atual. Com uma abordagem prática e teórica, este curso aborda os principais conceitos e técnicas que ajudam a construir e gerenciar campanhas de marketing eficazes.
+
+Aqui está uma descrição para um curso de marketing:
+
+Curso de Marketing Digital
+Descrição do Curso:
+
+O Curso de Marketing Digital é projetado para fornecer uma compreensão abrangente e prática das estratégias e ferramentas essenciais para o sucesso no ambiente digital atual. Com uma abordagem prática e teórica, este curso aborda os principais conceitos e técnicas que ajudam a construir e gerenciar campanhas de marketing eficazes.
+v
+`,
         id: 1,
 
     },

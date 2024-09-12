@@ -10,7 +10,8 @@ export default function DetalhesCurso({ params, searchParams }) {
       display="flex"
       alignItems="center"
       justifyContent="center"
-      height="100vh"
+      height="auto"
+      minH="110vh"
       width="100%"
       flexDirection={{ base: "column", md: "row" }} 
       padding="20px"  

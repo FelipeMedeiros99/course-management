@@ -6,11 +6,8 @@ export default function ModeloBotao({children, ...props}){
         <Button 
             whiteSpace="normal" 
             wordBreak="break-word" 
-            height={{
-                md: "50px", 
-                sm:"50px", 
-                base:"100px"}} 
-            width="200px"
+            height="50px" 
+            width="100%"
             margin="3px"
             {...props}    
         >

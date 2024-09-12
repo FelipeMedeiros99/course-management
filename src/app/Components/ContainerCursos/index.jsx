@@ -1,6 +1,6 @@
 import listaCursos from "@/app/data"
-import CixaCurso from "../CaixaCurso"
 import { Box } from "@chakra-ui/react"
+import CaixaCurso from "../CaixaCurso"
 
 export default function ContainerCursos(props) {
     return (
@@ -8,6 +8,12 @@ export default function ContainerCursos(props) {
         <Box 
             as="div"
             display="flex"
+            flexWrap="wrap"
+            width="100%"
+            mx="auto"
+            justifyContent="center"
+            marginTop="40px"
+            marginBottom="40px"
         >
             {listaCursos.map((dados, index) => (
                 <CaixaCurso props={dados} key={index}/>

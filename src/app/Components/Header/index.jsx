@@ -1,5 +1,6 @@
 import { Box, Heading, Image } from "@chakra-ui/react";
 import Link from "next/link";
+import MenuRotas from "../MenuRotas";
 export default function Header() {
   return (
     <Box
@@ -13,24 +14,23 @@ export default function Header() {
       textAlign="center"
       justifyContent="center"
     >
-      <Link href="/">
-        <Image
-          src="/imagens/inaed_logo.png"
-          alt="Logo do INAED"
-          width="auto"
-          height="auto"
-          maxHeight="70px"
-          mx="auto"
-        />
-        <Heading
-          as="h1"
-          size="md"
-          mt={2}
-          textDecoration="underline"
-        >
-          INAED CURSOS
-        </Heading>
-      </Link>
+      <Image
+        src="/imagens/inaed_logo.png"
+        alt="Logo do INAED"
+        width="auto"
+        height="auto"
+        maxHeight="70px"
+        mx="auto"
+      />
+      <Heading
+        as="h1"
+        size="md"
+        mt={2}
+      >
+        INAED CURSOS
+      </Heading>
+
+      <MenuRotas />
     </Box>
   );
 }

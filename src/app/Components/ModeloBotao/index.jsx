@@ -9,6 +9,7 @@ export default function ModeloBotao({children, ...props}){
             height="50px" 
             width="100%"
             margin="3px"
+            borderRadius="30px"
             {...props}    
         >
             {children}

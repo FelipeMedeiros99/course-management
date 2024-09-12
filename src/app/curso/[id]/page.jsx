@@ -1,6 +1,8 @@
 import { converterEmMoedas } from "@/app/Tools";
 import { Box, Image, Text, Button, ButtonGroup } from "@chakra-ui/react";
 import ModeloBotao from "../../Components/ModeloBotao"
+
+
 export default function DetalhesCurso({ params, searchParams }) {
   const { nome, preco, cargaHoraria, precoComDesconto, conteudo, imagem, id } = searchParams;
 

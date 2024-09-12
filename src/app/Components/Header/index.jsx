@@ -4,11 +4,11 @@ export default function Header() {
   return (
     <Box 
         as="header" 
-        position="fixed"
         top="0px"
         width="100%"
         bg="#fe7502" 
         color="white" 
+        height="auto"
         py={4} 
         textAlign="center" 
         justifyContent="center"
@@ -16,13 +16,18 @@ export default function Header() {
       <Image 
         src="/imagens/inaed_logo.png" 
         alt="Logo do INAED" 
-        width={100} 
-        height={100}
-        mx="auto" // Alinha a imagem ao centro
+        width="auto"
+        height="auto"
+        maxHeight="70px"
+        mx="auto"
       />
       
       {/* Título customizado */}
-      <Heading as="h1" size="lg" mt={2}>
+      <Heading 
+        as="h1" 
+        size="md" 
+        mt={2}
+        >
         INAED CURSOS
       </Heading>
     </Box>

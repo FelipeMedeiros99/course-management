@@ -50,7 +50,14 @@ export default function DetalhesCurso({ params, searchParams }) {
         <Text fontSize="lg">Preço: R${converterEmMoedas(Number(preco))}</Text>
         <Text fontSize="lg" fontWeight="bold" color="green.500">Desconto: R${converterEmMoedas(Number(precoComDesconto))  }</Text>
         
-        <ButtonGroup paddingTop="30px">
+        <ButtonGroup 
+          paddingTop="30px" 
+          display="flex" 
+          flexDirection={{base:"column", sm:"column", md:"row"}}
+          alignItems="center"
+          justifyContent="center"
+        >
+          
           <ModeloBotao bg="#206eb3">Adicionar ao carrinho</ModeloBotao>
           <ModeloBotao bg="#fbff29">Editar curso</ModeloBotao>
           <ModeloBotao bg="#fe7502">Deletar curso</ModeloBotao>

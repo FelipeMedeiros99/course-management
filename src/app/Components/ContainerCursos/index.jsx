@@ -1,13 +1,16 @@
 import listaCursos from "@/app/data"
-import ContainerCurso from "../CaixaCurso"
+import CixaCurso from "../CaixaCurso"
 import { Box } from "@chakra-ui/react"
 
 export default function ContainerCursos(props) {
     return (
 
-        <Box >
+        <Box 
+            as="div"
+            display="flex"
+        >
             {listaCursos.map((dados, index) => (
-                <ContainerCurso props={dados} />
+                <CaixaCurso props={dados} key={index}/>
             ))}
         </Box>
     )

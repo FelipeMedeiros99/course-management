@@ -1,0 +1,17 @@
+.nome, .preco, .cargaHoraria{
+    color: #595959;
+}
+
+.nome{
+    font-size: 20px;
+    font-weight: 700;
+}
+  
+.preco{
+    font-size: 26px;
+    font-weight: 900;
+}
+
+.cargaHoraria{
+    font-size: 16px;
+}

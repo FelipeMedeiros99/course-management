@@ -3,7 +3,7 @@ import CaixaProdutoCarrinho from "@/app/Components/CaixaProdutoCarrinho";
 
 export default function CarrinhoUsuario({ params, searchParams }) {
     const idCarrinhoUsuario = params.id;
-    const { nome } = searchParams;
+    const nome = decodeURIComponent(searchParams.nome);
     const produtos = JSON?.parse(decodeURIComponent(searchParams.produtos));
 
     return (
@@ -13,10 +13,9 @@ export default function CarrinhoUsuario({ params, searchParams }) {
             p="6" 
             boxShadow="lg" 
             borderRadius="md" 
-            bg="gray.50"
             mt="6"
         >
-            <Heading as="h2" size="lg" mb="4" textAlign="center">
+            <Heading as="h2" size="lg" mb="4" textAlign="center" color="#fe7502">
                 Carrinho do Usuário
             </Heading>
             <Text fontSize="xl" fontWeight="bold" mb="2" color="blue.500">

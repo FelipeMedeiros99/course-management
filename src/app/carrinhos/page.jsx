@@ -1,4 +1,4 @@
-import { Box, Heading, Text } from "@chakra-ui/react"
+import { Box, Heading, Text, Flex } from "@chakra-ui/react"
 import Link from "next/link"
 
 const carrinho = [
@@ -27,7 +27,7 @@ const carrinho = [
     },
     {
         id: 2,
-        nome: "Pedro",
+        nome: "Pedro Lima",
         produtos: [{
             imagem: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8hExi1X1xmX7UHZyw9b2wx79Xv_fOvXaYAvvqwUtyqeEmrSlQXfMS1sl2COBiU69VR1g&usqp=CAU",
             nome: "Curso de gestão",
@@ -49,7 +49,7 @@ const carrinho = [
     },
     {
         id: 3,
-        nome: "Lima",
+        nome: "Lima Pedro",
         produtos: [{
             imagem: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8hExi1X1xmX7UHZyw9b2wx79Xv_fOvXaYAvvqwUtyqeEmrSlQXfMS1sl2COBiU69VR1g&usqp=CAU",
             nome: "Curso de gestão",
@@ -74,25 +74,34 @@ const carrinho = [
 
 export default function Carrinho() {
     return (
-        <Box as="div">
-            <Heading as="h2">Lista de Carrinhos</Heading>
+        <Box p="6" maxW="container.lg" mx="auto" bg="gray.50" borderRadius="md" boxShadow="md">
+            <Heading as="h2" mb="6" fontSize="2xl" textAlign="center" color="#fe7502">
+                Lista de Carrinhos
+            </Heading>
 
-            {carrinho.map(({id, nome, produtos}, index) => (
-                <Link key={index} href={`carrinho/${id}?nome=${nome}&produtos=${encodeURIComponent(JSON.stringify(produtos))}`}>
-                    <Box as="div"
-                        display="flex"
-                        alignItems="center"
-                        margin="10px"
-                        borderRadius="5px"
-                        padding="5px"
-                        width="100%"
-                        height="50px"
-                        maxW="300px"
-                        boxShadow="0 0 6px black"
-
+            {carrinho.map(({ id, nome, produtos }) => (
+                <Link
+                    key={id}
+                    href={`/carrinhos/${id}?nome=${encodeURIComponent(nome)}&produtos=${encodeURIComponent(JSON.stringify(produtos))}`}
+                    passHref
+                >
+                    <Flex
+                        direction="row"
+                        align="center"
+                        justify="space-between"
+                        bg="white"
+                        borderRadius="md"
+                        p="4"
+                        mb="4"
+                        boxShadow="sm"
+                        _hover={{ boxShadow: "lg", transform: "scale(1.02)" }}
+                        transition="all 0.3s"
+                        cursor="pointer"
                     >
-                        <Text>{nome}</Text>
-                    </Box>
+                        <Text fontWeight="semibold" fontSize="lg" color="teal.800">
+                            {nome}
+                        </Text>
+                    </Flex>
                 </Link>
             ))}
         </Box>

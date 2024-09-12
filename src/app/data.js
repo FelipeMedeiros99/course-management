@@ -1,5 +1,3 @@
-import carrinho from "./carrinho/page";
-
 const listaCursos = [
     {
         imagem: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8hExi1X1xmX7UHZyw9b2wx79Xv_fOvXaYAvvqwUtyqeEmrSlQXfMS1sl2COBiU69VR1g&usqp=CAU",

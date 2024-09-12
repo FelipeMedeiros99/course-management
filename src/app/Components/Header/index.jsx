@@ -1,14 +1,17 @@
 import { Box, Heading, Image } from "@chakra-ui/react";
 
-export default function Footer() {
+export default function Header() {
   return (
     <Box 
-        as="footer" 
+        as="header" 
+        position="fixed"
+        top="0px"
+        width="100%"
         bg="#fe7502" 
         color="white" 
         py={4} 
         textAlign="center" 
-        justifyContent={"center"}
+        justifyContent="center"
     >
       <Image 
         src="/imagens/inaed_logo.png" 

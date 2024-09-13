@@ -30,7 +30,7 @@ export default function Header({ativo}) {
         INAED CURSOS
       </Heading>
 
-      {ativo && <MenuRotas />}
+      <MenuRotas ativo={ativo}/>
     </Box>
   );
 }

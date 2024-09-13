@@ -1,12 +1,14 @@
 "use client"
 import { Box, Button, FormControl, FormLabel, Input, Heading} from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useRouter } from "next/navigation";
+import Contexto from "./Tools/Contexto";
 
 
 export default function TelaCadastro() {
     const [nome, setNome] = useState("");
     const router = useRouter();
+    const {setNavegacaoAtiva} = useContext(Contexto)
     
     const handleConfirm = (evento) => {
         evento.preventDefault()
@@ -14,6 +16,10 @@ export default function TelaCadastro() {
             router.push("/curso")
         }
     };
+    
+    useEffect(()=>{
+        setNavegacaoAtiva(false)
+    }, [])
 
     return (
         <Box

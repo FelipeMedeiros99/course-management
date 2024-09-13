@@ -2,7 +2,7 @@ import { Box, ListItem, List } from "@chakra-ui/react";
 import Link from "next/link";
 
 export default function MenuRotas() {
-    const links = ["/cadastrar", "/", "/carrinhos"]
+    const links = ["/cadastrar", "/curso", "/carrinhos"]
     const descricao = ["Cadastrar curso", "Lista de cursos", "carrinhos"]
     return (
         <Box as="nav">

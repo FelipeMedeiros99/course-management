@@ -1,7 +1,7 @@
 import { Box, Heading, Image } from "@chakra-ui/react";
 import Link from "next/link";
 import MenuRotas from "../MenuRotas";
-export default function Header() {
+export default function Header({ativo}) {
   return (
     <Box
       as="header"
@@ -30,7 +30,7 @@ export default function Header() {
         INAED CURSOS
       </Heading>
 
-      <MenuRotas />
+      {ativo && <MenuRotas />}
     </Box>
   );
 }

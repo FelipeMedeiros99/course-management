@@ -36,7 +36,7 @@ export default function CadastroCurso() {
                 Cadastro de Curso
             </Heading>
 
-            <form onSubmit={handleSubmit}>
+            <Box as="form" onSubmit={handleSubmit}>
                 <VStack spacing="4" align="stretch">
                     <FormControl isRequired>
                         <FormLabel htmlFor="imagem">Imagem URL</FormLabel>
@@ -114,7 +114,7 @@ export default function CadastroCurso() {
                         Cadastrar Curso
                     </Button>
                 </VStack>
-            </form>
+            </Box>
 
             {/* Exemplo de visualização da imagem do curso */}
             {formData.imagem && (

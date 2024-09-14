@@ -1,23 +1,38 @@
 "use client"
-import { Box, Button, FormControl, FormLabel, Input, Heading} from "@chakra-ui/react";
+import { Box, Button, FormControl, FormLabel, Input, Heading } from "@chakra-ui/react";
 import { useEffect, useState, useContext } from "react";
 import { useRouter } from "next/navigation";
 import Contexto from "./Tools/Contexto";
-
+import axios from "axios";
+import { nomeMaiusculo } from "./Tools";
 
 export default function TelaCadastro() {
     const [nome, setNome] = useState("");
     const router = useRouter();
-    const {setNavegacaoAtiva} = useContext(Contexto)
-    
-    const handleConfirm = (evento) => {
+    const { setNavegacaoAtiva } = useContext(Contexto)
+    const linkServidor = process.env.NEXT_PUBLIC_LINK_SERVER
+
+
+    const handleConfirm = async (evento) => {
         evento.preventDefault()
-        if(nome.length){
-            router.push("/curso")
+        if (nome.length) {
+            const servidor = `${linkServidor}/login`
+            const data = {
+                "nome": nomeMaiusculo(nome)
+            }
+
+            try {
+                const promessa = await axios.post(servidor, data)
+                localStorage.setItem("usuario", JSON.stringify(promessa.data))
+                router.push("/curso")
+                
+            } catch (e) {
+                console.log("deu erro: ", e.response || e.request || e)
+            }
         }
     };
-    
-    useEffect(()=>{
+
+    useEffect(() => {
         setNavegacaoAtiva(false)
     }, [])
 

@@ -1,0 +1,67 @@
+link= https://gerenciamento-de-cursos-backend.onrender.com
+
+post("/login")
+
+recebe um body no formato
+
+{
+    "nome": "fulaono"
+}
+
+retorna o status 202
+
+
+get("/cursos")
+recebe array de cursos
+
+post("/cursos")
+
+deve ser enviado um body no formato 
+{
+    "nome": "Curso de Marketing em Mídias Sociais",
+    "url_foto": "https://example.com/curso-marketing-midias-sociais.jpg",
+    "preco": 199.99,
+    "preco_com_desconto": 159.99,
+    "carga_horaria": "25 horas",
+    "conteudo": "Curso sobre estratégias e ferramentas para marketing em plataformas de redes sociais."
+}
+
+recebera como resposta um array com todos os cursos
+
+put("/cursos")
+
+deve enviar um json no formato:
+{
+    "id": 1,
+    "nome": "Curso de Programação",
+    "preco": "199.99",
+    "preco_com_desconto": "149.99",
+    "carga_horaria": "30 horas",
+    "conteudo": "Neste curso, você aprenderá os fundamentos da programação, incluindo variáveis, estruturas de controle, funções e muito mais.",
+    "url_foto": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR3cE8l8oZ9kbeYARoBfCHzHafRIm7qY4Qlw&s"
+}
+
+receberá um array com todos os cursos
+
+
+post("/carrinho")
+
+deve enviar um body no formato:
+
+{
+    "usuario_id": 12,
+    "curso_id": 4
+}
+
+recebe um status de 202c
+
+delete("carrinho")
+
+remove o produto do id DO CARRINHO e do usuario especificado através de query:
+
+?id=1&&usuario_id=3
+retorna todos os produtos do carrinho do usuario em questao
+
+get("carrinho/:id")
+retorna os cursos presentes no carrinho do usuario do id na query
+

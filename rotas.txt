@@ -1,3 +1,7 @@
+dados salvos no localstorage:
+usuario
+
+
 link= https://gerenciamento-de-cursos-backend.onrender.com
 
 post("/login")

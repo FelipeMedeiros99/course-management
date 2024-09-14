@@ -5,7 +5,14 @@ import { converterEmMoedas } from "@/app/Tools";
 import Link from "next/link";
 
 export default function ContainerCurso({ props }) {
-    const { nome, preco, cargaHoraria, precoComDesconto, conteudo, imagem, id } = props;
+    const { 
+        nome, 
+        preco, 
+        cargaHoraria, 
+        preco_com_desconto:precoComDesconto, 
+        conteudo, 
+        url_foto:imagem, 
+        id } = props;
 
     const link = `:${id}?nome=${nome}&preco=${preco}&cargaHoraria=${cargaHoraria}&precoComDesconto=${precoComDesconto}&conteudo=${conteudo}&imagem=${imagem}`
 

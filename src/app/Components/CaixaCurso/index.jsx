@@ -8,13 +8,13 @@ export default function ContainerCurso({ props }) {
     const { 
         nome, 
         preco, 
-        cargaHoraria, 
+        carga_horaria:cargaHoraria, 
         preco_com_desconto:precoComDesconto, 
         conteudo, 
         url_foto:imagem, 
         id } = props;
 
-    const link = `:${encodeURIComponent(id)}?nome=${encodeURIComponent(nome)}&preco=${encodeURIComponent(preco)}&cargaHoraria=${encodeURIComponent(cargaHoraria)}&precoComDesconto=${encodeURIComponent(precoComDesconto)}&conteudo=${encodeURIComponent(conteudo)}&imagem=${encodeURIComponent(imagem)}`
+    const link = `${id}?nome=${encodeURIComponent(nome)}&preco=${encodeURIComponent(preco)}&cargaHoraria=${encodeURIComponent(cargaHoraria)}&precoComDesconto=${encodeURIComponent(precoComDesconto)}&conteudo=${encodeURIComponent(conteudo)}&imagem=${encodeURIComponent(imagem)}`
 
     return (
         <Link href={`/cursos/${link}`}>

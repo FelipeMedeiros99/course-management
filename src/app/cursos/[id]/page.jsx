@@ -3,18 +3,19 @@ import { converterEmMoedas } from "@/app/Tools";
 import { Box, Image, Text, Button, ButtonGroup } from "@chakra-ui/react";
 import ModeloBotao from "../../Components/ModeloBotao"
 import { useRouter } from "next/navigation";
+import adicionarAoCarrinho from "@/app/Tools/adicionarAoCarrinho";
 
 
-export default function DetalhesCurso({ searchParams }) {
+export default function DetalhesCurso({params, searchParams }) {
  
+
   const nome = decodeURIComponent(searchParams.nome || '')
   const preco = decodeURIComponent(searchParams.preco || '')
   const cargaHoraria = decodeURIComponent(searchParams.cargaHoraria || '')
   const precoComDesconto = decodeURIComponent(searchParams.precoComDesconto || '')
   const conteudo = decodeURIComponent(searchParams.conteudo || '')
   const imagem = decodeURIComponent(searchParams.imagem || '')
-  const id = decodeURIComponent(searchParams.id || '')
-
+  const id = decodeURIComponent(params.id || '')
   const router = useRouter()
 
   function editarCurso(){
@@ -77,9 +78,8 @@ export default function DetalhesCurso({ searchParams }) {
           justifyContent="center"
         >
           
-          <ModeloBotao bg="#206eb3">Adicionar ao carrinho</ModeloBotao>
+          <ModeloBotao bg="#206eb3" onClick={()=>adicionarAoCarrinho(id)}>Adicionar ao carrinho</ModeloBotao>
           <ModeloBotao onClick={editarCurso} bg="#fbff29">Editar curso</ModeloBotao>
-          <ModeloBotao bg="#fe7502">Deletar curso</ModeloBotao>
         </ButtonGroup>
       </Box>
     </Box>

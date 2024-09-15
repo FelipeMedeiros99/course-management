@@ -1,6 +1,5 @@
 import { Box } from "@chakra-ui/react"
 import CaixaCurso from "../CaixaCurso"
-import listaCursos from "@/app/data"
 import axios from "axios"
 import { useEffect, useState } from "react"
 

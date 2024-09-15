@@ -1,4 +1,4 @@
-import { Button } from "@chakra-ui/react"
+import { background, Button } from "@chakra-ui/react"
 
 export default function ModeloBotao({children, ...props}){
     return(
@@ -10,6 +10,7 @@ export default function ModeloBotao({children, ...props}){
             width="100%"
             margin="3px"
             borderRadius="30px"
+            _active={{backgroundColor:"red"}}
             {...props}    
         >
             {children}

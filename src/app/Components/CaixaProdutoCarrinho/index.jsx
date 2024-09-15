@@ -67,8 +67,17 @@ export default function CaixaProdutoCarrinho({idDoCarrinho, setCursosNoCarrinho,
 
 
                 <ButtonGroup>
-                    <ModeloBotao  color="white" backgroundColor="#206eb3">Fechar pedido</ModeloBotao>
-                    <ModeloBotao onClick={removerDoCarrinho} color="white" backgroundColor="#ff4500">Remover do carrinho</ModeloBotao>
+                    <ModeloBotao  
+                        color="white" 
+                        backgroundColor="#206eb3"
+                        _hover={{backgroundColor:"#175388"}}
+                        >Fechar pedido</ModeloBotao>
+                    <ModeloBotao 
+                        onClick={removerDoCarrinho} 
+                        color="white" 
+                        backgroundColor="#ff4500"
+                        _hover={{backgroundColor:"#ad2f02"}}
+                        >Remover do carrinho</ModeloBotao>
                 </ButtonGroup>
             </Box>
         

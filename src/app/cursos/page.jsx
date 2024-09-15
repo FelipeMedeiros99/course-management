@@ -2,7 +2,6 @@
 import { Box } from "@chakra-ui/react"
 import { useContext, useEffect } from "react";
 import Contexto from "../Tools/Contexto";
-// import CaixaCurso from "../CaixaCurso"
 import CaixaCurso from "@/app/Components/CaixaCurso"
 import axios from "axios"
 

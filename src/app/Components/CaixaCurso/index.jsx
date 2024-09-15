@@ -3,31 +3,33 @@ import { Image } from "@chakra-ui/react"
 import styles from "./style.module.css"
 import { converterEmMoedas } from "@/app/Tools";
 import Link from "next/link";
+import ModeloBotao from "../ModeloBotao";
+import adicionarAoCarrinho from "@/app/Tools/adicionarAoCarrinho";
 
 export default function ContainerCurso({ props }) {
-    const { 
-        nome, 
-        preco, 
-        carga_horaria:cargaHoraria, 
-        preco_com_desconto:precoComDesconto, 
-        conteudo, 
-        url_foto:imagem, 
+    const {
+        nome,
+        preco,
+        carga_horaria: cargaHoraria,
+        preco_com_desconto: precoComDesconto,
+        conteudo,
+        url_foto: imagem,
         id } = props;
 
     const link = `${id}?nome=${encodeURIComponent(nome)}&preco=${encodeURIComponent(preco)}&cargaHoraria=${encodeURIComponent(cargaHoraria)}&precoComDesconto=${encodeURIComponent(precoComDesconto)}&conteudo=${encodeURIComponent(conteudo)}&imagem=${encodeURIComponent(imagem)}`
 
     return (
-        <Link href={`/cursos/${link}`}>
-            <Box
-                as="div"
-                width="250px"
-                height="400px"
-                boxShadow='0 0 3px black'
-                borderRadius="5px"
-                padding={2}
-                margin={2}
-                color="#545454"
-            >
+        <Box
+            as="div"
+            width="300px"
+            height="460px"
+            boxShadow='0 0 3px black'
+            borderRadius="5px"
+            padding={2}
+            margin={2}
+            color="#545454"
+        >
+            <Link href={`/cursos/${link}`}>
                 <Image
                     src={imagem}
                     alt={nome}
@@ -56,9 +58,15 @@ export default function ContainerCurso({ props }) {
                 <Text
                     fontSize="xl"
                     fontWeight="900">R${converterEmMoedas(precoComDesconto)}</Text>
-            </Box>
+            </Link>
+            <ModeloBotao
+                onClick={() => adicionarAoCarrinho(id)}
+                backgroundColor="#206eb3"
+                _hover={{backgroundColor:"#175388"}}
+                color="white">Adicionar ao carrinho</ModeloBotao>
 
-        </Link>
+        </Box>
+
 
     )
 }

@@ -10,7 +10,7 @@ export default async function adicionarAoCarrinho(idCurso){
             "curso_id": Number(idCurso)
         }
         const response = await axios.post(link+"/carrinho", data)
-        console.log(response)
+     
         if(response.status===202){
             alert("Adicionado ao carrinho")
         }

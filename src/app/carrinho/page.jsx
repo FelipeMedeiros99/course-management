@@ -85,7 +85,7 @@ export default function CarrinhoUsuario() {
                             />
                         ))
                     ) : (
-                        <Text color="595959">Você ainda não adicionou nada ao seu carrinho</Text>
+                        <Text color="#595959">Você ainda não adicionou nada ao seu carrinho</Text>
                     )
                 )}
             </Box>

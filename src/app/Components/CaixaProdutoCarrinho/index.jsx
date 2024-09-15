@@ -4,6 +4,7 @@ import { Box, Text, Image, Badge, Stack, ButtonGroup, Button } from "@chakra-ui/
 import ModeloBotao from "../ModeloBotao";
 import axios from "axios";
 import SpinCarregando from "../SpinCarregando";
+import { converterEmMoedas } from "@/app/Tools";
 
 export default function CaixaProdutoCarrinho({comprado, idDoCarrinho, setCursosNoCarrinho, imagem, nome, preco, cargaHoraria, precoComDesconto, conteudo, id }) {
     const link =  `${process.env.NEXT_PUBLIC_LINK_SERVER}/carrinho?id=${idDoCarrinho}&usuario_id=${JSON.parse(localStorage.getItem("usuario")).id}`
@@ -64,13 +65,13 @@ export default function CaixaProdutoCarrinho({comprado, idDoCarrinho, setCursosN
                 
                 <Stack direction="row" align="center" justify="space-between" mb="2">
                     <Badge fontSize="lg">
-                        Parcelado: R$ {preco}
+                        Parcelado: R$ {converterEmMoedas(preco)}
                     </Badge>
                 </Stack>
                 
                 <Stack direction="row" align="center" justify="space-between" mb="2">
                     <Badge colorScheme="green" fontSize="lg">
-                        Avista: R$ {precoComDesconto}
+                        Avista: R$ {converterEmMoedas(precoComDesconto)}
                     </Badge>
                 </Stack>
 

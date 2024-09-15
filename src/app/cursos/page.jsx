@@ -1,22 +1,39 @@
 "use client"
-import { Box, Spinner, Text } from "@chakra-ui/react"
+// modulos externos
+import { Box, Spinner } from "@chakra-ui/react"
 import { useContext, useEffect, useState } from "react";
-import Contexto from "../Tools/Contexto";
-import CaixaCurso from "@/app/Components/CaixaCurso"
 import axios from "axios"
 
-export default function Main() {
-  const { setNavegacaoAtiva } = useContext(Contexto);
-  const [carregandoCursos, setCarregandoCursos] = useState(false)
+// modulos internos
+import CaixaCurso from "@/app/Components/CaixaCurso"
+import Contexto from "../Tools/Contexto";
 
+
+export default function Main() {
+  // hooks
+  const [carregandoCursos, setCarregandoCursos] = useState(false)
+  const { setNavegacaoAtiva, listaCursos, setListaCursos} = useContext(Contexto);
+  
+  // vars
+  const linkServer = process.env.NEXT_PUBLIC_LINK_SERVER
+
+  // effects
   useEffect(() => {
     setNavegacaoAtiva(true)
   }, [])
 
-  const linkServer = process.env.NEXT_PUBLIC_LINK_SERVER
+  useEffect(() => {
+    async function carregarCursos() {
+      setCarregandoCursos(true)
+      const resposta = await buscarCursos();
+      setListaCursos(resposta)
+      setCarregandoCursos(false)
+    }
+    carregarCursos()
+  }, [])
 
-  const { listaCursos, setListaCursos } = useContext(Contexto)
 
+  // functions
   async function buscarCursos() {
     try {
       const promessa = await axios.get(`${linkServer}/cursos`);
@@ -27,24 +44,8 @@ export default function Main() {
     }
   }
 
-  useEffect(() => {
-    async function carregarCursos() {
-      setCarregandoCursos(true)
-      const resposta = await buscarCursos();
-      setListaCursos(resposta)
-      setCarregandoCursos(false)
-    }
-
-    carregarCursos()
-
-  }, [])
-
-
-  console.log(listaCursos)
-
   return (
     <Box as="main">
-
       {carregandoCursos &&
         <Box
           display="flex"
@@ -59,16 +60,9 @@ export default function Main() {
             color="#fe7502" />
         </Box>
       }
-
-
       <Box
-        as="div"
-        display="flex"
-        flexWrap="wrap"
-        width="100%"
-        mx="auto"
-        justifyContent="center"
-        marginTop="40px"
+        as="div" display="flex" flexWrap="wrap" width="100%"
+        mx="auto" justifyContent="center" marginTop="40px"
         marginBottom="40px"
       >
         {listaCursos.map((dados, index) => (

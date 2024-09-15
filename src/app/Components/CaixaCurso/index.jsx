@@ -2,7 +2,6 @@
 import { useState } from "react";
 import { Box, Text } from "@chakra-ui/react"
 import { Image } from "@chakra-ui/react"
-import styles from "./style.module.css"
 import { converterEmMoedas } from "@/app/Tools";
 import Link from "next/link";
 import ModeloBotao from "../ModeloBotao";
@@ -59,6 +58,7 @@ export default function ContainerCurso({ props }) {
                     height="100px"
                     lineHeight="1"
                     overflow="auto"
+                    textDecor="underline"
                 >{nome}</Text>
 
                 <Text

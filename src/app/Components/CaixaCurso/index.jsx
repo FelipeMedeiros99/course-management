@@ -14,10 +14,10 @@ export default function ContainerCurso({ props }) {
         url_foto:imagem, 
         id } = props;
 
-    const link = `:${id}?nome=${nome}&preco=${preco}&cargaHoraria=${cargaHoraria}&precoComDesconto=${precoComDesconto}&conteudo=${conteudo}&imagem=${imagem}`
+    const link = `:${encodeURIComponent(id)}?nome=${encodeURIComponent(nome)}&preco=${encodeURIComponent(preco)}&cargaHoraria=${encodeURIComponent(cargaHoraria)}&precoComDesconto=${encodeURIComponent(precoComDesconto)}&conteudo=${encodeURIComponent(conteudo)}&imagem=${encodeURIComponent(imagem)}`
 
     return (
-        <Link href={`/curso/${link}`}>
+        <Link href={`/cursos/${link}`}>
             <Box
                 as="div"
                 width="250px"

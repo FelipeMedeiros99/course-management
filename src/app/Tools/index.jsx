@@ -4,7 +4,8 @@ export function converterEmMoedas(valor){
 
 export function nomeMaiusculo(name) {
     return name
-        .toLowerCase() 
+        .toLowerCase()
+        .trim()
         .split(' ')    
         .map(word => word.charAt(0).toUpperCase() + word.slice(1)) 
         .join(' ');   

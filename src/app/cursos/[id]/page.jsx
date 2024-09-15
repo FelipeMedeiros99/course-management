@@ -1,10 +1,26 @@
+"use client"
 import { converterEmMoedas } from "@/app/Tools";
 import { Box, Image, Text, Button, ButtonGroup } from "@chakra-ui/react";
 import ModeloBotao from "../../Components/ModeloBotao"
+import { useRouter } from "next/navigation";
 
 
-export default function DetalhesCurso({ params, searchParams }) {
-  const { nome, preco, cargaHoraria, precoComDesconto, conteudo, imagem, id } = searchParams;
+export default function DetalhesCurso({ searchParams }) {
+ 
+  const nome = decodeURIComponent(searchParams.nome || '')
+  const preco = decodeURIComponent(searchParams.preco || '')
+  const cargaHoraria = decodeURIComponent(searchParams.cargaHoraria || '')
+  const precoComDesconto = decodeURIComponent(searchParams.precoComDesconto || '')
+  const conteudo = decodeURIComponent(searchParams.conteudo || '')
+  const imagem = decodeURIComponent(searchParams.imagem || '')
+  const id = decodeURIComponent(searchParams.id || '')
+
+  const router = useRouter()
+
+  function editarCurso(){
+    const url = `/cadastrar?nome=${encodeURIComponent(nome)}&preco=${encodeURIComponent(preco)}&cargaHoraria=${encodeURIComponent(cargaHoraria)}&precoComDesconto=${encodeURIComponent(precoComDesconto)}&conteudo=${encodeURIComponent(conteudo)}&imagem=${encodeURIComponent(imagem)}&id=${encodeURIComponent(id)}`;
+    router.push(url)
+  }
 
   return (
     <Box
@@ -62,7 +78,7 @@ export default function DetalhesCurso({ params, searchParams }) {
         >
           
           <ModeloBotao bg="#206eb3">Adicionar ao carrinho</ModeloBotao>
-          <ModeloBotao bg="#fbff29">Editar curso</ModeloBotao>
+          <ModeloBotao onClick={editarCurso} bg="#fbff29">Editar curso</ModeloBotao>
           <ModeloBotao bg="#fe7502">Deletar curso</ModeloBotao>
         </ButtonGroup>
       </Box>

@@ -2,16 +2,21 @@
 import { useState } from 'react';
 import { Box, Button, FormControl, FormLabel, Input, Textarea, NumberInput, NumberInputField, VStack, Heading, Image } from "@chakra-ui/react";
 import { useRouter } from 'next/navigation';
+import axios from 'axios';
 
-export default function CadastroCurso() {
+export default function CadastroCurso({searchParams:query}) {
+    
     const [formData, setFormData] = useState({
-        imagem: '',
-        nome: '',
-        preco: '',
-        cargaHoraria: '',
-        precoComDesconto: '',
-        conteudo: '',
+        nome: decodeURIComponent(query?.nome || ''),
+        preco: decodeURIComponent(query?.preco || ''),
+        cargaHoraria: decodeURIComponent(query?.cargaHoraria || ''),
+        precoComDesconto: decodeURIComponent(query?.precoComDesconto || ''),
+        conteudo: decodeURIComponent(query?.conteudo || ''),
+        imagem: decodeURIComponent(query?.imagem || ''),
+        id: decodeURIComponent(query?.id || '')
     });
+
+    const linkServer = process.env.NEXT_PUBLIC_LINK_SERVER
 
     const router = useRouter()
 
@@ -23,11 +28,42 @@ export default function CadastroCurso() {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Curso cadastrado:', formData);
-        router.push("/")
-        // Aqui você pode adicionar a lógica para enviar os dados para um backend
+        const {
+            nome,
+            preco,
+            precoComDesconto,
+            cargaHoraria,
+            conteudo,
+            imagem, id } = formData;
+
+        const data = {
+            nome,
+            "url_foto": imagem,
+            "preco": Number(preco),
+            "preco_com_desconto": Number(precoComDesconto),
+            "carga_horaria": cargaHoraria,
+            conteudo,
+            id: Number(id)
+        };
+        console.log(data)
+        try {
+            // cadastrar ou alterar um curso
+            if(id){
+                // editar curso
+                await axios.put(linkServer+"/cursos", data)
+            }else{
+                // removendo o dado que não é necessário
+                delete data.id
+                // salvando curso
+                await axios.post( linkServer+"/cursos", data)
+            }
+            router.push("/cursos")
+        } catch (e) {
+        console.log("deu erro: ", e?.response?.data?.message||e.response||e)
+        }
+
     };
 
     return (

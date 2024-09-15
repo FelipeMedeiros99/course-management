@@ -90,8 +90,8 @@ export default function DetalhesCurso({ params, searchParams }) {
           <ModeloBotao 
             onClick={editarCurso} 
             color="white" 
-            bg="#bcbe2a"
-            _hover={{backgroundColor:"#8e9107"}}
+            bg="#fbff29"
+            _hover={{backgroundColor:"#a3a519"}}
             >Editar curso</ModeloBotao>
         </ButtonGroup>
       </Box>

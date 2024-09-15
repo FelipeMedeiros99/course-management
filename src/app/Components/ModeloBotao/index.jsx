@@ -10,7 +10,6 @@ export default function ModeloBotao({children, ...props}){
             width="100%"
             margin="3px"
             borderRadius="30px"
-            _active={{backgroundColor:"red"}}
             {...props}    
         >
             {children}

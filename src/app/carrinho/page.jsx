@@ -1,40 +1,44 @@
-"use client"
+"use client";
 import { Box, Heading, Spinner, Text } from "@chakra-ui/react";
 import CaixaProdutoCarrinho from "../Components/CaixaProdutoCarrinho";
-import { useContext, useEffect } from "react";
-import Contexto from "../Tools/Contexto";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
+export default function CarrinhoUsuario() {
+    const [carregandoCursos, setCarregandoCursos] = useState(true);
+    const [cursosNoCarrinho, setCursosNoCarrinho] = useState([]);
+    const [nomeUsuario, setNomeUsuario] = useState('');
+    const [idUsuario, setIdUsuario] = useState(null);
 
-export default function CarrinhoUsuario({ params, searchParams }) {
-    const link = process.env.NEXT_PUBLIC_LINK_SERVER+"/carrinho"
+    useEffect(() => {
+        // Verificar se localStorage está disponível
+        if (typeof window !== 'undefined') {
+            const dadosUsuario = JSON.parse(localStorage.getItem("usuario")) || undefined;
 
-    const dadosUsuario = JSON.parse(localStorage.getItem("usuario"))||undefined
-    const idUsuario = dadosUsuario.id
-    const nomeUsuario = dadosUsuario.nome
-    const [carregandoCursos, setCarregandoCursos] = useState(false)
-    let [cursosNoCarrinho, setCursosNoCarrinho ] = useState([])
-    
-    useEffect(()=>{
-        setCarregandoCursos(true)
-        const buscarProdutos = async()=>{
-            try{
-                const promisse = await axios.get(`${link}/${idUsuario}`)
-                setCursosNoCarrinho(promisse.data)
-            }catch(e){
-                console.log("erro ao buscar produtos: ", e)
+            if (dadosUsuario) {
+                setIdUsuario(dadosUsuario.id);
+                setNomeUsuario(dadosUsuario.nome);
             }
         }
+    }, []);
 
-        buscarProdutos()
-        setCarregandoCursos(false)
-    },[])
+    useEffect(() => {
+        if (idUsuario) {
+            const buscarProdutos = async () => {
+                try {
+                    const link = `${process.env.NEXT_PUBLIC_LINK_SERVER}/carrinho/${idUsuario}`;
+                    const resposta = await axios.get(link);
+                    setCursosNoCarrinho(resposta.data);
+                } catch (e) {
+                    console.log("Erro ao buscar produtos: ", e);
+                } finally {
+                    setCarregandoCursos(false);
+                }
+            };
 
-
-    console.log(cursosNoCarrinho)
-
-    const [produtosSelecionados, setProdutosSelecionados] = useState({}) 
+            buscarProdutos();
+        }
+    }, [idUsuario]);
 
     return (
         <Box
@@ -46,96 +50,45 @@ export default function CarrinhoUsuario({ params, searchParams }) {
             bg="gray.50"
             mt="6"
         >
-            <Heading as="h2" size="lg" mb="4" textAlign="center">
-                <Heading as="h2" size="lg" mb="4" textAlign="center" color="#fe7502">
-                    Olá, {nomeUsuario}!
-                </Heading>
-                <Box>
-                    {carregandoCursos?
-                        <Box 
+            <Heading as="h2" size="lg" mb="4" textAlign="center" color="#fe7502">
+                Olá, {nomeUsuario}!
+            </Heading>
+            <Box>
+                {carregandoCursos ? (
+                    <Box 
                         display="flex"
                         alignItems="center"
                         justifyContent="center"
                         height="40vh"
-                      >
-          
+                    >
                         <Spinner 
-                        width={"100px"} 
-                        height={"100px"}
-                        color="#fe7502"/>
-                      </Box>
-                        :
-                        <></>
-                    }
-                    {cursosNoCarrinho.length>0 && !carregandoCursos?
-                    cursosNoCarrinho.map(({codigo_carrinho:idDoCarrinho, url_foto, nome, preco, carga_horaria:cargaHoraria, preco_com_desconto:precoComDesconto, conteudo, id, comprado }, index) => (
-                        <CaixaProdutoCarrinho
-                            comprado={comprado}
-                            idDoCarrinho={idDoCarrinho}
-                            key={id}
-                            imagem={url_foto}
-                            nome={nome}
-                            preco={preco}
-                            cargaHoraria={cargaHoraria}
-                            precoComDesconto={precoComDesconto}
-                            conteudo={conteudo}
-                            id={id}
-                            setCursosNoCarrinho={setCursosNoCarrinho}
+                            width={"100px"} 
+                            height={"100px"}
+                            color="#fe7502"
                         />
-                    )):
-                    <Text color="595959">Você ainda não adicionou nada ao seu carrinho</Text>
-                    }
-                </Box>
-            </Heading>
+                    </Box>
+                ) : (
+                    cursosNoCarrinho.length > 0 ? (
+                        cursosNoCarrinho.map(({ codigo_carrinho: idDoCarrinho, url_foto, nome, preco, carga_horaria: cargaHoraria, preco_com_desconto: precoComDesconto, conteudo, id, comprado }, index) => (
+                            <CaixaProdutoCarrinho
+                                comprado={comprado}
+                                idDoCarrinho={idDoCarrinho}
+                                key={id}
+                                imagem={url_foto}
+                                nome={nome}
+                                preco={preco}
+                                cargaHoraria={cargaHoraria}
+                                precoComDesconto={precoComDesconto}
+                                conteudo={conteudo}
+                                id={id}
+                                setCursosNoCarrinho={setCursosNoCarrinho}
+                            />
+                        ))
+                    ) : (
+                        <Text color="595959">Você ainda não adicionou nada ao seu carrinho</Text>
+                    )
+                )}
+            </Box>
         </Box>
     );
 }
-
-
-// "use client"
-// import { Box, Text, Heading } from "@chakra-ui/react";
-// import CaixaProdutoCarrinho from "@/app/Components/CaixaProdutoCarrinho";
-// import { useContext } from "react";
-// import Contexto from "../Tools/Contexto";
-
-// export default function CarrinhoUsuario({ params, searchParams }) {
-//     // const idCarrinhoUsuario = params.id;
-//     // const nome = decodeURIComponent(searchParams.nome);
-//     // const produtos = JSON?.parse(decodeURIComponent(searchParams.produtos));
-//     const {listaCursos} = useContext(Contexto)
-
-//     return (
-//         <Box 
-//             maxW="800px" 
-//             mx="auto" 
-//             p="6" 
-//             boxShadow="lg" 
-//             borderRadius="md" 
-//             mt="6"
-//         >
-//             <Heading as="h2" size="lg" mb="4" textAlign="center" color="#fe7502">
-//                 Carrinho do Usuário
-//             </Heading>
-//             <Text fontSize="xl" fontWeight="bold" mb="2" color="blue.500">
-//                 ID do Carrinho: 3
-//             </Text>
-//             <Text fontSize="lg" mb="6" color="gray.700">
-//                 Nome: felipao
-//             </Text>
-//             <Box>
-//                 {listaCursos.map(({ imagem, nome, preco, cargaHoraria, precoComDesconto, conteudo, id }, index) => (
-//                     <CaixaProdutoCarrinho
-//                         key={id}
-//                         imagem={imagem}
-//                         nome={nome}
-//                         preco={preco}
-//                         cargaHoraria={cargaHoraria}
-//                         precoComDesconto={precoComDesconto}
-//                         conteudo={conteudo}
-//                         id={id}
-//                     />
-//                 ))}
-//             </Box>
-//         </Box>
-//     );
-// }

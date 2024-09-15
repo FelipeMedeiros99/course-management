@@ -2,9 +2,9 @@ import { Box, Text, Image, Badge, Stack, ButtonGroup, Button } from "@chakra-ui/
 import ModeloBotao from "../ModeloBotao";
 import axios from "axios";
 
-export default function CaixaProdutoCarrinho({idDoCarrinho, setCursosNoCarrinho, imagem, nome, preco, cargaHoraria, precoComDesconto, conteudo, id }) {
+export default function CaixaProdutoCarrinho({comprado, idDoCarrinho, setCursosNoCarrinho, imagem, nome, preco, cargaHoraria, precoComDesconto, conteudo, id }) {
+    const link =  `${process.env.NEXT_PUBLIC_LINK_SERVER}/carrinho?id=${idDoCarrinho}&usuario_id=${JSON.parse(localStorage.getItem("usuario")).id}`
     async function removerDoCarrinho(){
-        const link =  `${process.env.NEXT_PUBLIC_LINK_SERVER}/carrinho?id=${idDoCarrinho}&usuario_id=${JSON.parse(localStorage.getItem("usuario")).id}`
 
         try{
             const promisse = await axios.delete(link)
@@ -17,6 +17,17 @@ export default function CaixaProdutoCarrinho({idDoCarrinho, setCursosNoCarrinho,
         
         // setProdutoSelecionado()
     }
+
+
+    async function fecharPedido(){
+        try{
+            const promisse = await axios.put(link)
+            setCursosNoCarrinho(promisse.data)
+        }catch(e){
+            console.log("Erro ao fechar pedido: ", e)
+        }
+    }
+
 
     return (
         <Box    
@@ -43,6 +54,9 @@ export default function CaixaProdutoCarrinho({idDoCarrinho, setCursosNoCarrinho,
                     {nome}
                 </Text>
 
+                
+
+                
                 <Stack direction="row" align="center" justify="space-between" mb="2">
                     <Badge fontSize="lg">
                         Parcelado: R$ {preco}
@@ -66,11 +80,13 @@ export default function CaixaProdutoCarrinho({idDoCarrinho, setCursosNoCarrinho,
                 </Text>
 
 
+                {!comprado?
                 <ButtonGroup>
                     <ModeloBotao  
                         color="white" 
                         backgroundColor="#206eb3"
                         _hover={{backgroundColor:"#175388"}}
+                        onClick={fecharPedido}
                         >Fechar pedido</ModeloBotao>
                     <ModeloBotao 
                         onClick={removerDoCarrinho} 
@@ -78,7 +94,10 @@ export default function CaixaProdutoCarrinho({idDoCarrinho, setCursosNoCarrinho,
                         backgroundColor="#ff4500"
                         _hover={{backgroundColor:"#ad2f02"}}
                         >Remover do carrinho</ModeloBotao>
-                </ButtonGroup>
+                </ButtonGroup>:
+                
+                <Text color={"#28a745"}>Você já possui este curso!</Text>
+                }
             </Box>
         
         </Box>

@@ -48,15 +48,11 @@ export default function CarrinhoUsuario({ params, searchParams }) {
                 <Heading as="h2" size="lg" mb="4" textAlign="center" color="#fe7502">
                     Olá, {nomeUsuario}!
                 </Heading>
-                <Text fontSize="xl" fontWeight="bold" mb="2" color="blue.500">
-                    ID do Carrinho: idCarrinho
-                </Text>
-                <Text fontSize="lg" mb="6" color="gray.700">
-                    Nome: nome
-                </Text>
+                
                 <Box>
-                    {cursosNoCarrinho.map(({codigo_carrinho:idDoCarrinho, url_foto, nome, preco, carga_horaria:cargaHoraria, preco_com_desconto:precoComDesconto, conteudo, id }, index) => (
+                    {cursosNoCarrinho.map(({codigo_carrinho:idDoCarrinho, url_foto, nome, preco, carga_horaria:cargaHoraria, preco_com_desconto:precoComDesconto, conteudo, id, comprado }, index) => (
                         <CaixaProdutoCarrinho
+                            comprado={comprado}
                             idDoCarrinho={idDoCarrinho}
                             key={id}
                             imagem={url_foto}

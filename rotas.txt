@@ -69,3 +69,5 @@ retorna todos os produtos do carrinho do usuario em questao
 get("carrinho/:id")
 retorna os cursos presentes no carrinho do usuario do id na query
 
+put("carrinho?id=4&usuario_id=1")
+alterar status de compra

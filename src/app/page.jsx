@@ -5,8 +5,8 @@ import { useRouter } from "next/navigation";
 import Contexto from "./Tools/Contexto";
 import axios from "axios";
 import { nomeMaiusculo } from "./Tools";
-import { TailSpin } from "react-loader-spinner";
 import ModeloBotao from "./Components/ModeloBotao";
+import SpinCarregando from "./Components/SpinCarregando";
 
 export default function TelaCadastro() {
     const [nome, setNome] = useState("");
@@ -74,16 +74,7 @@ export default function TelaCadastro() {
                     isDisabled={carregando}>
                         {!carregando?
                         "Confirmar":
-                        <TailSpin
-                            visible={true}
-                            height="40"
-                            width="40"
-                            color="white"
-                            ariaLabel="tail-spin-loading"
-                            radius="1"
-                            wrapperStyle={{}}
-                            wrapperClass=""
-                        />
+                        <SpinCarregando/>
                       
                     }
                 </ModeloBotao>

@@ -1,3 +1,5 @@
+"use client"
+import { useState } from "react";
 import { Box, Text } from "@chakra-ui/react"
 import { Image } from "@chakra-ui/react"
 import styles from "./style.module.css"
@@ -5,6 +7,7 @@ import { converterEmMoedas } from "@/app/Tools";
 import Link from "next/link";
 import ModeloBotao from "../ModeloBotao";
 import adicionarAoCarrinho from "@/app/Tools/adicionarAoCarrinho";
+import SpinCarregando from "../SpinCarregando";
 
 export default function ContainerCurso({ props }) {
     const {
@@ -15,8 +18,15 @@ export default function ContainerCurso({ props }) {
         conteudo,
         url_foto: imagem,
         id } = props;
-
+    const [carregando, setCarregando] = useState(false)
+  
     const link = `${id}?nome=${encodeURIComponent(nome)}&preco=${encodeURIComponent(preco)}&cargaHoraria=${encodeURIComponent(cargaHoraria)}&precoComDesconto=${encodeURIComponent(precoComDesconto)}&conteudo=${encodeURIComponent(conteudo)}&imagem=${encodeURIComponent(imagem)}`
+
+    async function adicionar(){
+        setCarregando(true)
+        await adicionarAoCarrinho(id)
+        setCarregando(false)
+    }
 
     return (
         <Box
@@ -60,10 +70,16 @@ export default function ContainerCurso({ props }) {
                     fontWeight="900">R${converterEmMoedas(precoComDesconto)}</Text>
             </Link>
             <ModeloBotao
-                onClick={() => adicionarAoCarrinho(id)}
+                isDisabled={carregando}
+                onClick={adicionar}
                 backgroundColor="#206eb3"
                 _hover={{backgroundColor:"#175388"}}
-                color="white">Adicionar ao carrinho</ModeloBotao>
+                color="white">
+                    {carregando?
+                    <SpinCarregando/>:
+                    "Adicionar ao carrinho"
+                    }
+                </ModeloBotao>
 
         </Box>
 

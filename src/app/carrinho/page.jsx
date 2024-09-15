@@ -1,5 +1,5 @@
 "use client"
-import { Box, Heading, Text,  } from "@chakra-ui/react";
+import { Box, Heading, Spinner, Text } from "@chakra-ui/react";
 import CaixaProdutoCarrinho from "../Components/CaixaProdutoCarrinho";
 import { useContext, useEffect } from "react";
 import Contexto from "../Tools/Contexto";
@@ -13,10 +13,11 @@ export default function CarrinhoUsuario({ params, searchParams }) {
     const dadosUsuario = JSON.parse(localStorage.getItem("usuario"))||undefined
     const idUsuario = dadosUsuario.id
     const nomeUsuario = dadosUsuario.nome
-    
+    const [carregandoCursos, setCarregandoCursos] = useState(false)
     let [cursosNoCarrinho, setCursosNoCarrinho ] = useState([])
     
     useEffect(()=>{
+        setCarregandoCursos(true)
         const buscarProdutos = async()=>{
             try{
                 const promisse = await axios.get(`${link}/${idUsuario}`)
@@ -27,6 +28,7 @@ export default function CarrinhoUsuario({ params, searchParams }) {
         }
 
         buscarProdutos()
+        setCarregandoCursos(false)
     },[])
 
 
@@ -48,9 +50,25 @@ export default function CarrinhoUsuario({ params, searchParams }) {
                 <Heading as="h2" size="lg" mb="4" textAlign="center" color="#fe7502">
                     Olá, {nomeUsuario}!
                 </Heading>
-                
                 <Box>
-                    {cursosNoCarrinho.map(({codigo_carrinho:idDoCarrinho, url_foto, nome, preco, carga_horaria:cargaHoraria, preco_com_desconto:precoComDesconto, conteudo, id, comprado }, index) => (
+                    {carregandoCursos?
+                        <Box 
+                        display="flex"
+                        alignItems="center"
+                        justifyContent="center"
+                        height="40vh"
+                      >
+          
+                        <Spinner 
+                        width={"100px"} 
+                        height={"100px"}
+                        color="#fe7502"/>
+                      </Box>
+                        :
+                        <></>
+                    }
+                    {cursosNoCarrinho.length>0 && !carregandoCursos?
+                    cursosNoCarrinho.map(({codigo_carrinho:idDoCarrinho, url_foto, nome, preco, carga_horaria:cargaHoraria, preco_com_desconto:precoComDesconto, conteudo, id, comprado }, index) => (
                         <CaixaProdutoCarrinho
                             comprado={comprado}
                             idDoCarrinho={idDoCarrinho}
@@ -64,7 +82,9 @@ export default function CarrinhoUsuario({ params, searchParams }) {
                             id={id}
                             setCursosNoCarrinho={setCursosNoCarrinho}
                         />
-                    ))}
+                    )):
+                    <Text color="595959">Você ainda não adicionou nada ao seu carrinho</Text>
+                    }
                 </Box>
             </Heading>
         </Box>

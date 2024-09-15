@@ -1,12 +1,14 @@
 "use client"
-import { Box } from "@chakra-ui/react"
-import { useContext, useEffect } from "react";
+import { Box, Spinner, Text } from "@chakra-ui/react"
+import { useContext, useEffect, useState } from "react";
 import Contexto from "../Tools/Contexto";
 import CaixaCurso from "@/app/Components/CaixaCurso"
 import axios from "axios"
 
 export default function Main() {
   const {setNavegacaoAtiva} = useContext(Contexto);
+  const [carregandoCursos, setCarregandoCursos] = useState(false)
+  
   useEffect(()=>{
     setNavegacaoAtiva(true)
   }, [])
@@ -26,11 +28,15 @@ export default function Main() {
     }
 
     useEffect(()=>{
-        async function carregarCursos(){
-            const resposta = await buscarCursos();
-            setListaCursos(resposta)
-        }
-        carregarCursos()
+      async function carregarCursos(){
+        setCarregandoCursos(true)
+        const resposta = await buscarCursos();
+        setListaCursos(resposta)
+        setCarregandoCursos(false)
+      }
+      
+      carregarCursos()
+
     }, [])
 
 
@@ -38,6 +44,23 @@ export default function Main() {
 
   return (
     <Box as="main">
+      
+      {carregandoCursos &&
+            <Box 
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              height="40vh"
+            >
+
+              <Spinner 
+              width={"100px"} 
+              height={"100px"}
+              color="#fe7502"/>
+            </Box>
+      }
+          
+      
       <Box 
             as="div"
             display="flex"
@@ -47,7 +70,7 @@ export default function Main() {
             justifyContent="center"
             marginTop="40px"
             marginBottom="40px"
-        >
+        > 
             {listaCursos.map((dados, index) => (
                 <CaixaCurso props={dados} key={index}/>
             ))}

@@ -1,47 +1,55 @@
 "use client"
-import { Box, Button, FormControl, FormLabel, Input, Heading } from "@chakra-ui/react";
+
+// modulos externos
+import { Box, FormControl, FormLabel, Input, Heading, Text } from "@chakra-ui/react";
 import { useEffect, useState, useContext } from "react";
 import { useRouter } from "next/navigation";
-import Contexto from "./Tools/Contexto";
 import axios from "axios";
+
+//modulos internos
 import { nomeMaiusculo } from "./Tools";
+import Contexto from "./Tools/Contexto";
 import ModeloBotao from "./Components/ModeloBotao";
 import SpinCarregando from "./Components/SpinCarregando";
 
+
 export default function TelaCadastro() {
+    // Hooks
     const [nome, setNome] = useState("");
-    const router = useRouter();
-    const { setNavegacaoAtiva } = useContext(Contexto)
-    const linkServidor = process.env.NEXT_PUBLIC_LINK_SERVER
     const [carregando, setCarregando] = useState(false)
+    const { setNavegacaoAtiva } = useContext(Contexto)
+    const router = useRouter();
+    
+    // vars
+    const linkServidor = process.env.NEXT_PUBLIC_LINK_SERVER
+    const servidor = `${linkServidor}/login`
 
-
-    const handleConfirm = async (evento) => {
+    // funcoes
+    async function velidarDadosLogin(evento){
         evento.preventDefault()
         setCarregando(true)
-        if (nome.length>=3) {
-            const servidor = `${linkServidor}/login`
-            const data = {
-                "nome": nomeMaiusculo(nome)
-            }
 
+        if (nome.length >= 3) {
+            const data = {"nome": nomeMaiusculo(nome)}
             try {
+                // buscando usuario no servidor
                 const promessa = await axios.post(servidor, data)
                 localStorage.setItem("usuario", JSON.stringify(promessa.data))
                 router.push("/cursos")
-
             } catch (e) {
                 console.log("deu erro: ", e.response || e.request || e)
-            }finally{
+            } finally {
                 setCarregando(false)
             }
 
         }
         setCarregando(false)
-        
+
     };
 
+    // efeitos
     useEffect(() => {
+        // ativa e desativa o nav do header
         setNavegacaoAtiva(false)
     }, [])
 
@@ -52,10 +60,9 @@ export default function TelaCadastro() {
             alignItems="center"
             justifyContent="center"
             minHeight="50vh"
-
         >
-            <Heading mb="6" color="#fe7502">Login</Heading>
-            <Box as="form" onSubmit={handleConfirm}>
+            <Heading mb="6" color="#fe7502">Login</Heading>   
+            <Box as="form" onSubmit={velidarDadosLogin}>
                 <FormControl id="nome" mb="4" width="100%" maxW="md" isRequired>
                     <FormLabel>Nome</FormLabel>
                     <Input
@@ -67,17 +74,17 @@ export default function TelaCadastro() {
                         minLength={3}
                     />
                 </FormControl>
-                <ModeloBotao 
-                    backgroundColor="#206eb3" 
+                <ModeloBotao
+                    backgroundColor="#206eb3"
                     color="white"
                     type="submit"
                     isDisabled={carregando}>
-                        {!carregando?
-                        "Confirmar":
-                        <SpinCarregando/>
-                      
+                    {!carregando ?
+                        "Confirmar" :
+                        <SpinCarregando />
                     }
                 </ModeloBotao>
+                {carregando && <Text fontSize="sm" color={"#525252"}>Aguarde, o servidor pode apresentar lentidão</Text>}
             </Box>
         </Box>
     );

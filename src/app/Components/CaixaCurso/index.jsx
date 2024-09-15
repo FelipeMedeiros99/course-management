@@ -19,7 +19,6 @@ export default function ContainerCurso({ props }) {
         url_foto: imagem,
         id } = props;
     const [carregando, setCarregando] = useState(false)
-  
     const link = `${id}?nome=${encodeURIComponent(nome)}&preco=${encodeURIComponent(preco)}&cargaHoraria=${encodeURIComponent(cargaHoraria)}&precoComDesconto=${encodeURIComponent(precoComDesconto)}&conteudo=${encodeURIComponent(conteudo)}&imagem=${encodeURIComponent(imagem)}`
 
     async function adicionar(){
@@ -27,6 +26,7 @@ export default function ContainerCurso({ props }) {
         await adicionarAoCarrinho(id)
         setCarregando(false)
     }
+
 
     return (
         <Box
@@ -39,6 +39,7 @@ export default function ContainerCurso({ props }) {
             margin={2}
             color="#545454"
         >
+
             <Link href={`/cursos/${link}`}>
                 <Image
                     src={imagem}
@@ -79,7 +80,7 @@ export default function ContainerCurso({ props }) {
                     <SpinCarregando/>:
                     "Adicionar ao carrinho"
                     }
-                </ModeloBotao>
+            </ModeloBotao>
 
         </Box>
 

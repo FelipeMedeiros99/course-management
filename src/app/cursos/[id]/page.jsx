@@ -1,13 +1,13 @@
 "use client"
 import { converterEmMoedas } from "@/app/Tools";
-import { Box, Image, Text, Button, ButtonGroup } from "@chakra-ui/react";
+import { Box, Image, Text, Button, ButtonGroup, background } from "@chakra-ui/react";
 import ModeloBotao from "../../Components/ModeloBotao"
 import { useRouter } from "next/navigation";
 import adicionarAoCarrinho from "@/app/Tools/adicionarAoCarrinho";
 
 
-export default function DetalhesCurso({params, searchParams }) {
- 
+export default function DetalhesCurso({ params, searchParams }) {
+
 
   const nome = decodeURIComponent(searchParams.nome || '')
   const preco = decodeURIComponent(searchParams.preco || '')
@@ -18,7 +18,7 @@ export default function DetalhesCurso({params, searchParams }) {
   const id = decodeURIComponent(params.id || '')
   const router = useRouter()
 
-  function editarCurso(){
+  function editarCurso() {
     const url = `/cadastrar?nome=${encodeURIComponent(nome)}&preco=${encodeURIComponent(preco)}&cargaHoraria=${encodeURIComponent(cargaHoraria)}&precoComDesconto=${encodeURIComponent(precoComDesconto)}&conteudo=${encodeURIComponent(conteudo)}&imagem=${encodeURIComponent(imagem)}&id=${encodeURIComponent(id)}`;
     router.push(url)
   }
@@ -32,8 +32,8 @@ export default function DetalhesCurso({params, searchParams }) {
       height="auto"
       minH="110vh"
       width="100%"
-      flexDirection={{ base: "column", md: "row" }} 
-      padding="20px"  
+      flexDirection={{ base: "column", md: "row" }}
+      padding="20px"
     >
       <Box
         as="div"
@@ -47,8 +47,8 @@ export default function DetalhesCurso({params, searchParams }) {
         <Image
           src={imagem}
           alt={nome}
-          width={{base: "auto", md: "100%"}}
-          height="auto" 
+          width={{ base: "auto", md: "100%" }}
+          height="auto"
           objectFit="cover"
           borderRadius="md"
           boxShadow="md" // Sombra para destaque
@@ -68,18 +68,31 @@ export default function DetalhesCurso({params, searchParams }) {
         <Text fontSize="md" color="gray.600">{conteudo}</Text>
         <Text fontSize="lg">Carga Horária: {cargaHoraria}</Text>
         <Text fontSize="lg">Preço: R${converterEmMoedas(Number(preco))}</Text>
-        <Text fontSize="lg" fontWeight="bold" color="green.500">Desconto: R${converterEmMoedas(Number(precoComDesconto))  }</Text>
-        
-        <ButtonGroup 
-          paddingTop="30px" 
-          display="flex" 
-          flexDirection={{base:"column", sm:"column", md:"row"}}
+        <Text fontSize="lg" fontWeight="bold" color="green.500">Desconto: R${converterEmMoedas(Number(precoComDesconto))}</Text>
+
+        <ButtonGroup
+          paddingTop="30px"
+          display="flex"
+          flexDirection={{ base: "column", sm: "column", md: "row" }}
           alignItems="center"
           justifyContent="center"
+
         >
-          
-          <ModeloBotao bg="#206eb3" onClick={()=>adicionarAoCarrinho(id)}>Adicionar ao carrinho</ModeloBotao>
-          <ModeloBotao onClick={editarCurso} bg="#fbff29">Editar curso</ModeloBotao>
+
+          <ModeloBotao
+            bg="#206eb3"
+            color="white"
+            onClick={() => adicionarAoCarrinho(id)}
+            _hover={{ backgroundColor: "#0e3e68" }}>
+            Adicionar ao carrinho
+          </ModeloBotao>
+
+          <ModeloBotao 
+            onClick={editarCurso} 
+            color="white" 
+            bg="#fbff29"
+            _hover={{backgroundColor:"#a3a519"}}
+            >Editar curso</ModeloBotao>
         </ButtonGroup>
       </Box>
     </Box>

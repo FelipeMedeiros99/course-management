@@ -67,8 +67,8 @@ export default function DetalhesCurso({ params, searchParams }) {
         <Text fontSize="2xl" fontWeight="bold">{nome}</Text>
         <Text fontSize="md" color="gray.600">{conteudo}</Text>
         <Text fontSize="lg">Carga Horária: {cargaHoraria}</Text>
-        <Text fontSize="lg">Preço: R${converterEmMoedas(Number(preco))}</Text>
-        <Text fontSize="lg" fontWeight="bold" color="green.500">Desconto: R${converterEmMoedas(Number(precoComDesconto))}</Text>
+        <Text fontSize="lg">10x de <Text as="span" fontWeight="700">R${converterEmMoedas(Number(preco)/10)}</Text></Text>
+        <Text fontSize="lg" fontWeight="bold" color="green.500">ou R${converterEmMoedas(Number(precoComDesconto))} à vista</Text>
 
         <ButtonGroup
           paddingTop="30px"

@@ -1,12 +1,13 @@
 import { Box } from "@chakra-ui/react"
 import CaixaCurso from "../CaixaCurso"
 import axios from "axios"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
+import Contexto from "@/app/Tools/Contexto"
 
 export default function ContainerCursos(props) {
-    const [listaCursos, setListaCursos] = useState([])
     const linkServer = process.env.NEXT_PUBLIC_LINK_SERVER
-
+    
+    const {listaCursos, setListaCursos} = useContext(Contexto)
     
     async function buscarCursos() {
         try{

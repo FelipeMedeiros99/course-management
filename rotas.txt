@@ -59,7 +59,7 @@ deve enviar um body no formato:
 
 recebe um status de 202c
 
-delete("carrinho")
+delete("carrinho/id")
 
 remove o produto do id DO CARRINHO e do usuario especificado através de query:
 

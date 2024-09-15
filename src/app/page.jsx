@@ -24,7 +24,7 @@
                 try {
                     const promessa = await axios.post(servidor, data)
                     localStorage.setItem("usuario", JSON.stringify(promessa.data))
-                    router.push("/curso")
+                    router.push("/cursos")
                     
                 } catch (e) {
                     console.log("deu erro: ", e.response || e.request || e)

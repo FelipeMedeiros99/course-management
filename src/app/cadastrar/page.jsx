@@ -74,6 +74,18 @@ export default function CadastroCurso({searchParams:query}) {
 
             <Box as="form" onSubmit={handleSubmit}>
                 <VStack spacing="4" align="stretch">
+                    
+                <FormControl isRequired>
+                        <FormLabel htmlFor="nome">Nome do Curso</FormLabel>
+                        <Input
+                            id="nome"
+                            name="nome"
+                            type="text"
+                            value={formData.nome}
+                            onChange={handleChange}
+                        />
+                    </FormControl>
+                    
                     <FormControl isRequired>
                         <FormLabel htmlFor="imagem">Imagem URL</FormLabel>
                         <Input
@@ -81,17 +93,6 @@ export default function CadastroCurso({searchParams:query}) {
                             name="imagem"
                             type="url"
                             value={formData.imagem}
-                            onChange={handleChange}
-                        />
-                    </FormControl>
-
-                    <FormControl isRequired>
-                        <FormLabel htmlFor="nome">Nome do Curso</FormLabel>
-                        <Input
-                            id="nome"
-                            name="nome"
-                            type="text"
-                            value={formData.nome}
                             onChange={handleChange}
                         />
                     </FormControl>
@@ -111,17 +112,6 @@ export default function CadastroCurso({searchParams:query}) {
                     </FormControl>
 
                     <FormControl isRequired>
-                        <FormLabel htmlFor="cargaHoraria">Carga Horária</FormLabel>
-                        <Input
-                            id="cargaHoraria"
-                            name="cargaHoraria"
-                            type="text"
-                            value={formData.cargaHoraria}
-                            onChange={handleChange}
-                        />
-                    </FormControl>
-
-                    <FormControl isRequired>
                         <FormLabel htmlFor="precoComDesconto">Preço com Desconto</FormLabel>
                         <NumberInput
                             id="precoComDesconto"
@@ -134,6 +124,19 @@ export default function CadastroCurso({searchParams:query}) {
                             <NumberInputField />
                         </NumberInput>
                     </FormControl>
+
+                    <FormControl isRequired>
+                        <FormLabel htmlFor="cargaHoraria">Carga Horária</FormLabel>
+                        <Input
+                            id="cargaHoraria"
+                            name="cargaHoraria"
+                            type="text"
+                            value={formData.cargaHoraria}
+                            onChange={handleChange}
+                        />
+                    </FormControl>
+
+                    
 
                     <FormControl isRequired>
                         <FormLabel htmlFor="conteudo">Conteúdo (Descrição)</FormLabel>

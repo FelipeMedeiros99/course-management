@@ -13,7 +13,6 @@ export default function CarrinhoUsuario({ params, searchParams }) {
     const dadosUsuario = JSON.parse(localStorage.getItem("usuario"))||undefined
     const idUsuario = dadosUsuario.id
     const nomeUsuario = dadosUsuario.nome
-    console.log(dadosUsuario)
     
     let [cursosNoCarrinho, setCursosNoCarrinho ] = useState([])
     
@@ -67,8 +66,7 @@ export default function CarrinhoUsuario({ params, searchParams }) {
                             precoComDesconto={precoComDesconto}
                             conteudo={conteudo}
                             id={id}
-                            produtosSelecionados={produtosSelecionados}
-                            setProdutosSelecionados={setProdutosSelecionados}
+                            setCursosNoCarrinho={setCursosNoCarrinho}
                         />
                     ))}
                 </Box>

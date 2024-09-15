@@ -2,17 +2,17 @@ import { Box, Text, Image, Badge, Stack, ButtonGroup, Button } from "@chakra-ui/
 import ModeloBotao from "../ModeloBotao";
 import axios from "axios";
 
-export default function CaixaProdutoCarrinho({idDoCarrinho, produtosSelecionados, setProdutoSelecionado, imagem, nome, preco, cargaHoraria, precoComDesconto, conteudo, id }) {
+export default function CaixaProdutoCarrinho({idDoCarrinho, setCursosNoCarrinho, imagem, nome, preco, cargaHoraria, precoComDesconto, conteudo, id }) {
     async function removerDoCarrinho(){
         const link =  `${process.env.NEXT_PUBLIC_LINK_SERVER}/carrinho?id=${idDoCarrinho}&usuario_id=${JSON.parse(localStorage.getItem("usuario")).id}`
-        console.log(link)
+
         try{
             const promisse = await axios.delete(link)
             //atualizando carrinho
-            setProdutoSelecionado(promisse.data)
+            setCursosNoCarrinho(promisse.data)
             console.log("removido: ", promisse)
         }catch(e){
-            console.log("erro ao tentar remover do carrinho", e.response)
+            console.log("erro ao tentar remover do carrinho", e)
         }
         
         // setProdutoSelecionado()

@@ -7,6 +7,9 @@ import Link from "next/link";
 import ModeloBotao from "../ModeloBotao";
 import adicionarAoCarrinho from "@/app/Tools/adicionarAoCarrinho";
 import SpinCarregando from "../SpinCarregando";
+import { FiShoppingCart } from "react-icons/fi";
+import { FiEdit } from "react-icons/fi";
+
 
 export default function ContainerCurso({ props }) {
     const {
@@ -75,7 +78,8 @@ export default function ContainerCurso({ props }) {
                 onClick={adicionar}
                 backgroundColor="#206eb3"
                 _hover={{backgroundColor:"#175388"}}
-                color="white">
+                color="white"
+                rightIcon={<FiShoppingCart/>}>
                     {carregando?
                     <SpinCarregando/>:
                     "Adicionar ao carrinho"

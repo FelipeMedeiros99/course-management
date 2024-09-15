@@ -4,9 +4,12 @@ import { Box, Image, Text, Button, ButtonGroup, background } from "@chakra-ui/re
 import ModeloBotao from "../../Components/ModeloBotao"
 import { useRouter } from "next/navigation";
 import adicionarAoCarrinho from "@/app/Tools/adicionarAoCarrinho";
+import { FiShoppingCart } from "react-icons/fi";
+import { FiEdit } from "react-icons/fi";
 
 
 export default function DetalhesCurso({ params, searchParams }) {
+
 
 
   const nome = decodeURIComponent(searchParams.nome || '')
@@ -67,7 +70,7 @@ export default function DetalhesCurso({ params, searchParams }) {
         <Text fontSize="2xl" fontWeight="bold">{nome}</Text>
         <Text fontSize="md" color="gray.600">{conteudo}</Text>
         <Text fontSize="lg">Carga Horária: {cargaHoraria}</Text>
-        <Text fontSize="lg">10x de <Text as="span" fontWeight="700">R${converterEmMoedas(Number(preco)/10)}</Text></Text>
+        <Text fontSize="lg">10x de <Text as="span" fontWeight="700">R${converterEmMoedas(Number(preco) / 10)}</Text></Text>
         <Text fontSize="lg" fontWeight="bold" color="green.500">ou R${converterEmMoedas(Number(precoComDesconto))} à vista</Text>
 
         <ButtonGroup
@@ -83,16 +86,21 @@ export default function DetalhesCurso({ params, searchParams }) {
             bg="#206eb3"
             color="white"
             onClick={() => adicionarAoCarrinho(id)}
-            _hover={{ backgroundColor: "#0e3e68" }}>
+            _hover={{ backgroundColor: "#0e3e68" }}
+            rightIcon={<FiShoppingCart />}  // Adiciona o ícone de carrinho de compras
+          >
             Adicionar ao carrinho
           </ModeloBotao>
 
-          <ModeloBotao 
-            onClick={editarCurso} 
-            color="white" 
+          <ModeloBotao
+            onClick={editarCurso}
+            color="white"
             bg="#fbff29"
-            _hover={{backgroundColor:"#a3a519"}}
-            >Editar curso</ModeloBotao>
+            _hover={{ backgroundColor: "#a3a519" }}
+            rightIcon={<FiEdit />}  // Adiciona o ícone de edição (lápis)
+          >
+            Editar curso
+          </ModeloBotao>
         </ButtonGroup>
       </Box>
     </Box>

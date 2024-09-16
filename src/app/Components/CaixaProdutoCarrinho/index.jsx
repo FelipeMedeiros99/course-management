@@ -1,12 +1,10 @@
 "use client"
 import { useState } from "react";
-import { Box, Text, Image, Badge, Stack, ButtonGroup, Button } from "@chakra-ui/react";
+import { Box, Text, Image, ButtonGroup} from "@chakra-ui/react";
 import ModeloBotao from "../ModeloBotao";
 import axios from "axios";
 import SpinCarregando from "../SpinCarregando";
 import { converterEmMoedas } from "@/app/Tools";
-import { IoMdCloseCircleOutline } from "react-icons/io";
-import { FiCheckCircle, FiCheckSquare } from "react-icons/fi";
 
 
 
@@ -20,7 +18,6 @@ export default function CaixaProdutoCarrinho({ comprado, idDoCarrinho, setCursos
             const promisse = await axios.delete(link)
             //atualizando carrinho
             setCursosNoCarrinho(promisse.data)
-            console.log("removido: ", promisse)
         } catch (e) {
             console.log("erro ao tentar remover do carrinho", e)
         }

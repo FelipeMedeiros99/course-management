@@ -16,16 +16,6 @@ Para que o frontend funcione corretamente, você precisará do backend disponív
 
 [https://gerenciamento-de-cursos-backend.onrender.com]
 
-## Funcionalidades
-
-- **Login de Usuário:** É necessário inserir apenas o nome, sem cadastrar senha. O sistema salvará seu nome no banco de dados e armazenará suas informações de compra e carrinho.
-
-- **Visualização de Cursos:** Exibe uma lista de cursos disponíveis e, ao clicar em um curso, permite aos usuários visualizar detalhes mmais precisos de cada curso.
-
-- **Cadastro de Cursos:** Permite aos usuários adicionar novos cursos à plataforma, inserindo informações como nome, link para imagem, preço, preço com desconto, total de horas do curso e uma descrição detalhada do que será aprendido.
-
-- **Gerenciamento do Carrinho:** É possível adicionar vários cursos ao carrinho de compra, removê-los e finalizar a compra, mudando o status para comprado.
-
 
 ## Requisitos
 
@@ -80,6 +70,17 @@ Para que o frontend funcione corretamente, você precisará do backend disponív
 - **/cadastrar?nome=""...** Tela de edição, segue a mesma rota da tela de cadastro, mas utiliza-se as querys para pegar as informações. É enviado o id do carrinho para o servidor para ser feita a manipulação no banco de dados
 
 - **/Carrinho** Tela onde ficam os cursos que o usuário adicionou. Podem ser feitas operações de compra (fechar pedido) e de remoção. Ao efetuar qualquer uma dessas operações, o status do produto muda, ou ele some do carrinho, respectivamente.
+
+
+## Funcionalidades
+
+- **Login de Usuário:** É necessário inserir apenas o nome, sem cadastrar senha. O sistema salvará seu nome no banco de dados e armazenará suas informações de compra e carrinho.
+
+- **Visualização de Cursos:** Exibe uma lista de cursos disponíveis e, ao clicar em um curso, permite aos usuários visualizar detalhes mmais precisos de cada curso.
+
+- **Cadastro de Cursos:** Permite aos usuários adicionar novos cursos à plataforma, inserindo informações como nome, link para imagem, preço, preço com desconto, total de horas do curso e uma descrição detalhada do que será aprendido.
+
+- **Gerenciamento do Carrinho:** É possível adicionar vários cursos ao carrinho de compra, removê-los e finalizar a compra, mudando o status para comprado.
 
 
 ## Documentação do backen

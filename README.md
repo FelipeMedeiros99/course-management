@@ -10,10 +10,14 @@ Para que o frontend funcione corretamente, você precisará do backend disponív
 
 ## Funcionalidades
 
-- **Login de Usuário:** Permite que os usuários façam login para acessar e gerenciar seu carrinho de compras.
-- **Visualização de Cursos:** Exibe uma lista de cursos disponíveis e permite aos usuários visualizar detalhes de cada curso.
-- **Cadastro de Cursos:** Permite aos usuários adicionar novos cursos à plataforma.
-- **Gerenciamento do Carrinho:** Adiciona cursos ao carrinho, visualiza o conteúdo do carrinho e remove cursos do carrinho.
+- **Login de Usuário:** É necessário inserir apenas o nome, sem cadastrar senha. O sistema salvará seu nome no banco de dados e armazenará suas informações de compra e carrinho.
+
+- **Visualização de Cursos:** Exibe uma lista de cursos disponíveis e, ao clicar em um curso, permite aos usuários visualizar detalhes mmais precisos de cada curso.
+
+- **Cadastro de Cursos:** Permite aos usuários adicionar novos cursos à plataforma, inserindo informações como nome, link para imagem, preço, preço com desconto, total de horas do curso e uma descrição detalhada do que será aprendido.
+
+- **Gerenciamento do Carrinho:** É possível adicionar vários cursos ao carrinho de compra, removê-los e finalizar a compra, mudando o status para comprado.
+
 
 ## Requisitos
 

@@ -26,7 +26,7 @@ export default function MenuRotas({ ativo }) {
                     <React.Fragment key={index}>
                         <ListItem margin="8px 10px 0 10px" textDecoration={"underline"}>
                             <Link href={`${link}`} >
-                                <Text fontWeight="700" display="flex" alignItems="center" fontSize={{base:"15px", md:"20px"}}>
+                                <Text fontWeight="700" display="flex" alignItems="center" fontSize="20px">
                                     {descricao[index]}
                                     {icons[index]}
                                 </Text>

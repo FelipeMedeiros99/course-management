@@ -3,7 +3,7 @@
 Bem-vindo ao frontend para gerenciamento de cursos! Este projeto é uma aplicação web desenvolvida com [Next.js](https://nextjs.org/docs) para interagir com a API de backend de gerenciamento de cursos e carrinho de compras.
 
 ## Atenção
-O servidor utilizado para o backend e armazenamento do banco de dados é hospedado na Render com uma licença gratuita. Devido a isso, pode haver momentos em que as requisições demoram para serem respondidas, o que é uma limitação da instância gratuita do servidor, não um problema no código ou na configuração.
+O servidor utilizado para o backend e armazenamento do banco de dados é hospedado na Render com uma licença gratuita. Devido a isso, pode haver momentos em que o servidor entra em hibernação, fazendo com que a primeira requisição demore a ser respondida, mas após a primeira requisição, o servidor encerra seu ciclo de hibernação e começa a funcionar de forma satisfatória e eficiente.
 
 ## Link para o Site Deployado
 

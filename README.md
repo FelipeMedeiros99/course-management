@@ -27,7 +27,7 @@ Para que o frontend funcione corretamente, você precisará do backend disponív
 1. Clone o repositório:
 
    ```bash
-   git clone https://github.com/FelipeMedeiros99/Gerenciamento-de-cursos-frontend.git(https://github.com/FelipeMedeiros99/Gerenciamento-de-cursos-frontend.git)
+   git clone https://github.com/FelipeMedeiros99/Gerenciamento-de-cursos-frontend.git
 
 2. Navegue até o diretório do projeto:
     
@@ -45,12 +45,13 @@ Para que o frontend funcione corretamente, você precisará do backend disponív
 
 1. Crie um arquivo .env na raiz do projeto e adicione a URL base do backend:
     
-    NEXT_PUBLIC_LINK_SERVER=https://gerenciamento-de-cursos-backend.onrender.com
+```bash NEXT_PUBLIC_LINK_SERVER=https://gerenciamento-de-cursos-backend.onrender.com
 
 ## Uso
 
 1. Inicie o servidor de desenvolvimento:
     
+    ```bash
     npm start
     # ou
     yarn start

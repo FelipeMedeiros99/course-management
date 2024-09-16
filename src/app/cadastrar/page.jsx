@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Box, Button, FormControl, FormLabel, Input, Textarea, NumberInput, NumberInputField, VStack, Heading, Image } from "@chakra-ui/react";
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
+import ModeloBotao from '../Components/ModeloBotao';
 
 export default function CadastroCurso({searchParams:query}) {
     
@@ -67,8 +68,8 @@ export default function CadastroCurso({searchParams:query}) {
     };
 
     return (
-        <Box p="6" maxW="container.md" mx="auto" bg="gray.50" borderRadius="md" boxShadow="md">
-            <Heading as="h2" mb="6" fontSize="2xl" textAlign="center" color="teal.600">
+        <Box p="6" maxW="container.md" mx="auto" bg="white" borderRadius="md" boxShadow="md">
+            <Heading as="h2" mb="6" fontSize="2xl" textAlign="center" color="#fe7502">
                 Cadastro de Curso
             </Heading>
 
@@ -149,9 +150,9 @@ export default function CadastroCurso({searchParams:query}) {
                         />
                     </FormControl>
 
-                    <Button colorScheme="teal" type="submit">
+                    <ModeloBotao colorScheme="teal" type="submit" backgroundColor="#206eb3">
                         Cadastrar Curso
-                    </Button>
+                    </ModeloBotao>
                 </VStack>
             </Box>
 

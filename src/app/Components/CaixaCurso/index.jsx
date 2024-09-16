@@ -9,6 +9,8 @@ import adicionarAoCarrinho from "@/app/Tools/adicionarAoCarrinho";
 import SpinCarregando from "../SpinCarregando";
 import { FiShoppingCart } from "react-icons/fi";
 import { FiEdit } from "react-icons/fi";
+import { FiClock } from "react-icons/fi";
+import { FaDollarSign } from "react-icons/fa";
 
 
 export default function ContainerCurso({ props }) {
@@ -23,7 +25,7 @@ export default function ContainerCurso({ props }) {
     const [carregando, setCarregando] = useState(false)
     const link = `${id}?nome=${encodeURIComponent(nome)}&preco=${encodeURIComponent(preco)}&cargaHoraria=${encodeURIComponent(cargaHoraria)}&precoComDesconto=${encodeURIComponent(precoComDesconto)}&conteudo=${encodeURIComponent(conteudo)}&imagem=${encodeURIComponent(imagem)}`
 
-    async function adicionar(){
+    async function adicionar() {
         setCarregando(true)
         await adicionarAoCarrinho(id)
         setCarregando(false)
@@ -40,6 +42,7 @@ export default function ContainerCurso({ props }) {
             padding={2}
             margin={2}
             color="#545454"
+            position="relative"
         >
 
             <Link href={`/cursos/${link}`}>
@@ -66,25 +69,39 @@ export default function ContainerCurso({ props }) {
 
                 <Text
                     fontSize="md"
-                    height="50px"
-                    textAlign="bottom"
-                >Carga horária: <strong>{cargaHoraria}</strong></Text>
+                    height="25px"
+                    display="flex"
+                    alignItems="center"  
+                >
+                    <FiClock style={{ marginRight: '8px' }} />
+                    Carga horária: 
+                    <Box as="strong" ml={1}>{cargaHoraria}</Box>
+                </Text>
+
+
                 <Text
                     fontSize="xl"
-                    fontWeight="900">R${converterEmMoedas(precoComDesconto)}</Text>
+                    fontWeight="900"
+                        >R${converterEmMoedas(precoComDesconto)}
+                </Text>
             </Link>
-            <ModeloBotao
-                isDisabled={carregando}
-                onClick={adicionar}
-                backgroundColor="#206eb3"
-                _hover={{backgroundColor:"#175388"}}
-                color="white"
-                rightIcon={<FiShoppingCart/>}>
-                    {carregando?
-                    <SpinCarregando/>:
-                    "Adicionar ao carrinho"
+            <Box as="div" position="absolute" bottom='0' width="100%" left="0" padding="2">
+                <ModeloBotao
+                    margin="0"
+                    isDisabled={carregando}
+                    onClick={adicionar}
+                    backgroundColor="#206eb3"
+                    _hover={{ backgroundColor: "#175388" }}
+                    color="white"
+                    rightIcon={<FiShoppingCart />}
+                    >
+
+                    {carregando ?
+                        <SpinCarregando /> :
+                        "Adicionar ao carrinho"
                     }
-            </ModeloBotao>
+                </ModeloBotao>
+            </Box>
 
         </Box>
 

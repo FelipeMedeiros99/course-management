@@ -4,6 +4,7 @@ import { Box, Spinner } from "@chakra-ui/react"
 import { useContext, useEffect, useState } from "react";
 import axios from "axios"
 
+
 // modulos internos
 import CaixaCurso from "@/app/Components/CaixaCurso"
 import Contexto from "../Tools/Contexto";

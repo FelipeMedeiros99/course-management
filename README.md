@@ -12,11 +12,6 @@ Acesse a aplicação frontend implantada através do seguinte link:
 [https://gerenciamento-de-cursos-frontend.vercel.app/](https://gerenciamento-de-cursos-frontend.vercel.app/)
 
 
-## Documentação do backend
-
-https://github.com/FelipeMedeiros99/Gerenciamento-de-cursos-backend.git
-
-
 ## URL Base do Backend
 
 Para que o frontend funcione corretamente, você precisará do backend disponível no seguinte link:
@@ -88,3 +83,8 @@ Para que o frontend funcione corretamente, você precisará do backend disponív
 - **/cadastrar?nome=""...** Tela de edição, segue a mesma rota da tela de cadastro, mas utiliza-se as querys para pegar as informações. É enviado o id do carrinho para o servidor para ser feita a manipulação no banco de dados
 
 - **/Carrinho** Tela onde ficam os cursos que o usuário adicionou. Podem ser feitas operações de compra (fechar pedido) e de remoção. Ao efetuar qualquer uma dessas operações, o status do produto muda, ou ele some do carrinho, respectivamente.
+
+
+## Documentação do backen
+
+https://github.com/FelipeMedeiros99/Gerenciamento-de-cursos-backend.git

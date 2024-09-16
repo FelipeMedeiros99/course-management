@@ -44,8 +44,7 @@ Para que o frontend funcione corretamente, você precisará do backend disponív
 ## Configuração 
 
 1. Crie um arquivo .env na raiz do projeto e adicione a URL base do backend:
-    
-```bash NEXT_PUBLIC_LINK_SERVER=https://gerenciamento-de-cursos-backend.onrender.com
+     NEXT_PUBLIC_LINK_SERVER=https://gerenciamento-de-cursos-backend.onrender.com
 
 ## Uso
 

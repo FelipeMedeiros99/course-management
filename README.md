@@ -9,14 +9,12 @@ O servidor utilizado para o backend e armazenamento do banco de dados é hospeda
 
 Acesse a aplicação frontend implantada através do seguinte link:
 
-[https://gerenciamento-de-cursos-frontend.vercel.app/](https://gerenciamento-de-cursos-frontend.vercel.app/)
-
-
+[https://gerenciamento-de-cursos-frontend.vercel.app/]
 ## URL Base do Backend
 
 Para que o frontend funcione corretamente, você precisará do backend disponível no seguinte link:
 
-[https://gerenciamento-de-cursos-backend.onrender.com](https://gerenciamento-de-cursos-backend.onrender.com)
+[https://gerenciamento-de-cursos-backend.onrender.com]
 
 ## Funcionalidades
 
@@ -57,8 +55,7 @@ Para que o frontend funcione corretamente, você precisará do backend disponív
 
 1. Crie um arquivo .env na raiz do projeto e adicione a URL base do backend:
     
-    NEXT_PUBLIC_LINK_SERVER=https://gerenciamento-de-cursos-backend.onrender.com(https://gerenciamento-de-cursos-backend.onrender.com)
-
+    NEXT_PUBLIC_LINK_SERVER=https://gerenciamento-de-cursos-backend.onrender.com
 
 ## Uso
 
@@ -68,7 +65,7 @@ Para que o frontend funcione corretamente, você precisará do backend disponív
     # ou
     yarn start
 
-2. Abra seu navegador e acesse http://localhost:3000(http://localhost:3000) para visualizar a aplicação.
+2. Abra seu navegador e acesse http://localhost:3000 para visualizar a aplicação.
 
 ## Rotas utilizadas
 

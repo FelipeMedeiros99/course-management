@@ -76,6 +76,7 @@ export default function TelaCadastro() {
                 </FormControl>
                 <ModeloBotao
                     backgroundColor="#206eb3"
+                    _hover={{backgroundColor:"#124877"}}
                     color="white"
                     type="submit"
                     isDisabled={carregando}>

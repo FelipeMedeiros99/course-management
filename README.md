@@ -36,8 +36,9 @@ Para que o frontend funcione corretamente, você precisará do backend disponív
 
 3. Instale as dependências:
 
+    ```bash
     npm install
-    ou
+    #ou
     yarn install
 
 
@@ -45,7 +46,8 @@ Para que o frontend funcione corretamente, você precisará do backend disponív
 
 1. Crie um arquivo .env na raiz do projeto e adicione a URL base do backend:
 
-``` NEXT_PUBLIC_LINK_SERVER=https://gerenciamento-de-cursos-backend.onrender.com
+```bash   
+NEXT_PUBLIC_LINK_SERVER=https://gerenciamento-de-cursos-backend.onrender.com
 
 
 ## Uso

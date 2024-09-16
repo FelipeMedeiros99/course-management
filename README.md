@@ -26,7 +26,7 @@ Para que o frontend funcione corretamente, você precisará do backend disponív
 
 1. Clone o repositório:
 
-   ```bash
+
    git clone https://github.com/FelipeMedeiros99/Gerenciamento-de-cursos-frontend.git
 
 2. Navegue até o diretório do projeto:

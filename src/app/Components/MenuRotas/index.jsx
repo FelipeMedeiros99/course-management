@@ -1,10 +1,8 @@
-import { Box, ListItem, List, Text, Divider } from "@chakra-ui/react";
+import { Box, ListItem, List, Text} from "@chakra-ui/react";
 import Link from "next/link";
-import { IoIosAddCircleOutline } from "react-icons/io";
 import { FaBookOpen } from "react-icons/fa";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { FiShoppingCart } from "react-icons/fi";
-import { FaGripLinesVertical } from "react-icons/fa";
 
 
 
@@ -20,8 +18,8 @@ export default function MenuRotas({ ativo }) {
         <Box as="nav" display={ativo ? "block" : "none"}>
             <List display="flex" justifyContent="center" alignItems="center" flexDir={{base:"column", sm:"row"}}>
                 {links.map((link, index) => (
-                    <>
-                        <ListItem key={index} margin="8px 10px 0 10px" textDecoration={"underline"}>
+                    <React.Fragment key={index}>
+                        <ListItem margin="8px 10px 0 10px" textDecoration={"underline"}>
                             <Link href={`${link}`} >
                                 <Text fontWeight="700" display="flex" alignItems="center" fontSize={{base:"15px", md:"20px"}}>
                                     {descricao[index]}
@@ -40,7 +38,7 @@ export default function MenuRotas({ ativo }) {
                             mx="20px" // Margem horizontal
                         />}
 
-                    </>
+                    </React.Fragment>
                 ))}
 
             </List>

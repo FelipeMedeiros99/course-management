@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Frontend para Gerenciamento de Cursos
 
-## Getting Started
+Bem-vindo ao frontend para gerenciamento de cursos! Este projeto é uma aplicação web desenvolvida com [Next.js](https://nextjs.org/docs) para interagir com a API de backend de gerenciamento de cursos e carrinho de compras.
 
-First, run the development server:
+## URL Base do Backend
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Para que o frontend funcione corretamente, você precisará do backend disponível no seguinte link:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+[https://gerenciamento-de-cursos-backend.onrender.com]
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Funcionalidades
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Login de Usuário:** Permite que os usuários façam login para acessar e gerenciar seu carrinho de compras.
+- **Visualização de Cursos:** Exibe uma lista de cursos disponíveis e permite aos usuários visualizar detalhes de cada curso.
+- **Cadastro de Cursos:** Permite aos usuários adicionar novos cursos à plataforma.
+- **Gerenciamento do Carrinho:** Adiciona cursos ao carrinho, visualiza o conteúdo do carrinho e remove cursos do carrinho.
 
-## Learn More
+## Requisitos
 
-To learn more about Next.js, take a look at the following resources:
+- **Node.js**: Certifique-se de ter o Node.js instalado. Recomendado a versão LTS.
+- **npm** ou **yarn**: Gerenciador de pacotes para instalar as dependências.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Instalação
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Clone o repositório:
 
-## Deploy on Vercel
+   ```bash
+   git clone https://github.com/SEU_USUARIO/REPOSITORIO_FRONTEND.git
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2. Navegue até o diretório do projeto:
+    
+    cd REPOSITORIO_FRONTEND
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+3. Instale as dependências:
+
+    npm install
+    # ou
+    yarn install
+
+
+## Configuração 
+
+1. Crie um arquivo .env na raiz do projeto e adicione a URL base do backend:
+    
+    REACT_APP_BACKEND_URL=https://gerenciamento-de-cursos-backend.onrender.com

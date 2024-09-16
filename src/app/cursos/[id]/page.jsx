@@ -8,6 +8,7 @@ import { FiShoppingCart } from "react-icons/fi";
 import { FiEdit } from "react-icons/fi";
 import { FiClock } from "react-icons/fi";
 
+
 export default function DetalhesCurso({ params, searchParams }) {
 
 
@@ -101,7 +102,7 @@ export default function DetalhesCurso({ params, searchParams }) {
             _hover={{ backgroundColor: "#a73d16" }}
             rightIcon={<FiEdit />}  // Adiciona o ícone de edição (lápis)
           >
-            Editar curso
+            Editar curso 
           </ModeloBotao>
         </ButtonGroup>
       </Box>

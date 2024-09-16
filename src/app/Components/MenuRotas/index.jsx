@@ -10,7 +10,6 @@ import { FaGripLinesVertical } from "react-icons/fa";
 
 
 
-
 export default function MenuRotas({ ativo }) {
     const links = ["/cadastrar", "/cursos", "/carrinho"]
     const descricao = ["Cadastrar curso", "Lista de cursos", "carrinho"]
@@ -24,7 +23,7 @@ export default function MenuRotas({ ativo }) {
                     <>
                         <ListItem key={index} margin="8px 10px 0 10px" textDecoration={"underline"}>
                             <Link href={`${link}`} >
-                                <Text fontWeight="700" display="flex" alignItems="center">
+                                <Text fontWeight="700" display="flex" alignItems="center" fontSize={{base:"15px", md:"20px"}}>
                                     {descricao[index]}
                                     {icons[index]}
                                 </Text>

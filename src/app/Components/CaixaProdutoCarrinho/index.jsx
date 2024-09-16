@@ -5,6 +5,10 @@ import ModeloBotao from "../ModeloBotao";
 import axios from "axios";
 import SpinCarregando from "../SpinCarregando";
 import { converterEmMoedas } from "@/app/Tools";
+import { IoMdCloseCircleOutline } from "react-icons/io";
+import { FiCheckCircle, FiCheckSquare } from "react-icons/fi";
+
+
 
 export default function CaixaProdutoCarrinho({ comprado, idDoCarrinho, setCursosNoCarrinho, imagem, nome, preco, cargaHoraria, precoComDesconto, conteudo, id }) {
     const link = `${process.env.NEXT_PUBLIC_LINK_SERVER}/carrinho?id=${idDoCarrinho}&usuario_id=${JSON.parse(localStorage.getItem("usuario")).id}`
@@ -43,7 +47,7 @@ export default function CaixaProdutoCarrinho({ comprado, idDoCarrinho, setCursos
             display="flex"
             flexDir={{ md: "row", base: "column", }}
             alignItems="center"
-            justifyContent={{ sm: "center", md: "space-around" }}
+            justifyContent={{ sm: "center", md: "left" }}
             as="div"
             borderWidth="1px"
             borderRadius="lg"
@@ -56,7 +60,7 @@ export default function CaixaProdutoCarrinho({ comprado, idDoCarrinho, setCursos
             _hover={{ transform: "scale(1.03)" }}
 
         >
-            <Image src={imagem} alt={nome} borderRadius="md" mb="4" maxW="300px" />
+            <Image src={imagem} alt={nome} borderRadius="md" mb="4" mr="8" maxW="300px" />
 
             <Box>
                 <Text fontSize="xl" fontWeight="bold" mb="2">
@@ -85,13 +89,16 @@ export default function CaixaProdutoCarrinho({ comprado, idDoCarrinho, setCursos
                     <ButtonGroup
                         isDisabled={carregando}
                         display="flex"
-                        flexDir={{ base: "column", sm: "row", md: "row", lg: "row" }}>
+                        flexDir={{ base: "column", sm: "row"}}
+                        alignItems="center"
+                        justifyContent="center"
+                        >
                         <ModeloBotao
+                            onClick={fecharPedido}
                             color="white"
+                            minW="150px"
                             backgroundColor="#206eb3"
                             _hover={{ backgroundColor: "#175388" }}
-                            onClick={fecharPedido}
-                            minW="150px"
                         >
                             {carregando ?
                                 <SpinCarregando /> :

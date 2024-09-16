@@ -85,7 +85,7 @@ export default function TelaCadastro() {
                         <SpinCarregando />
                     }
                 </ModeloBotao>
-                {carregando && <Text wordBreak="break-word" fontSize="sm" color={"#525252"} maxW="230px" textAlign="center">Por favor, aguarde! As vezes o servidor pode apresentar lentidão</Text>}
+                {carregando && <Text wordBreak="break-word" fontSize="sm" color={"#525252"} maxW="230px" textAlign="center">Por favor, aguarde! Às vezes o servidor pode apresentar lentidão</Text>}
             </Box>
         </Box>
     );

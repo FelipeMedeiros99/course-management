@@ -3,6 +3,7 @@ import { Box, Heading, Spinner, Text } from "@chakra-ui/react";
 import CaixaProdutoCarrinho from "../Components/CaixaProdutoCarrinho";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { FiShoppingCart } from "react-icons/fi";
 
 export default function CarrinhoUsuario() {
     const [carregandoCursos, setCarregandoCursos] = useState(true);
@@ -49,10 +50,22 @@ export default function CarrinhoUsuario() {
             borderRadius="md"
             bg="gray.50"
             mt="6"
-        >
-            <Heading as="h2" size="lg" mb="4" textAlign="center" color="#fe7502">
-                Olá, {nomeUsuario}!
+        >   
+            <Heading 
+                as="h2" 
+                size="lg" 
+                mb="4" 
+                textAlign="center" 
+                color="#fe7502" 
+                display="flex" 
+                alignItems="center"
+                justifyContent="center">
+                Carrinho
+                <FiShoppingCart style={{marginLeft:"8px"}}/>
             </Heading>
+
+            <Text marginBottom="3px">Olá, {nomeUsuario}!</Text>
+            {/* Olá, {nomeUsuario}! */}
             <Box>
                 {carregandoCursos ? (
                     <Box 

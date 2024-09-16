@@ -59,7 +59,7 @@ export default function CaixaProdutoCarrinho({ comprado, idDoCarrinho, setCursos
         >
             <Image src={imagem} alt={nome} borderRadius="md" mb="4" mr="8" maxW="300px" />
 
-            <Box>
+            <Box width="100%">
                 <Text fontSize="xl" fontWeight="bold" mb="2">
                     {nome}
                 </Text>
@@ -96,6 +96,7 @@ export default function CaixaProdutoCarrinho({ comprado, idDoCarrinho, setCursos
                             minW="150px"
                             backgroundColor="#206eb3"
                             _hover={{ backgroundColor: "#175388" }}
+                            
                         >
                             {carregando ?
                                 <SpinCarregando /> :

@@ -12,6 +12,11 @@ Acesse a aplicação frontend implantada através do seguinte link:
 [https://gerenciamento-de-cursos-frontend.vercel.app/](https://gerenciamento-de-cursos-frontend.vercel.app/)
 
 
+## Documentação do backend
+
+https://github.com/FelipeMedeiros99/Gerenciamento-de-cursos-backend.git
+
+
 ## URL Base do Backend
 
 Para que o frontend funcione corretamente, você precisará do backend disponível no seguinte link:

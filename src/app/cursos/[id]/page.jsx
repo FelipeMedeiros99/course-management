@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import adicionarAoCarrinho from "@/app/Tools/adicionarAoCarrinho";
 import { FiShoppingCart } from "react-icons/fi";
 import { FiEdit } from "react-icons/fi";
-
+import { FiClock } from "react-icons/fi";
 
 export default function DetalhesCurso({ params, searchParams }) {
 
@@ -69,7 +69,9 @@ export default function DetalhesCurso({ params, searchParams }) {
       >
         <Text fontSize="2xl" fontWeight="bold">{nome}</Text>
         <Text fontSize="md" color="gray.600">{conteudo}</Text>
-        <Text fontSize="lg">Carga Horária: {cargaHoraria}</Text>
+        <Text fontSize="lg" display="flex" height="30px" alignItems="center">
+          <FiClock style={{ marginRight: '8px' }} size="15px" /> Carga Horária: {cargaHoraria}
+        </Text>
         <Text fontSize="lg">10x de <Text as="span" fontWeight="700">R${converterEmMoedas(Number(preco) / 10)}</Text></Text>
         <Text fontSize="lg" fontWeight="bold" color="green.500">ou R${converterEmMoedas(Number(precoComDesconto))} à vista</Text>
 
@@ -95,8 +97,8 @@ export default function DetalhesCurso({ params, searchParams }) {
           <ModeloBotao
             onClick={editarCurso}
             color="white"
-            bg="#fbff29"
-            _hover={{ backgroundColor: "#a3a519" }}
+            bg="#e5521e"
+            _hover={{ backgroundColor: "#a73d16" }}
             rightIcon={<FiEdit />}  // Adiciona o ícone de edição (lápis)
           >
             Editar curso

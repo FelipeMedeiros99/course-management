@@ -73,7 +73,7 @@ export default function ContainerCurso({ props }) {
                     display="flex"
                     alignItems="center"  
                 >
-                    <FiClock style={{ marginRight: '8px' }} />
+                    <FiClock style={{ marginRight: '8px' }} size="15px"/>
                     Carga horária: 
                     <Box as="strong" ml={1}>{cargaHoraria}</Box>
                 </Text>

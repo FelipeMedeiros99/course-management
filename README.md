@@ -49,7 +49,7 @@ Para que o frontend funcione corretamente, você precisará do backend disponív
 3. Instale as dependências:
 
     npm install
-    # ou
+    ou
     yarn install
 
 

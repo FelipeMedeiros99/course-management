@@ -2,13 +2,12 @@
 import { useState } from 'react';
 import { Provider } from '@/components/ui/provider';
 
-import Header from '@/components/Header';
-import Footer from '../../components/Footer';
-// import styles from './Styles/page.module.css'
-import Context, { CourseDataInterface, UserDataInterface } from '../Tools/Contexto';
 import { ColorModeProvider } from '@/components/ui/color-mode';
 import { Theme } from '@chakra-ui/react';
 
+import Context, { CourseDataInterface, UserDataInterface } from './Tools/Contexto';
+import Header from '@/components/Header';
+import Footer from '../components/Footer';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const [isNavigationActive, setIsNavigationActive] = useState<boolean>(true)

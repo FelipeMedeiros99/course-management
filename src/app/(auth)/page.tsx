@@ -1,13 +1,14 @@
 "use client"
 
-import { Box, Input, Heading, Text, Button } from "@chakra-ui/react";
+import { Box, Input, Heading, Text, Button, VStack } from "@chakra-ui/react";
 import { useEffect, useState, useContext } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Field } from "@/components/ui/field";
+import { PasswordInput } from "@/components/ui/password-input";
 
-import Contexto from "./Tools/Contexto";
+import Contexto from "../Tools/Contexto";
 import ModeloBotao from "@/components/ModeloBotao";
 import SpinCarregando from "@/components/SpinCarregando";
 
@@ -17,21 +18,21 @@ interface Inputs {
   password: string
 }
 
+
 export default function SignIn() {
-
-
+  
+  
   const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>()
   const onSubmit: SubmitHandler<Inputs> = data => validUserDataLogin(data)
-
+  
   const [carregando, setCarregando] = useState(false)
   const { setIsNavigationActive } = useContext(Contexto)
   const router = useRouter();
-
-  // vars
+  
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(\.[a-zA-Z0-9]+)?$/i
   const linkServidor = process.env.NEXT_PUBLIC_LINK_SERVER
   const servidor = `${linkServidor}/login`
 
-  // funcoes
   const validUserDataLogin = async (inputs: Inputs) => {
     console.log(inputs)
     setCarregando(true)
@@ -61,6 +62,8 @@ export default function SignIn() {
     setIsNavigationActive(false)
   }, [])
 
+  console.log(errors)
+
   return (
     <Box
       display="flex"
@@ -71,19 +74,27 @@ export default function SignIn() {
     >
       <Heading mb="6" color="#fe7502">Login</Heading>
       <Box as="form" onSubmit={handleSubmit(onSubmit)}>
-        <Box as="form" id="nome" mb="4" width="100%" maxW="md">
-          <Field label="Email" errorText="">
+        <VStack>
+          <Field label="Email" invalid={!!errors.email} errorText={errors?.email?.message}>
             <Input
-              {...register("email")}
+              {...register("email", {
+                required: {value: true, message: "Obrigatório informar o email"}, 
+                maxLength: {value: 100, message: "O email deve possuir, no máximo, 100 caracteres."},
+                pattern: {value: emailRegex, message: "Informe um email válido"}
+              })}
             />
           </Field>
 
-          <Field label="Senha" errorText="">
-            <Input
-              {...register("password")}
+          <Field label="Senha" invalid={!!errors?.password} errorText={errors?.password?.message}>
+            <PasswordInput
+              {...register("password", {
+                minLength: { value: 6, message: "A senha precisa possuir no mínimo 6 caracteres"},
+                maxLength: { value: 100, message: "A senha não deve ter mais de 100 caracteres"},
+                required: { value: true, message: "A senha é obrigatória"}
+              })}
             />
           </Field>
-        </Box>
+        </VStack>
         <Button
           bgColor={"#206eb3"}
           _hover={{ backgroundColor: "#124877" }}

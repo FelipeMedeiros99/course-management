@@ -3,9 +3,9 @@ import { useState } from 'react';
 import { Provider } from '@/components/ui/provider';
 
 import Header from '@/components/Header';
-import Footer from '../components/Footer';
+import Footer from '../../components/Footer';
 // import styles from './Styles/page.module.css'
-import Context, { CourseDataInterface, UserDataInterface } from './Tools/Contexto';
+import Context, { CourseDataInterface, UserDataInterface } from '../Tools/Contexto';
 import { ColorModeProvider } from '@/components/ui/color-mode';
 import { Theme } from '@chakra-ui/react';
 

@@ -5,6 +5,8 @@ import { Box, FormControl, FormLabel, Input, Heading, Text } from "@chakra-ui/re
 import { useEffect, useState, useContext } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import {useForm} from "react-hook-form"
+
 
 //modulos internos
 import { nomeMaiusculo } from "./Tools";
@@ -13,9 +15,15 @@ import ModeloBotao from "./Components/ModeloBotao";
 import SpinCarregando from "./Components/SpinCarregando";
 
 
+interface Inputs{
+  email: string;
+  password: string
+}
+
 export default function TelaCadastro() {
-    // Hooks
-    const [nome, setNome] = useState("");
+
+    
+    const {register, handleSubmit, watch, formState: {errors}} = useForm<Inputs>()
     const [carregando, setCarregando] = useState(false)
     const { setNavegacaoAtiva } = useContext(Contexto)
     const router = useRouter();
@@ -25,8 +33,8 @@ export default function TelaCadastro() {
     const servidor = `${linkServidor}/login`
 
     // funcoes
-    async function velidarDadosLogin(evento){
-        evento.preventDefault()
+    const validUserDataLogin = async(event: SubmitEvent)=>{
+        event.preventDefault()
         setCarregando(true)
 
         if (nome.length >= 3) {
@@ -62,9 +70,18 @@ export default function TelaCadastro() {
             minHeight="50vh"
         >
             <Heading mb="6" color="#fe7502">Login</Heading>   
-            <Box as="form" onSubmit={velidarDadosLogin}>
+            <Box as="form" onSubmit={validUserDataLogin}>
                 <FormControl id="nome" mb="4" width="100%" maxW="md" isRequired>
-                    <FormLabel>Nome</FormLabel>
+                    <FormLabel>Email</FormLabel>
+                    <Input
+                        type="text"
+                        placeholder="Digite seu nome"
+                        value={nome}
+                        onChange={(e) => setNome(e.target.value)}
+                        required={true}
+                        minLength={3}
+                    />
+                    <FormLabel>Senha</FormLabel>
                     <Input
                         type="text"
                         placeholder="Digite seu nome"

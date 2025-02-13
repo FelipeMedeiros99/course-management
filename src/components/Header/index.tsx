@@ -1,11 +1,11 @@
 "use client"
 import { Box, Heading, Image } from "@chakra-ui/react";
 import Link from "next/link";
-import MenuRotas from "../MenuRotas";
+// import MenuRotas from "../MenuRotas";
 import { RiLogoutBoxRLine } from "react-icons/ri";
 import { useRouter } from "next/navigation";
 
-export default function Header({ativo}) {
+export default function Header({ativo}: {ativo:boolean}) {
   const router = useRouter()
   function sair(){
     router.push("/")
@@ -25,7 +25,7 @@ export default function Header({ativo}) {
       position="relative"
     >
       <Image
-        src="/imagens/inaed_logo.png"
+        src="./imagens/inaed_logo.png"
         alt="Logo do INAED"
         width="auto"
         height="auto"
@@ -40,7 +40,7 @@ export default function Header({ativo}) {
         INAED CURSOS
       </Heading>
 
-      <MenuRotas ativo={ativo}/>
+      {/* <MenuRotas ativo={ativo}/> */}
 
       {ativo && 
         <Box position="absolute" right="15px" top="15px" onClick={sair}>

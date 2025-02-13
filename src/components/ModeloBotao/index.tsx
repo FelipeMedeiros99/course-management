@@ -1,6 +1,6 @@
-import { background, Button } from "@chakra-ui/react"
+import { Button } from "@chakra-ui/react"
 
-export default function ModeloBotao({children, ...props}){
+export default function ModeloBotao({children, ...props}: {children: React.ReactNode}){
     return(
         
         <Button 

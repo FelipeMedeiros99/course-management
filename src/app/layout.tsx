@@ -5,7 +5,7 @@ import { Provider } from '@/components/ui/provider';
 import { ColorModeProvider } from '@/components/ui/color-mode';
 import { Theme } from '@chakra-ui/react';
 
-import Context, { CourseDataInterface, UserDataInterface } from './Tools/Contexto';
+import Context, { CourseDataInterface, UserDataInterface } from '../context';
 import Header from '@/components/Header';
 import Footer from '../components/Footer';
 

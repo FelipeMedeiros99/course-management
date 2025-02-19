@@ -2,8 +2,14 @@ import axios, { AxiosResponse } from "axios";
 
 interface UserDataSignUpInterface{
   email: string;
+  name: string;
   password: string;
   confirmPassword: string;
+}
+
+interface UserDataSignInInterface{
+  email: string;
+  password: string;
 }
 
 const  config = axios.create({
@@ -13,11 +19,17 @@ const  config = axios.create({
 
 const signUp = async (data: UserDataSignUpInterface): Promise<AxiosResponse>=>{
   const response = await config.post("/sign-up", data);
-  return response
+  return response;
+}
+
+const signIn = async (data: UserDataSignInInterface): Promise<AxiosResponse>=>{
+  const response = await config.post("/sign-in", data);
+  return response;
 }
 
 const axiosConfigs = {
-  signUp
+  signUp,
+  signIn
 }
 
 export default axiosConfigs;

@@ -49,12 +49,14 @@ export default function SignUp() {
           setAlertMessageParams({ message: "Usuário cadastrado com sucesso", status: "success" })
           setTimeout(() => {
             setAlertVisibility(false)
-            router.push("sign-in")
           }, 3500)
+          setTimeout(()=>{
+            router.push("sign-in")
+          }, 4000)
         }
       } catch (e: any) {
-        setAlertVisibility(true)
         console.log(e)
+        setAlertVisibility(true)
         if (e?.status === 409) {
           setAlertMessageParams({ message: "Este email já está cadastrado", status: "error" })
         } else if (e?.status === 400) {
@@ -63,7 +65,7 @@ export default function SignUp() {
           setAlertMessageParams({ message: "Erro no servidor", status: "error" })
         }
         else {
-          setAlertMessageParams({ message: e?.response?.data?.message || "Erro desconhecido", status: "error" })
+          setAlertMessageParams({ message: e?.response?.data?.message || "Erro desconhecido, contate o desenvolvedor", status: "error" })
         }
         setTimeout(() => setAlertVisibility(false), 3500)
       }
@@ -91,7 +93,7 @@ export default function SignUp() {
       >
         <AlertMessage message={alertMessageParams.message} status={alertMessageParams.status} />
       </motion.div>
-      <Heading mb="6" color="#fe7502">Login</Heading>
+      <Heading mb="6" color="#fe7502">Cadastro</Heading>
       <Box as="form" onSubmit={handleSubmit(onSubmit)}>
         <VStack >
           <Field label="Email" invalid={!!errors.email} errorText={errors?.email?.message}>

@@ -46,15 +46,25 @@ export default function SignUp() {
         if(promise.status===201){
           setAlertVisibility(true)
           setAlertMessageParams({message: "Usuário cadastrado com sucesso", status: "success"})
-          setTimeout(()=>setAlertVisibility(false), 3500)
+          setTimeout(()=>{
+            setAlertVisibility(false)
+            router.push("sign-in")
+          }, 3500)
         }
       } catch (e: any) {
+        setAlertVisibility(true)
         console.log(e)
         if(e?.status===409){
-          setAlertVisibility(true)
-          setAlertMessageParams({message: "este email já está cadastrado", status: "error"})
-          setTimeout(()=>setAlertVisibility(false), 3500)
+          setAlertMessageParams({message: "Este email já está cadastrado", status: "error"})
+        }else if(e?.status === 400){
+          setAlertMessageParams({message: "Todos os dados precisam ser preenchidos", status: "error"})
+        }else if(e?.status === 500){
+          setAlertMessageParams({message: "Erro no servidor", status: "error"})
         }
+        else{
+          setAlertMessageParams({message: e?.response?.data?.message || "Erro desconhecido", status: "error"})
+        }
+        setTimeout(()=>setAlertVisibility(false), 3500)
       }
     }
     setCarregando(false)
@@ -93,7 +103,7 @@ export default function SignUp() {
             />
           </Field>
 
-          <Field label="Nome completo" invalid={!!errors.email} errorText={errors?.email?.message}>
+          <Field label="Nome completo" invalid={!!errors.name} errorText={errors?.name?.message}>
             <Input
               {...register("name", {
                 required: { value: true, message: "Obrigatório informar o nome" },

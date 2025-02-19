@@ -6,11 +6,12 @@ import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Field } from "@/components/ui/field";
 import { PasswordInput } from "@/components/ui/password-input";
-import {motion} from "framer-motion"
+import { motion } from "framer-motion"
+import Link from "next/link";
 
 import axiosConfigs from "@/config/axios.config";
 import Context from "@/context";
-import AlertMessage, {AlertMessageInterface} from "@/components/AlertMessage";
+import AlertMessage, { AlertMessageInterface } from "@/components/AlertMessage";
 
 interface Inputs {
   email: string;
@@ -25,10 +26,10 @@ export default function SignUp() {
 
   const [carregando, setCarregando] = useState(false)
   const [alertVisibility, setAlertVisibility] = useState(false)
-  const [alertMessageParams, setAlertMessageParams] = useState<AlertMessageInterface>({message: "", status: "neutral"})
+  const [alertMessageParams, setAlertMessageParams] = useState<AlertMessageInterface>({ message: "", status: "neutral" })
   const { setIsNavigationActive } = useContext(Context)
   const router = useRouter();
-  
+
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(\.[a-zA-Z0-9]+)?$/i
 
   const validUserDataSignup = async (inputs: Inputs) => {
@@ -43,10 +44,10 @@ export default function SignUp() {
     } else {
       try {
         const promise = await axiosConfigs.signUp(inputs)
-        if(promise.status===201){
+        if (promise.status === 201) {
           setAlertVisibility(true)
-          setAlertMessageParams({message: "Usuário cadastrado com sucesso", status: "success"})
-          setTimeout(()=>{
+          setAlertMessageParams({ message: "Usuário cadastrado com sucesso", status: "success" })
+          setTimeout(() => {
             setAlertVisibility(false)
             router.push("sign-in")
           }, 3500)
@@ -54,17 +55,17 @@ export default function SignUp() {
       } catch (e: any) {
         setAlertVisibility(true)
         console.log(e)
-        if(e?.status===409){
-          setAlertMessageParams({message: "Este email já está cadastrado", status: "error"})
-        }else if(e?.status === 400){
-          setAlertMessageParams({message: "Todos os dados precisam ser preenchidos", status: "error"})
-        }else if(e?.status === 500){
-          setAlertMessageParams({message: "Erro no servidor", status: "error"})
+        if (e?.status === 409) {
+          setAlertMessageParams({ message: "Este email já está cadastrado", status: "error" })
+        } else if (e?.status === 400) {
+          setAlertMessageParams({ message: "Todos os dados precisam ser preenchidos", status: "error" })
+        } else if (e?.status === 500) {
+          setAlertMessageParams({ message: "Erro no servidor", status: "error" })
         }
-        else{
-          setAlertMessageParams({message: e?.response?.data?.message || "Erro desconhecido", status: "error"})
+        else {
+          setAlertMessageParams({ message: e?.response?.data?.message || "Erro desconhecido", status: "error" })
         }
-        setTimeout(()=>setAlertVisibility(false), 3500)
+        setTimeout(() => setAlertVisibility(false), 3500)
       }
     }
     setCarregando(false)
@@ -83,12 +84,12 @@ export default function SignUp() {
       justifyContent="center"
       minHeight="50vh"
     >
-      <motion.div 
-        initial={{y: "-25rem", opacity: 0}}
-        animate={{y: alertVisibility?"0rem":"-25rem", opacity: alertVisibility?1:0}}
-        transition={{duration: 1.5}}
+      <motion.div
+        initial={{ y: "-25rem", opacity: 0 }}
+        animate={{ y: alertVisibility ? "0rem" : "-25rem", opacity: alertVisibility ? 1 : 0 }}
+        transition={{ duration: 1.5 }}
       >
-        <AlertMessage message={alertMessageParams.message} status={alertMessageParams.status}/>
+        <AlertMessage message={alertMessageParams.message} status={alertMessageParams.status} />
       </motion.div>
       <Heading mb="6" color="#fe7502">Login</Heading>
       <Box as="form" onSubmit={handleSubmit(onSubmit)}>
@@ -107,7 +108,7 @@ export default function SignUp() {
             <Input
               {...register("name", {
                 required: { value: true, message: "Obrigatório informar o nome" },
-                minLength: { value: 2, message: "O nome deve possuir pelo menos 2 caracteres"},
+                minLength: { value: 2, message: "O nome deve possuir pelo menos 2 caracteres" },
                 maxLength: { value: 100, message: "O nome deve possuir, no máximo, 100 caracteres." }
               })}
             />
@@ -145,8 +146,24 @@ export default function SignUp() {
               <Spinner />
             }
           </Button>
+
+
+          <Box fontStyle="italic" color="#535353" _hover={{textDecor: "underline"}} marginTop="0.5rem">
+            <Link href={"/sign-in"}>Já possui cadastro? Faça login!</Link>
+          </Box>
         </VStack>
-        {carregando && <Text wordBreak="break-word" fontSize="sm" color={"#525252"} maxW="230px" textAlign="center">Por favor, aguarde! Às vezes o servidor pode apresentar lentidão</Text>}
+        {
+          carregando &&
+          <Text
+            wordBreak="break-word"
+            fontSize="sm"
+            color={"#525252"}
+            maxW="230px"
+            textAlign="center"
+          >
+            Por favor, aguarde! Às vezes o servidor pode apresentar lentidão
+          </Text>
+        }
       </Box>
     </Box>
   );

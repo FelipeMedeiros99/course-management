@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Field } from "@/components/ui/field";
 import { PasswordInput } from "@/components/ui/password-input";
+import Link from "next/link";
 import axios from "axios";
 
 import Context from "@/context";
@@ -99,6 +100,11 @@ export default function SignIn() {
               <Spinner />
             }
           </Button>
+
+
+          <Box fontStyle="italic" color="#535353" _hover={{textDecor: "underline"}} marginTop="0.5rem">
+            <Link href={"/sign-up"}>Não possui cadastro? Cadastre-se!</Link>
+          </Box>
         </VStack>
         {carregando && <Text wordBreak="break-word" fontSize="sm" color={"#525252"} maxW="230px" textAlign="center">Por favor, aguarde! Às vezes o servidor pode apresentar lentidão</Text>}
       </Box>

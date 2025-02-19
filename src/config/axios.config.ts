@@ -27,9 +27,15 @@ const signIn = async (data: UserDataSignInInterface): Promise<AxiosResponse>=>{
   return response;
 }
 
+const getCourses = async ()=>{
+  const response = await config.get("/courses")
+  return response;
+}
+
 const axiosConfigs = {
   signUp,
-  signIn
+  signIn,
+  getCourses
 }
 
 export default axiosConfigs;

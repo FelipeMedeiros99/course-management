@@ -10,16 +10,12 @@ import axios from "axios";
 
 import Context from "@/context";
 
-
 interface Inputs {
   email: string;
   password: string
 }
 
-
 export default function SignIn() {
-
-
   const { register, handleSubmit, formState: { errors } } = useForm<Inputs>()
   const onSubmit: SubmitHandler<Inputs> = data => validUserDataLogin(data)
 
@@ -30,6 +26,8 @@ export default function SignIn() {
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(\.[a-zA-Z0-9]+)?$/i
   const linkServidor = process.env.NEXT_PUBLIC_LINK_SERVER
   const servidor = `${linkServidor}/login`
+
+  console.log(linkServidor)
 
   const validUserDataLogin = async (inputs: Inputs) => {
     setCarregando(true)

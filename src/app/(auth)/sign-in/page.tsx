@@ -37,8 +37,8 @@ export default function SignIn() {
 
       try {
         const response = await axiosConfigs.signIn(inputs)
-        localStorage.setItem("userToken", JSON.stringify(response?.data))
-          router.push("/courses")
+        localStorage.setItem("userToken", response?.data)
+        router.push("/courses")
 
       } catch (e: any) {
         const errorMessage = e?.response?.data.message

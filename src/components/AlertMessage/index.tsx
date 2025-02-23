@@ -10,7 +10,7 @@ export interface AlertMessageInterface {
 export default function AlertMessage({ status, message, visibility, ...props }: AlertMessageInterface) {
   return (
     <motion.div 
-      initial={{ y: "-25rem", opacity: 0 }}
+      initial={{ y: "-25rem", opacity: 0, position: "fixed", top: "10rem", left: "50%", translateX: "-50%"}}
       animate={{ y: visibility ? "0rem" : "-25rem", opacity: visibility ? 1 : 0 }}
       transition={{ duration: 1.5 }}
     >

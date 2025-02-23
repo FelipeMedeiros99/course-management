@@ -5,6 +5,9 @@ import { useContext, useEffect, useState } from "react";
 
 // import CaixaCurso from "@/app/Components/CaixaCurso"
 import axiosConfigs from "@/config/axios.config";
+import AlertMessage, { AlertMessageInterface } from "@/components/AlertMessage";
+import { AxiosError } from "axios";
+import { useRouter } from "next/navigation";
 
 export interface CourseInterface{
   id: number;
@@ -17,18 +20,39 @@ export interface CourseInterface{
 }
 
 export default function Main() {
-  // hooks
   const [loadingCourses, setLoadingCourses] = useState(false)
   const [courses, setCourses] = useState<CourseInterface[]>([])
+  const [alertVisibility, setAlertVisibility] = useState(false)
+  const [alertMessageParams, setAlertMessageParams] = useState<Omit<AlertMessageInterface, "visibility">>({ message: "", status: "neutral" })
+  const router = useRouter()
 
   async function findCourses():Promise<void>{
     try {
       const promise = await axiosConfigs.getCourses();
-      if(promise?.status === 200){
-        setCourses(promise?.data)
+      setCourses(promise?.data)
+
+    } catch (error: AxiosError | any) {
+      setAlertVisibility(true)
+      const messageError = error?.response?.data?.message || "";
+
+      switch(messageError){
+        case "Invalid token format": 
+          setAlertMessageParams({status: "error", message: "Token inválido"});
+          break;
+
+        case "Expired token":
+          setAlertMessageParams({status: "error", message: "O token expirou, faça login novamente"});
+          break;
+
+        default:
+          setAlertMessageParams({status: "error", message: "Um erro inesperado aconteceu"});
+          console.log("erro: ", error)
       }
-    } catch (error) {
-      console.log("erro ao buscar curso: ", error)
+
+      setTimeout(()=>{
+        setAlertVisibility(false)
+        router.push("/sign-in")        
+      }, 4000)
       setCourses([])
     }
   }
@@ -44,6 +68,7 @@ export default function Main() {
 
   return (
     <Box as="main">
+      <AlertMessage message={alertMessageParams.message} status={alertMessageParams.status} visibility={alertVisibility} />
       {/* {loadingCourses &&
         <Box
           display="flex"

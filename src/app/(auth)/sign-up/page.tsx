@@ -1,7 +1,7 @@
 "use client"
 
 import { Box, Input, Heading, Text, Button, VStack, Spinner } from "@chakra-ui/react";
-import { useEffect, useState, useContext } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Field } from "@/components/ui/field";
@@ -10,7 +10,6 @@ import { motion } from "framer-motion"
 import Link from "next/link";
 
 import axiosConfigs from "@/config/axios.config";
-import Context from "@/context";
 import AlertMessage, { AlertMessageInterface } from "@/components/AlertMessage";
 
 interface Inputs {
@@ -24,16 +23,15 @@ export default function SignUp() {
   const { register, handleSubmit, formState: { errors }, setError } = useForm<Inputs>()
   const onSubmit: SubmitHandler<Inputs> = data => validUserDataSignup(data)
 
-  const [carregando, setCarregando] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
   const [alertVisibility, setAlertVisibility] = useState(false)
   const [alertMessageParams, setAlertMessageParams] = useState<AlertMessageInterface>({ message: "", status: "neutral" })
-  const { setIsNavigationActive } = useContext(Context)
   const router = useRouter();
 
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(\.[a-zA-Z0-9]+)?$/i
 
   const validUserDataSignup = async (inputs: Inputs) => {
-    setCarregando(true)
+    setIsLoading(true)
     const { password, confirmPassword } = inputs;
 
     if (password !== confirmPassword) {
@@ -70,13 +68,9 @@ export default function SignUp() {
         setTimeout(() => setAlertVisibility(false), 3500)
       }
     }
-    setCarregando(false)
+    setIsLoading(false)
 
   };
-
-  useEffect(() => {
-    setIsNavigationActive(false)
-  }, [setIsNavigationActive])
 
   return (
     <Box
@@ -98,6 +92,7 @@ export default function SignUp() {
         <VStack >
           <Field label="Email" invalid={!!errors.email} errorText={errors?.email?.message}>
             <Input
+              disabled={isLoading}
               {...register("email", {
                 required: { value: true, message: "Obrigatório informar o email" },
                 maxLength: { value: 100, message: "O email deve possuir, no máximo, 100 caracteres." },
@@ -108,6 +103,7 @@ export default function SignUp() {
 
           <Field label="Nome completo" invalid={!!errors.name} errorText={errors?.name?.message}>
             <Input
+              disabled={isLoading}
               {...register("name", {
                 required: { value: true, message: "Obrigatório informar o nome" },
                 minLength: { value: 2, message: "O nome deve possuir pelo menos 2 caracteres" },
@@ -118,6 +114,7 @@ export default function SignUp() {
 
           <Field label="Senha" invalid={!!errors?.password} errorText={errors?.password?.message}>
             <PasswordInput
+              disabled={isLoading}
               {...register("password", {
                 minLength: { value: 6, message: "A senha precisa possuir no mínimo 6 caracteres" },
                 maxLength: { value: 100, message: "A senha não deve ter mais de 100 caracteres" },
@@ -128,6 +125,7 @@ export default function SignUp() {
 
           <Field label="Confirme a senha" invalid={!!errors?.confirmPassword} errorText={errors?.confirmPassword?.message}>
             <PasswordInput
+              disabled={isLoading}
               {...register("confirmPassword", {
                 required: { value: true, message: "A confirmação de senha é obrigatória" }
               })}
@@ -139,11 +137,11 @@ export default function SignUp() {
             _hover={{ backgroundColor: "#124877" }}
             color="white"
             type="submit"
-            disabled={carregando}
+            disabled={isLoading}
             w="100%"
             marginTop="1rem"
           >
-            {!carregando ?
+            {!isLoading ?
               "Confirmar" :
               <Spinner />
             }
@@ -155,7 +153,7 @@ export default function SignUp() {
           </Box>
         </VStack>
         {
-          carregando &&
+          isLoading &&
           <Text
             wordBreak="break-word"
             fontSize="sm"

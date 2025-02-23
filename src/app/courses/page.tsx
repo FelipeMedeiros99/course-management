@@ -1,18 +1,26 @@
 "use client"
-// modulos externos
+
 import { Box, Spinner } from "@chakra-ui/react"
 import { useContext, useEffect, useState } from "react";
 
-
-// modulos internos
 // import CaixaCurso from "@/app/Components/CaixaCurso"
-import Context from "@/context";
 import axiosConfigs from "@/config/axios.config";
 
+export interface CourseInterface{
+  id: number;
+  content: string;
+  descountedPrice: number; 
+  name: string;
+  price: number;
+  url: string
+  workload: number
+}
 
 export default function Main() {
   // hooks
   const [loadingCourses, setLoadingCourses] = useState(false)
+  const [courses, setCourses] = useState<CourseInterface[]>([])
+
   // const { setNavegacaoAtiva, listaCursos, setListaCursos} = useContext(Context);
   
   // effects
@@ -24,7 +32,6 @@ export default function Main() {
     async function carregarCursos() {
       setLoadingCourses(true)
       const resposta = await buscarCursos();
-      setListaCursos(resposta)
       setLoadingCourses(false)
     }
     carregarCursos()

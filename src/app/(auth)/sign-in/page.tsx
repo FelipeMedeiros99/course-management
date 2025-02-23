@@ -23,7 +23,7 @@ export default function SignIn() {
 
   const [isLoading, setIsLoading] = useState(false)
   const [alertVisibility, setAlertVisibility] = useState(false)
-  const [alertMessageParams, setAlertMessageParams] = useState<AlertMessageInterface>({ message: "", status: "neutral" })
+  const [alertMessageParams, setAlertMessageParams] = useState<Omit<AlertMessageInterface, "visibility">>({ message: "", status: "neutral" })
   const router = useRouter();
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(\.[a-zA-Z0-9]+)?$/i
 
@@ -74,14 +74,8 @@ export default function SignIn() {
       justifyContent="center"
       minHeight="50vh"
     >
-      <motion.div
-        initial={{ y: "-25rem", opacity: 0 }}
-        animate={{ y: alertVisibility ? "0rem" : "-25rem", opacity: alertVisibility ? 1 : 0 }}
-        transition={{ duration: 1.5 }}
-      >
-        <AlertMessage message={alertMessageParams.message} status={alertMessageParams.status} />
+      <AlertMessage message={alertMessageParams.message} status={alertMessageParams.status} visibility={alertVisibility} />
 
-      </motion.div>
       
       <Heading mb="6" color="#fe7502">Login</Heading>
       <Box as="form" onSubmit={handleSubmit(onSubmit)}>

@@ -21,33 +21,26 @@ export default function Main() {
   const [loadingCourses, setLoadingCourses] = useState(false)
   const [courses, setCourses] = useState<CourseInterface[]>([])
 
-  // const { setNavegacaoAtiva, listaCursos, setListaCursos} = useContext(Context);
-  
-  // effects
-  // useEffect(() => {
-  //   setNavegacaoAtiva(true)
-  // }, [])
-
-  useEffect(() => {
-    async function carregarCursos() {
-      setLoadingCourses(true)
-      const resposta = await buscarCursos();
-      setLoadingCourses(false)
-    }
-    carregarCursos()
-  }, [])
-
-
-  // functions
-  async function buscarCursos() {
+  async function findCourses():Promise<void>{
     try {
       const promise = await axiosConfigs.getCourses();
-       console.log(promise.data);
+      if(promise?.status === 200){
+        setCourses(promise?.data)
+      }
     } catch (error) {
       console.log("erro ao buscar curso: ", error)
-      return []
+      setCourses([])
     }
   }
+
+  useEffect(() => {
+    (async() =>{
+      setLoadingCourses(true)
+      await findCourses();
+      setLoadingCourses(false)
+    })()
+  }, [])
+
 
   return (
     <Box as="main">

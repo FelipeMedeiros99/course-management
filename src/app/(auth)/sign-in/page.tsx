@@ -42,18 +42,25 @@ export default function SignIn() {
 
       } catch (e: any) {
         const errorMessage = e?.response?.data.message
-        console.log(errorMessage)
         setAlertVisibility(true)
-        if(e?.status == 401 && errorMessage === "Email not registered"){
-          setAlertMessageParams({message: "Email não cadastrado", status: "error"})
-        }else if(e?.status === 401 && errorMessage === "Incorrect password"){
-          setAlertMessageParams({message: "Senha incorreta", status: "error"})
-        }else if(e.status === 500){
-          setAlertMessageParams({message: "Erro no servidor", status: "error"})
-        }else{
-          console.log(e)
-          setAlertMessageParams({message: "Erro desconhecido, contate o desenvolvedor", status: "error"})
+        switch(errorMessage){
+          case "Email not registered":
+            setAlertMessageParams({message: "Email não cadastrado", status: "error"})
+            break;
+
+          case("Incorrect password"):
+            setAlertMessageParams({message: "Senha incorreta", status: "error"})
+            break;
+            
+          default:
+            console.log(e)
+            if(e?.response?.status===500){
+              setAlertMessageParams({message: "Erro no servidor, tente novamente", status: "error"})
+            }else{
+              setAlertMessageParams({message: "Erro desconhecido, contate o desenvolvedor", status: "error"})
+            }
         }
+
         // console.log("deu erro: ", e.response || e.request || e)
       } finally {
         setTimeout(()=>setAlertVisibility(false), 4000)

@@ -4,19 +4,14 @@ import { Provider } from '@/components/ui/provider';
 
 import { ColorModeProvider } from '@/components/ui/color-mode';
 import { Theme } from '@chakra-ui/react';
-
-import Context, { CourseDataInterface, UserDataInterface } from '../context';
 import Header from '@/components/Header';
-import Footer from '../components/Footer';
+import Footer from '@/components/Footer';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const [isNavigationActive, setIsNavigationActive] = useState<boolean>(true)
-  const [coursesList, setCoursesList] = useState<CourseDataInterface[]>([])
-  const [userData, setUserData] = useState<UserDataInterface>({ id: null, email: "", name: "" })
   return (
     <html lang="pt-br">
       <body>
-        <Context.Provider value={{ isNavigationActive, setIsNavigationActive, coursesList, setCoursesList, userData, setUserData }}>
           <ColorModeProvider forcedTheme='light'>
             <Provider>
               <Theme appearance='light'>
@@ -26,7 +21,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </Theme>
             </Provider>
           </ColorModeProvider>
-        </Context.Provider>
       </body>
     </html>
   );

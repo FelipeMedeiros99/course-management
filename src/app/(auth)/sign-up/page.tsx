@@ -80,13 +80,7 @@ export default function SignUp() {
       justifyContent="center"
       minHeight="50vh"
     >
-      <motion.div
-        initial={{ y: "-25rem", opacity: 0 }}
-        animate={{ y: alertVisibility ? "0rem" : "-25rem", opacity: alertVisibility ? 1 : 0 }}
-        transition={{ duration: 1.5 }}
-      >
-        <AlertMessage message={alertMessageParams.message} status={alertMessageParams.status} visibility={alertVisibility}/>
-      </motion.div>
+      <AlertMessage message={alertMessageParams.message} status={alertMessageParams.status} visibility={alertVisibility}/>
       <Heading mb="6" color="#fe7502">Cadastro</Heading>
       <Box as="form" onSubmit={handleSubmit(onSubmit)}>
         <VStack >

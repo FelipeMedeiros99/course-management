@@ -12,10 +12,20 @@ interface UserDataSignInInterface{
   password: string;
 }
 
-const  config = axios.create({
+const config = axios.create({
   baseURL: process.env.NEXT_PUBLIC_LINK_SERVER,
-  timeout: 7000,
+  timeout: 7000
 })
+
+config.interceptors.request.use((config)=>{
+  const token = localStorage.getItem("userToken")
+  if(token){
+    config.headers.Authorization = `Bearer ${token}`
+  }
+  return config
+}, (error)=>{
+  return Promise.reject(error)
+});
 
 const signUp = async (data: UserDataSignUpInterface): Promise<AxiosResponse>=>{
   const response = await config.post("/sign-up", data);
@@ -29,6 +39,7 @@ const signIn = async (data: UserDataSignInInterface): Promise<AxiosResponse>=>{
 
 const getCourses = async ()=>{
   const response = await config.get("/courses")
+
   return response;
 }
 

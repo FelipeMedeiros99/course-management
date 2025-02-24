@@ -1,6 +1,6 @@
 "use client"
 
-import { Box, Spinner } from "@chakra-ui/react"
+import { Box, Spinner, Text } from "@chakra-ui/react"
 import { useContext, useEffect, useState } from "react";
 
 // import CaixaCurso from "@/app/Components/CaixaCurso"
@@ -20,13 +20,14 @@ export interface CourseInterface{
 }
 
 export default function Main() {
-  const [loadingCourses, setLoadingCourses] = useState(false)
+  const [isLoadingCourses, setIsLoadingCourses] = useState(false)
   const [courses, setCourses] = useState<CourseInterface[]>([])
   const [alertVisibility, setAlertVisibility] = useState(false)
   const [alertMessageParams, setAlertMessageParams] = useState<Omit<AlertMessageInterface, "visibility">>({ message: "", status: "neutral" })
   const router = useRouter()
 
   async function findCourses():Promise<void>{
+    setIsLoadingCourses(true)
     try {
       const promise = await axiosConfigs.getCourses();
       setCourses(promise?.data)
@@ -48,51 +49,54 @@ export default function Main() {
           setAlertMessageParams({status: "error", message: "Um erro inesperado aconteceu"});
           console.log("erro: ", error)
       }
-
       setTimeout(()=>{
         setAlertVisibility(false)
         router.push("/sign-in")        
       }, 4000)
       setCourses([])
+    }finally{
+      setIsLoadingCourses(false)
     }
+    
   }
 
   useEffect(() => {
     (async() =>{
-      setLoadingCourses(true)
+      setIsLoadingCourses(true)
       await findCourses();
-      setLoadingCourses(false)
+      setIsLoadingCourses(false)
     })()
   }, [])
 
 
   return (
     <Box as="main">
-      <AlertMessage message={alertMessageParams.message} status={alertMessageParams.status} visibility={alertVisibility} />
-      {/* {loadingCourses &&
-        <Box
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-          height="40vh"
+      <AlertMessage message={alertMessageParams.message} status={alertMessageParams.status} visibility={alertVisibility}/>
+      
+      {isLoadingCourses &&
+        <Box display="flex" alignItems="center" justifyContent="center" height="40vh"
         >
-
           <Spinner
-            width={"100px"}
-            height={"100px"}
+            width={"5rem"}
+            height={"5rem"}
             color="#fe7502" />
         </Box>
-      } */}
+      }
 
-      {/* <Box
+
+      <Box
         as="div" display="flex" flexWrap="wrap" width="100%"
-        mx="auto" justifyContent="center" marginTop="40px"
-        marginBottom="40px"
-      > */}
+        mx="auto" justifyContent="center" marginTop="2.5rem"
+        marginBottom="2.5rem"
+        >
+        {
+          courses.length===0 &&
+          <Text padding="1rem" textAlign="center" as="h2" fontSize="2rem" color="#fe7502">Aguarde, em breve teremos novidades!</Text>
+        }
         {/* {listaCursos.map((dados, index) => (
           <CaixaCurso props={dados} key={index} />
         ))} */}
-      {/* </Box> */}
+      </Box>
     </Box>
   );
 }

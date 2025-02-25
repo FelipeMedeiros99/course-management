@@ -62,7 +62,7 @@ export default function CourseBox({ courseData }: { courseData: CourseInterface 
       position="relative"
     >
 
-      <Link href={`/course/${id}`}>
+      <Link href={`/courses/${id}`}>
         <Image
           src={url}
           alt={name}

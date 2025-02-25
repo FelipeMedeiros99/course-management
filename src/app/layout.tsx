@@ -10,11 +10,11 @@ import Footer from '@/components/Footer';
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const [isNavigationActive, setIsNavigationActive] = useState<boolean>(true)
   return (
-    <html lang="pt-br">
-      <body>
+    <html lang="pt-br" style={{height: "100%"}}>
+      <body style={{height: "100%"}}>
           <ColorModeProvider forcedTheme='light'>
             <Provider>
-              <Theme appearance='light'>
+              <Theme appearance='light' style={{height: "100%"}}> 
                 <Header ativo={isNavigationActive}/>  
                 {children}
                 <Footer />

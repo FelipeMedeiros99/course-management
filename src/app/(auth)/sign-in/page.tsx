@@ -67,15 +67,8 @@ export default function SignIn() {
   };
 
   return (
-    <Box
-      display="flex"
-      flexDirection="column"
-      alignItems="center"
-      justifyContent="center"
-      minHeight="50vh"
-    >
-      <AlertMessage message={alertMessageParams.message} status={alertMessageParams.status} visibility={alertVisibility} />
-
+    <>
+      <AlertMessage message={alertMessageParams.message} status={alertMessageParams.status} visibility={alertVisibility} />      
       
       <Heading mb="6" color="#fe7502">Login</Heading>
       <Box as="form" onSubmit={handleSubmit(onSubmit)}>
@@ -123,6 +116,6 @@ export default function SignIn() {
           </Box>
         </VStack>
       </Box>
-    </Box>
+    </>
   );
 }

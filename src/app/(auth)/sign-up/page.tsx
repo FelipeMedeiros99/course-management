@@ -73,13 +73,7 @@ export default function SignUp() {
   };
 
   return (
-    <Box
-      display="flex"
-      flexDirection="column"
-      alignItems="center"
-      justifyContent="center"
-      minHeight="50vh"
-    >
+    <>
       <AlertMessage message={alertMessageParams.message} status={alertMessageParams.status} visibility={alertVisibility}/>
       <Heading mb="6" color="#fe7502">Cadastro</Heading>
       <Box as="form" onSubmit={handleSubmit(onSubmit)}>
@@ -146,19 +140,7 @@ export default function SignUp() {
             <Link href={"/sign-in"}>Já possui cadastro? Faça login!</Link>
           </Box>
         </VStack>
-        {
-          isLoading &&
-          <Text
-            wordBreak="break-word"
-            fontSize="sm"
-            color={"#525252"}
-            maxW="230px"
-            textAlign="center"
-          >
-            Por favor, aguarde! Às vezes o servidor pode apresentar lentidão
-          </Text>
-        }
       </Box>
-    </Box>
+    </>
   );
 }

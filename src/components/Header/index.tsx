@@ -6,11 +6,6 @@ import { RiLogoutBoxRLine } from "react-icons/ri";
 import { useRouter } from "next/navigation";
 
 export default function Header() {
-  const router = useRouter()
-  function sair(){100
-    router.push("/")
-  }
-
   return (
     <Box
       as="header"
@@ -22,7 +17,7 @@ export default function Header() {
       py={4}
       textAlign="center"
       justifyContent="center"
-      position="relative"
+      position="absolute"
     >
       <Image
         src="./imagens/inaed_logo.png"

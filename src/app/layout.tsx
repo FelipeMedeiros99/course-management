@@ -14,7 +14,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body style={{height: "100%"}}>
           <ColorModeProvider forcedTheme='light'>
             <Provider>
-              <Theme appearance='light' style={{minHeight: "100%", position: "relative"}}> 
+              <Theme appearance='light' style={{height: "100%", position: "relative"}}> 
                 <Header/>  
                   {children}
                 <Footer />

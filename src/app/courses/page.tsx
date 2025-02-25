@@ -73,11 +73,11 @@ export default function Main() {
 
 
   return (
-    <VStack as="main" paddingBottom="5rem" h="100%">
+    <VStack as="main" padding="8rem 0 4rem 0" h="100%">
       <AlertMessage message={alertMessageParams.message} status={alertMessageParams.status} visibility={alertVisibility}/>
       
-      {true &&
-        <VStack display="flex" w="100%" justifyContent="center" alignItems="center" h="100%"
+      {isLoadingCourses &&
+        <VStack display="flex" w="100%" justifyContent="center" alignItems="center" height="100%"
         >
           <Spinner
             width={"7rem"}

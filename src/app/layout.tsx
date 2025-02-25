@@ -3,20 +3,20 @@ import { useState } from 'react';
 import { Provider } from '@/components/ui/provider';
 
 import { ColorModeProvider } from '@/components/ui/color-mode';
-import { Theme } from '@chakra-ui/react';
+import { Box, Theme } from '@chakra-ui/react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { relative } from 'path';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const [isNavigationActive, setIsNavigationActive] = useState<boolean>(true)
   return (
     <html lang="pt-br" style={{height: "100%"}}>
       <body style={{height: "100%"}}>
           <ColorModeProvider forcedTheme='light'>
             <Provider>
-              <Theme appearance='light' style={{height: "100%"}}> 
-                <Header ativo={isNavigationActive}/>  
-                {children}
+              <Theme appearance='light' style={{minHeight: "100%", position: "relative"}}> 
+                <Header/>  
+                  {children}
                 <Footer />
               </Theme>
             </Provider>

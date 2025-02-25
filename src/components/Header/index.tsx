@@ -5,9 +5,9 @@ import Link from "next/link";
 import { RiLogoutBoxRLine } from "react-icons/ri";
 import { useRouter } from "next/navigation";
 
-export default function Header({ativo}: {ativo:boolean}) {
+export default function Header() {
   const router = useRouter()
-  function sair(){
+  function sair(){100
     router.push("/")
   }
 
@@ -18,7 +18,7 @@ export default function Header({ativo}: {ativo:boolean}) {
       width="100%"
       bg="#fe7502"
       color="white"
-      height="auto"
+      height="8rem"
       py={4}
       textAlign="center"
       justifyContent="center"
@@ -29,7 +29,7 @@ export default function Header({ativo}: {ativo:boolean}) {
         alt="Logo do INAED"
         width="auto"
         height="auto"
-        maxHeight="70px"
+        maxHeight="4rem"
         mx="auto"
       />
       <Heading
@@ -39,15 +39,6 @@ export default function Header({ativo}: {ativo:boolean}) {
       >
         INAED CURSOS
       </Heading>
-
-      {/* <MenuRotas ativo={ativo}/> */}
-
-      {ativo && 
-        <Box position="absolute" right="15px" top="15px" onClick={sair}>
-          <RiLogoutBoxRLine size="35px"/>
-        </Box>
-        }
-
     </Box>
   );
 }

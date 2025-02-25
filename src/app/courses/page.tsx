@@ -1,9 +1,9 @@
 "use client"
 
-import { Box, HStack, Spinner, Text } from "@chakra-ui/react"
+import { Box, HStack, Spinner, Text, VStack } from "@chakra-ui/react"
 import { useContext, useEffect, useState } from "react";
 
-import CourseBox from "@/components/CaixaCurso/CourseBox";
+import CourseBox from "@/components/CourseBox/CourseBox";
 import axiosConfigs from "@/config/axios.config";
 import AlertMessage, { AlertMessageInterface } from "@/components/AlertMessage";
 import { AxiosError } from "axios";
@@ -73,30 +73,28 @@ export default function Main() {
 
 
   return (
-    <HStack as="main" paddingBottom="5rem">
+    <VStack as="main" paddingBottom="5rem" h="100%">
       <AlertMessage message={alertMessageParams.message} status={alertMessageParams.status} visibility={alertVisibility}/>
       
-      {isLoadingCourses &&
-        <Box display="flex" alignItems="center" justifyContent="center" height="40vh"
+      {true &&
+        <VStack display="flex" w="100%" justifyContent="center" alignItems="center" h="100%"
         >
           <Spinner
-            width={"5rem"}
-            height={"5rem"}
+            width={"7rem"}
+            height={"7rem"}
             color="#fe7502" />
-        </Box>
+        </VStack>
       }
-      <Text padding="1rem" textAlign="center" as="h2" fontSize="2rem" color="#fe7502">{emptyCoursesMessage}</Text>
+      {/* <Text padding="1rem" textAlign="center" as="h2" fontSize="2rem" color="#fe7502">{emptyCoursesMessage}</Text>
       <Box
         as="div" display="flex" flexWrap="wrap" width="100%"
         mx="auto" justifyContent="space-around" marginTop="2.5rem"
         marginBottom="2.5rem"
         >
-        
-        
         {courses.map((course, index) => (
           <CourseBox courseData={course} key={index} />
         ))}
-      </Box>
-    </HStack>
+      </Box> */}
+    </VStack>
   );
 }

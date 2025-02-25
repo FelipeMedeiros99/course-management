@@ -1,6 +1,6 @@
 "use client"
 
-import { Box, Spinner, Text } from "@chakra-ui/react"
+import { Box, HStack, Spinner, Text } from "@chakra-ui/react"
 import { useContext, useEffect, useState } from "react";
 
 import CourseBox from "@/components/CaixaCurso/CourseBox";
@@ -73,7 +73,7 @@ export default function Main() {
 
 
   return (
-    <Box as="main">
+    <HStack as="main" paddingBottom="5rem">
       <AlertMessage message={alertMessageParams.message} status={alertMessageParams.status} visibility={alertVisibility}/>
       
       {isLoadingCourses &&
@@ -85,20 +85,18 @@ export default function Main() {
             color="#fe7502" />
         </Box>
       }
-
-
+      <Text padding="1rem" textAlign="center" as="h2" fontSize="2rem" color="#fe7502">{emptyCoursesMessage}</Text>
       <Box
         as="div" display="flex" flexWrap="wrap" width="100%"
-        mx="auto" justifyContent="center" marginTop="2.5rem"
+        mx="auto" justifyContent="space-around" marginTop="2.5rem"
         marginBottom="2.5rem"
         >
         
-        <Text padding="1rem" textAlign="center" as="h2" fontSize="2rem" color="#fe7502">{emptyCoursesMessage}</Text>
         
-        {/* {listaCursos.map((dados, index) => (
-          <CaixaCurso props={dados} key={index} />
-        ))} */}
+        {courses.map((course, index) => (
+          <CourseBox courseData={course} key={index} />
+        ))}
       </Box>
-    </Box>
+    </HStack>
   );
 }

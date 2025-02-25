@@ -17,7 +17,6 @@ export default function Header() {
       py={4}
       textAlign="center"
       justifyContent="center"
-      position="absolute"
     >
       <Image
         src="./imagens/inaed_logo.png"

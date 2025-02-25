@@ -11,11 +11,7 @@ export default function Footer() {
         py={1} 
         textAlign="center" 
         justifyContent={"center"}
-        zIndex="4"
-        position="absolute"
-        bottom="0"
     >
-
       <Image 
         src="/imagens/logo_footer.png" 
         alt="Logo do INAED" 

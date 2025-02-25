@@ -85,7 +85,7 @@ export default function Main() {
             color="#fe7502" />
         </VStack>
       }
-      {/* <Text padding="1rem" textAlign="center" as="h2" fontSize="2rem" color="#fe7502">{emptyCoursesMessage}</Text>
+      <Text padding="1rem" textAlign="center" as="h2" fontSize="2rem" color="#fe7502">{emptyCoursesMessage}</Text>
       <Box
         as="div" display="flex" flexWrap="wrap" width="100%"
         mx="auto" justifyContent="space-around" marginTop="2.5rem"
@@ -94,7 +94,7 @@ export default function Main() {
         {courses.map((course, index) => (
           <CourseBox courseData={course} key={index} />
         ))}
-      </Box> */}
+      </Box>
     </VStack>
   );
 }

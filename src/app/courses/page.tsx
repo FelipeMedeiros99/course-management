@@ -3,7 +3,7 @@
 import { Box, Spinner, Text } from "@chakra-ui/react"
 import { useContext, useEffect, useState } from "react";
 
-// import CaixaCurso from "@/app/Components/CaixaCurso"
+import CourseBox from "@/components/CaixaCurso/CourseBox";
 import axiosConfigs from "@/config/axios.config";
 import AlertMessage, { AlertMessageInterface } from "@/components/AlertMessage";
 import { AxiosError } from "axios";
@@ -24,13 +24,16 @@ export default function Main() {
   const [courses, setCourses] = useState<CourseInterface[]>([])
   const [alertVisibility, setAlertVisibility] = useState(false)
   const [alertMessageParams, setAlertMessageParams] = useState<Omit<AlertMessageInterface, "visibility">>({ message: "", status: "neutral" })
+  const [emptyCoursesMessage, setEmptyCoursesMessage] = useState("")
   const router = useRouter()
 
   async function findCourses():Promise<void>{
-    setIsLoadingCourses(true)
     try {
       const promise = await axiosConfigs.getCourses();
       setCourses(promise?.data)
+      if(promise?.data.length === 0 ){
+        setEmptyCoursesMessage("Aguarde, em breve teremos novidades!")
+      }
 
     } catch (error: AxiosError | any) {
       setAlertVisibility(true)
@@ -48,16 +51,13 @@ export default function Main() {
         default:
           setAlertMessageParams({status: "error", message: "Um erro inesperado aconteceu"});
           console.log("erro: ", error)
-      }
+        }
       setTimeout(()=>{
         setAlertVisibility(false)
         router.push("/sign-in")        
       }, 4000)
       setCourses([])
-    }finally{
-      setIsLoadingCourses(false)
-    }
-    
+    } 
   }
 
   useEffect(() => {
@@ -67,6 +67,9 @@ export default function Main() {
       setIsLoadingCourses(false)
     })()
   }, [])
+
+  useEffect(()=>{
+  },[])
 
 
   return (
@@ -89,10 +92,9 @@ export default function Main() {
         mx="auto" justifyContent="center" marginTop="2.5rem"
         marginBottom="2.5rem"
         >
-        {
-          courses.length===0 &&
-          <Text padding="1rem" textAlign="center" as="h2" fontSize="2rem" color="#fe7502">Aguarde, em breve teremos novidades!</Text>
-        }
+        
+        <Text padding="1rem" textAlign="center" as="h2" fontSize="2rem" color="#fe7502">{emptyCoursesMessage}</Text>
+        
         {/* {listaCursos.map((dados, index) => (
           <CaixaCurso props={dados} key={index} />
         ))} */}

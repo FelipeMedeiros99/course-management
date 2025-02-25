@@ -62,7 +62,7 @@ export default function CourseBox({ courseData }: { courseData: CourseInterface 
       position="relative"
     >
 
-      <Link href={`/cursos/${link}`}>
+      <Link href={`/course/${id}`}>
         <Image
           src={url}
           alt={name}
@@ -92,7 +92,7 @@ export default function CourseBox({ courseData }: { courseData: CourseInterface 
         >
           <FiClock style={{ marginRight: '8px' }} size="15px" />
           Carga horária:
-          <Box as="strong" ml={1}>{workload}</Box>
+          <Box as="strong" ml={1}>{workload}h</Box>
         </Text>
 
 

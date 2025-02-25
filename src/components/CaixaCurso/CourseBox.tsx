@@ -1,17 +1,16 @@
 "use client"
-import { Box, Text } from "@chakra-ui/react"
+import { Box, Text, Image, Button } from "@chakra-ui/react"
+import Link from "next/link";
+import { FiClock, FiShoppingCart } from "react-icons/fi";
+import { useState } from "react";
 
 import { CourseInterface } from "@/app/courses/page"
-// import { useState } from "react";
-// import { Image } from "@chakra-ui/react"
 // import { converterEmMoedas } from "@/app/Tools";
-// import Link from "next/link";
 // import ModeloBotao from "../ModeloBotao";
 // import adicionarAoCarrinho from "@/app/Tools/adicionarAoCarrinho";
 // import SpinCarregando from "../SpinCarregando";
 // import { FiShoppingCart } from "react-icons/fi";
 // import { FiEdit } from "react-icons/fi";
-// import { FiClock } from "react-icons/fi";
 // import { FaDollarSign } from "react-icons/fa";
 
 // {
@@ -25,91 +24,100 @@ import { CourseInterface } from "@/app/courses/page"
 // }
 
 
-export default function CourseBox({ courseData }: {courseData: CourseInterface}) {
-  
-    // const [carregando, setCarregando] = useState(false)
-    // const link = `${id}?nome=${encodeURIComponent(nome)}&preco=${encodeURIComponent(preco)}&cargaHoraria=${encodeURIComponent(cargaHoraria)}&precoComDesconto=${encodeURIComponent(precoComDesconto)}&conteudo=${encodeURIComponent(conteudo)}&imagem=${encodeURIComponent(imagem)}`
+// const {
+//     nome,
+//     preco,
+//     carga_horaria: cargaHoraria,
+//     preco_com_desconto: precoComDesconto,
+//     conteudo,
+//     url_foto: imagem,
+//     id } = props;
 
-    // async function adicionar() {
-    //     setCarregando(true)
-    //     await adicionarAoCarrinho(id)
-    //     setCarregando(false)
-    // }
+export default function CourseBox({ courseData }: { courseData: CourseInterface }) {
+  const { content, descountedPrice, id, name, price, url, workload } = courseData;
+  const [isLoading, setIsLoading] = useState(false)
+  const link = `${id}`
+
+  const moneyFormat = (price: number) => {
+    return String(price.toFixed(2)).replace(".", ",")
+  }
+
+  async function addAtCart() {
+      setIsLoading(true)
+      // await adicionarAoCarrinho(id)
+      setIsLoading(false)
+  }
 
 
-    return (
-        <Box
-            as="div"
-            width="300px"
-            height="460px"
-            boxShadow='0 0 3px black'
-            borderRadius="5px"
-            padding={2}
-            margin={2}
-            color="#545454"
-            position="relative"
+  return (
+    <Box
+      as="div"
+      width="300px"
+      height="460px"
+      boxShadow='0 0 3px black'
+      borderRadius="5px"
+      padding={2}
+      margin={2}
+      color="#545454"
+      position="relative"
+    >
+
+      <Link href={`/cursos/${link}`}>
+        <Image
+          src={url}
+          alt={name}
+          width="100%"
+          height="200px"
+          objectFit="cover"
+          borderRadius="md"
+          mx="auto"
+
+        />
+        <Text
+          display="flex"
+          alignItems="center"
+          fontSize="xl"
+          fontWeight="700"
+          height="100px"
+          lineHeight="1"
+          overflow="auto"
+          textDecor="underline"
+        >{name}</Text>
+
+        <Text
+          fontSize="md"
+          height="25px"
+          display="flex"
+          alignItems="center"
         >
-
-            {/* <Link href={`/cursos/${link}`}>
-                <Image
-                    src={imagem}
-                    alt={nome}
-                    width="100%"
-                    height="200px"
-                    objectFit="cover"
-                    borderRadius="md"
-                    mx="auto"
-
-                />
-                <Text
-                    display="flex"
-                    alignItems="center"
-                    fontSize="xl"
-                    fontWeight="700"
-                    height="100px"
-                    lineHeight="1"
-                    overflow="auto"
-                    textDecor="underline"
-                >{nome}</Text>
-
-                <Text
-                    fontSize="md"
-                    height="25px"
-                    display="flex"
-                    alignItems="center"  
-                >
-                    <FiClock style={{ marginRight: '8px' }} size="15px"/>
-                    Carga horária: 
-                    <Box as="strong" ml={1}>{cargaHoraria}</Box>
-                </Text>
+          <FiClock style={{ marginRight: '8px' }} size="15px" />
+          Carga horária:
+          <Box as="strong" ml={1}>{workload}</Box>
+        </Text>
 
 
-                <Text
-                    fontSize="xl"
-                    fontWeight="900"
-                        >R${converterEmMoedas(precoComDesconto)}
-                </Text>
-            </Link>
-            <Box as="div" position="absolute" bottom='0' width="100%" left="0" padding="2">
-                <ModeloBotao
-                    margin="0"
-                    isDisabled={carregando}
-                    onClick={adicionar}
-                    backgroundColor="#206eb3"
-                    _hover={{ backgroundColor: "#175388" }}
-                    color="white"
-                    rightIcon={<FiShoppingCart />}
-                    >
+        <Text
+          fontSize="xl"
+          fontWeight="900"
+        >R${moneyFormat(descountedPrice)}
+        </Text>
+      </Link>
+      <Box as="div" position="absolute" bottom='0' width="100%" left="0" padding="2">
+        <Button
+          margin="0"
+          loading={isLoading}
+          onClick={addAtCart}
+          backgroundColor="#206eb3"
+          _hover={{ backgroundColor: "#175388" }}
+          color="white"
+        > 
+            <FiShoppingCart />
+            "Adicionar ao carrinho" 
+        </Button>
+      </Box>
 
-                    {carregando ?
-                        <SpinCarregando /> :
-                        "Adicionar ao carrinho"
-                    }
-                </ModeloBotao>
-            </Box> */}
-
-        </Box>
+    </Box>
 
 
-    )
+  )
 }

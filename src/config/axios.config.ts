@@ -43,10 +43,16 @@ const getCourses = async ()=>{
   return response;
 }
 
+const getCourse = async (id:number)=>{
+  const response = await config.get(`/courses/${id}`);
+  return response;
+}
+
 const axiosConfigs = {
   signUp,
   signIn,
-  getCourses
+  getCourses,
+  getCourse
 }
 
 export default axiosConfigs;

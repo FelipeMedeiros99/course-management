@@ -1,8 +1,12 @@
-import { Box, Image } from "@chakra-ui/react";
+import { Box, VStack } from "@chakra-ui/react";
+import Image from "next/image";
+
+import footerImage from "@/assets/images/logo_footer.png"
+
 
 export default function Footer() {
   return (
-    <Box 
+    <VStack 
         as="footer" 
         width="100%"
         height="4rem"
@@ -13,13 +17,10 @@ export default function Footer() {
         justifyContent={"center"}
     >
       <Image 
-        src="/imagens/logo_footer.png" 
-        alt="Logo do INAED" 
-        width={200} 
-        height="auto"
-        mx="auto" // Alinha a imagem ao centro
+        src={footerImage}
+        alt="Logo do INAED"
       />
       
-    </Box>
+    </VStack>
   );
 }

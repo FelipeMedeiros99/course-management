@@ -1,13 +1,16 @@
 "use client"
-import { Box, Heading, Image } from "@chakra-ui/react";
+import { Box, Heading, VStack } from "@chakra-ui/react";
+import Image from "next/image"
 import Link from "next/link";
 // import MenuRotas from "../MenuRotas";
 import { RiLogoutBoxRLine } from "react-icons/ri";
 import { useRouter } from "next/navigation";
 
+import logoInaed from "@/assets/images/inaed_logo.png";
+
 export default function Header() {
   return (
-    <Box
+    <VStack
       as="header"
       top="0px"
       width="100%"
@@ -19,12 +22,12 @@ export default function Header() {
       justifyContent="center"
     >
       <Image
-        src="./imagens/inaed_logo.png"
+        src={logoInaed}
         alt="Logo do INAED"
-        width="auto"
-        height="auto"
-        maxHeight="4rem"
-        mx="auto"
+        width={64}
+        height={64}
+
+
       />
       <Heading
         as="h1"
@@ -33,6 +36,6 @@ export default function Header() {
       >
         INAED CURSOS
       </Heading>
-    </Box>
+    </VStack>
   );
 }

@@ -43,9 +43,6 @@ export default function DetalhesCurso({params}: {params: {id: string}}){
   
         switch(messageError){
           case "Invalid token format": 
-            setAlertMessageParams({status: "error", message: "Token inválido"});
-            break;
-  
           case "Expired token":
             setAlertMessageParams({status: "error", message: "O token expirou, faça login novamente"});
             break;

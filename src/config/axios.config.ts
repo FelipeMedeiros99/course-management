@@ -48,6 +48,14 @@ const getCourse = async (id:number)=>{
   return response;
 }
 
+const addCourseAtCart = async (userId: number, courseId: number)=>{
+  const response = await config.post("/cart", {
+    userId,
+    courseId
+  });
+  return response;
+}
+
 const axiosConfigs = {
   signUp,
   signIn,

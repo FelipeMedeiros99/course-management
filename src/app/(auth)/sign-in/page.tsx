@@ -75,6 +75,7 @@ export default function SignIn() {
         <VStack >
           <Field label="Email" invalid={!!errors.email} errorText={errors?.email?.message}>
             <Input
+              value="felipe@gmail.com"
               disabled={isLoading}
               {...register("email", {
                 required: { value: true, message: "Obrigatório informar o email" },
@@ -86,6 +87,7 @@ export default function SignIn() {
 
           <Field label="Senha" invalid={!!errors?.password} errorText={errors?.password?.message}>
             <PasswordInput
+              value="123456"
               disabled={isLoading}
               {...register("password", {
                 minLength: { value: 6, message: "A senha precisa possuir no mínimo 6 caracteres" },

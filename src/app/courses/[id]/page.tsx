@@ -1,7 +1,7 @@
 "use client"
 
 import { Box, Text, Button, ButtonGroup, Image, HStack, VStack } from "@chakra-ui/react";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { InvalidTokenError, jwtDecode } from "jwt-decode"
 import { FiShoppingCart } from "react-icons/fi";
@@ -174,8 +174,8 @@ export default function DetalhesCurso({ params }: { params: { id: string } }) {
               color="white"
               bg="#e5521e"
               _hover={{ backgroundColor: "#a73d16" }}
-            // rightIcon={<FiEdit />}  // Adiciona o ícone de edição (lápis)
-            >
+              >
+              <FiEdit />
               Editar curso
             </Button>
           </ButtonGroup>

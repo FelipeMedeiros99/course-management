@@ -1,14 +1,13 @@
 "use client"
 import { Box, Heading, VStack } from "@chakra-ui/react";
 import Image from "next/image"
-import Link from "next/link";
-// import MenuRotas from "../MenuRotas";
-import { RiLogoutBoxRLine } from "react-icons/ri";
-import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 import logoInaed from "@/assets/images/inaed_logo.png";
+import { NavBar } from "../NavBar";
 
 export default function Header() {
+  const localPath = usePathname();
   return (
     <VStack
       as="header"
@@ -17,10 +16,13 @@ export default function Header() {
       bg="#fe7502"
       color="white"
       height="8rem"
-      py={4}
       textAlign="center"
       justifyContent="center"
     >
+      <Box position="absolute" right="1rem">
+        <NavBar/>
+      </Box>
+
       <Image
         src={logoInaed}
         alt="Logo do INAED"

@@ -19,9 +19,10 @@ export default function Header() {
       textAlign="center"
       justifyContent="center"
     >
+      {localPath !== "/sign-in" && localPath !== "/sign-up" &&
       <Box position="absolute" right="1rem">
         <NavBar/>
-      </Box>
+      </Box>}
 
       <Image
         src={logoInaed}

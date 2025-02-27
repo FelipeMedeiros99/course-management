@@ -3,6 +3,7 @@
 import { Box, Text, Button, ButtonGroup, Image, HStack, VStack } from "@chakra-ui/react";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { InvalidTokenError, jwtDecode } from "jwt-decode"
 import { FiShoppingCart } from "react-icons/fi";
 import { FiEdit } from "react-icons/fi";
 import { FiClock } from "react-icons/fi";
@@ -13,6 +14,13 @@ import axiosConfigs from "@/config/axios.config";
 import AlertMessage, { AlertMessageInterface } from "@/components/AlertMessage";
 // import adicionarAoCarrinho from "@/app/Tools/adicionarAoCarrinho";
 
+export interface UserData {
+  id: number,
+  email: string,
+  name: string,
+  iat: number,
+  exp: number
+}
 
 export default function DetalhesCurso({ params }: { params: { id: string } }) {
 
@@ -36,7 +44,34 @@ export default function DetalhesCurso({ params }: { params: { id: string } }) {
     return String(value.toFixed(2)).replace(".", ",")
   }
 
-  console.log(courseData)
+  const addAtCart = async () => {
+    try {
+      const token = localStorage.getItem("userToken")
+      const userData: UserData | null = jwtDecode(token!);
+      const response = await axiosConfigs.addCourseAtCart(userData?.id!, courseData.id)
+      console.log(response)
+      if(response.status===202){
+        setAlertVisibility(true)
+        setAlertMessageParams({message: "Curso adicionado ao carrinho", status: "success"})
+      };
+    } catch (error: InvalidTokenError | AxiosError | any) {
+      setAlertVisibility(true)
+      if(error?.status === 409){
+        return setAlertMessageParams({message: "Este curso já está no seu carrinho", status: "success"})
+      }else if(error instanceof InvalidTokenError){
+        setAlertMessageParams({message: "O token expirou, faça login novamente", status: "error"})
+      }else{
+        console.log(error)
+      }
+      router.push("/sign-in")
+      
+    }finally{
+      setTimeout(()=>{
+        setAlertVisibility(false)
+      }, 4000)
+    }
+  }
+
   useEffect(() => {
     (async () => {
       try {
@@ -127,15 +162,15 @@ export default function DetalhesCurso({ params }: { params: { id: string } }) {
               width="100%"
               bg="#206eb3"
               color="white"
-              // onClick={() => adicionarAoCarrinho(id)}
+              onClick={addAtCart}
               _hover={{ backgroundColor: "#0e3e68" }}
-            // rightIcon={<FiShoppingCart />}  // Adiciona o ícone de carrinho de compras
             >
+              <FiShoppingCart />
               Adicionar ao carrinho
             </Button>
             <Button
               width="100%"
-              onClick={editarCurso}
+              // onClick={editarCurso}
               color="white"
               bg="#e5521e"
               _hover={{ backgroundColor: "#a73d16" }}

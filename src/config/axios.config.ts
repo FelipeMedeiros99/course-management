@@ -60,7 +60,8 @@ const axiosConfigs = {
   signUp,
   signIn,
   getCourses,
-  getCourse
+  getCourse,
+  addCourseAtCart
 }
 
 export default axiosConfigs;

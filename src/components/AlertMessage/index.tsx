@@ -11,7 +11,7 @@ export default function AlertMessage({ status, message, visibility, ...props }: 
   return (
     <motion.div 
       initial={{ y: "-25rem", opacity: 0, position: "fixed", top: "10rem", left: "50%", translateX: "-50%"}}
-      animate={{ y: visibility ? "0rem" : "-25rem", opacity: visibility ? 1 : 0 }}
+      animate={{ y: visibility ? "0rem" : "-25rem", opacity: visibility ? 1 : 0, zIndex: "6"}}
       transition={{ duration: 1.5 }}
     >
       <Box {...props}>

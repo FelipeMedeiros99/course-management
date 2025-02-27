@@ -1,10 +1,22 @@
 "use client"
-import { Box, Text, Image, Button } from "@chakra-ui/react"
+import { Box, Text, Image, Button, AlertContentProps } from "@chakra-ui/react"
 import Link from "next/link";
 import { FiClock, FiShoppingCart } from "react-icons/fi";
 import { useState } from "react";
 
 import { CourseInterface } from "@/app/courses/page"
+import { useRouter } from "next/navigation";
+import { UserData } from "@/app/courses/[id]/page";
+import { InvalidTokenError, jwtDecode } from "jwt-decode";
+import axiosConfigs from "@/config/axios.config";
+import { AlertMessageInterface } from "../AlertMessage";
+import { AxiosError } from "axios";
+
+export interface CourseBoxParams{
+  courseData: CourseInterface;
+  setAlertVisibility: (newVisibility: boolean)=>void
+  setAlertMessageParams: (newAlertParams: Omit<AlertMessageInterface, "visibility">)=>void 
+} 
 // import { converterEmMoedas } from "@/app/Tools";
 // import ModeloBotao from "../ModeloBotao";
 // import adicionarAoCarrinho from "@/app/Tools/adicionarAoCarrinho";
@@ -33,19 +45,42 @@ import { CourseInterface } from "@/app/courses/page"
 //     url_foto: imagem,
 //     id } = props;
 
-export default function CourseBox({ courseData }: { courseData: CourseInterface }) {
+export default function CourseBox({ courseData, setAlertVisibility, setAlertMessageParams }: CourseBoxParams) {
   const { content, descountedPrice, id, name, price, url, workload } = courseData;
   const [isLoading, setIsLoading] = useState(false)
   const link = `${id}`
+  const router = useRouter()
 
   const moneyFormat = (price: number) => {
     return String(price.toFixed(2)).replace(".", ",")
   }
 
-  async function addAtCart() {
-      setIsLoading(true)
-      // await adicionarAoCarrinho(id)
-      setIsLoading(false)
+  const addAtCart = async () => {
+    try {
+      const token = localStorage.getItem("userToken")
+      const userData: UserData | null = jwtDecode(token!);
+      const response = await axiosConfigs.addCourseAtCart(userData?.id!, courseData.id)
+      console.log(response)
+      if(response.status===202){
+        setAlertVisibility(true)
+        setAlertMessageParams({message: "Curso adicionado ao carrinho", status: "success"})
+      };
+    } catch (error: InvalidTokenError | AxiosError | any) {
+      setAlertVisibility(true)
+      if(error?.status === 409){
+        return setAlertMessageParams({message: "Este curso já está no seu carrinho", status: "success"})
+      }else if(error instanceof InvalidTokenError){
+        setAlertMessageParams({message: "O token expirou, faça login novamente", status: "error"})
+      }else{
+        console.log(error)
+      }
+      router.push("/sign-in")
+      
+    }finally{
+      setTimeout(()=>{
+        setAlertVisibility(false)
+      }, 4000)
+    }
   }
 
 

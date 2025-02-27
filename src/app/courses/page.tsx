@@ -91,7 +91,7 @@ export default function Main() {
         marginBottom="2.5rem"
         >
         {courses.map((course, index) => (
-          <CourseBox courseData={course} key={index} />
+          <CourseBox courseData={course} key={index} setAlertMessageParams={setAlertMessageParams} setAlertVisibility={setAlertVisibility}/>
         ))}
       </Box>
     </VStack>

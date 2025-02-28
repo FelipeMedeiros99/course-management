@@ -1,3 +1,4 @@
+import { CourseInterface } from "@/app/courses/page";
 import axios, { AxiosResponse } from "axios";
 
 interface UserDataSignUpInterface{
@@ -48,6 +49,11 @@ const getCourse = async (id:number)=>{
   return response;
 }
 
+const createCourse = async(data: Omit<CourseInterface, 'id'>)=>{
+  const response = await config.post("/coursess", data);
+  return response;
+}
+
 const addCourseAtCart = async (userId: number, courseId: number)=>{
   const response = await config.post("/cart", {
     userId,
@@ -61,6 +67,7 @@ const axiosConfigs = {
   signIn,
   getCourses,
   getCourse,
+  createCourse,
   addCourseAtCart
 }
 

@@ -50,7 +50,7 @@ const getCourse = async (id:number)=>{
 }
 
 const createCourse = async(data: Omit<CourseInterface, 'id'>)=>{
-  const response = await config.post("/coursess", data);
+  const response = await config.post("/courses", data);
   return response;
 }
 

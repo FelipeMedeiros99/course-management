@@ -20,7 +20,64 @@ interface InputCourseObjectInterface{
   placeholder: string;
 }
 
-export default function CadastroCurso() {
+const inputsObject: InputCourseObjectInterface[] = [
+  {
+    identifier: "name",
+    label: "Nome do curso",
+    placeholder: "ex: Análise de dados",
+    rules: {
+      required: `Obrigatório informar nome`, 
+      maxLength: {value: 100, message: `O tamanho máximo é 100 caracteres`}
+    },
+  },
+  {
+    identifier: "url",
+    label: "Url da imagem",
+    placeholder: "ex: https://imagem-de-analise-de-dados.com.br",
+    rules: {
+      required: `Obrigatório informar o link da imagem`, 
+      maxLength: {value: 200, message: `O tamanho máximo é 200 caracteres`},
+      pattern: {value: /^(https?:\/\/)?([\w\-]+(\.[\w\-]+)+)(:\d{2,5})?(\/.*)?$/, message: "Insira uma URL válida"}
+    }
+  },
+  {
+    identifier: "price",
+    label: "Preço",
+    placeholder: "ex: 999.99",
+    rules: {
+      required: `Obrigatório informar o preço`, 
+      pattern: {value: /^\d+((\.|\,)\d{0,2})?$/, message: "Insira um preço válido"},
+    }
+  },
+  {
+    identifier: "descountedPrice",
+    label: "Preço com desconto",
+    placeholder: "ex: 999.99",
+    rules: {
+      required: `Obrigatório informar o preço`, 
+      pattern: {value: /^\d+((\.|\,)\d{0,2})?$/, message: "Insira um preço válido"}
+    }
+  },
+  {
+    identifier: "workload",
+    label: "Carga horária",
+    placeholder: "ex: 8.5",
+    rules: {
+      required: `Obrigatório informar a carga horária`, 
+      pattern: {value: /^\d+((\.|\,)\d{0,2})?$/, message: "Insira uma carga horária válida"}
+    }
+  },
+  {
+    identifier: "content",
+    label: "Conteúdo (descrição)",
+    placeholder: "ex: O curso ensina como criar algorítmos para análise de dados...",
+    rules: {
+      required: `Obrigatório informar uma descrição`, 
+    }
+  },
+]
+
+export default function RegisterCourse() {
 
     const { register, watch, reset ,handleSubmit, formState: {errors}} = useForm<CourseInterface>();
     const url = watch("url");
@@ -34,8 +91,8 @@ export default function CadastroCurso() {
     }
 
     const onSubmit = async(data: Omit<CourseInterface, "id">)=>{
+      setIsLoading(true)
       try{
-        console.log(data)
         const response = await axiosConfigs.createCourse({
           ...data, 
           price: convertToValidFloat(data.price),       
@@ -67,70 +124,11 @@ export default function CadastroCurso() {
           setAlertVisibility(false)
           router.push("/sign-in")        
         }, 4000)
+      }finally{
+        setIsLoading(false)
       }
     }
 
-    const inputsObject: InputCourseObjectInterface[] = [
-      {
-        identifier: "name",
-        label: "Nome do curso",
-        placeholder: "ex: Análise de dados",
-        rules: {
-          required: `Obrigatório informar nome`, 
-          maxLength: {value: 100, message: `O tamanho máximo é 100 caracteres`}
-        },
-      },
-      {
-        identifier: "url",
-        label: "Url da imagem",
-        placeholder: "ex: https://imagem-de-analise-de-dados.com.br",
-        rules: {
-          required: `Obrigatório informar o link da imagem`, 
-          maxLength: {value: 200, message: `O tamanho máximo é 200 caracteres`},
-          pattern: {value: /^(https?:\/\/)?([\w\-]+(\.[\w\-]+)+)(:\d{2,5})?(\/.*)?$/, message: "Insira uma URL válida"}
-        }
-      },
-      {
-        identifier: "price",
-        label: "Preço",
-        placeholder: "ex: 999.99",
-        rules: {
-          required: `Obrigatório informar o preço`, 
-          pattern: {value: /^\d+((\.|\,)\d{0,2})?$/, message: "Insira um preço válido"}
-        }
-      },
-      {
-        identifier: "descountedPrice",
-        label: "Preço com desconto",
-        placeholder: "ex: 999.99",
-        rules: {
-          required: `Obrigatório informar o preço`, 
-          pattern: {value: /^\d+((\.|\,)\d{0,2})?$/, message: "Insira um preço válido"}
-        }
-      },
-      {
-        identifier: "workload",
-        label: "Carga horária",
-        placeholder: "ex: 8.5",
-        rules: {
-          required: `Obrigatório informar a carga horária`, 
-          pattern: {value: /^\d+((\.|\,)\d{0,2})?$/, message: "Insira uma carga horária válida"}
-        }
-      },
-      {
-        identifier: "content",
-        label: "Conteúdo (descrição)",
-        placeholder: "ex: O curso ensina como criar algorítmos para análise de dados...",
-        rules: {
-          required: `Obrigatório informar uma descrição`, 
-        }
-      },
-    ]
-
-    const test = {
-      required: `Obrigatório informar nome`, 
-      maxLength: {value: 100, message: `O tamanho máximo é 100 caracteres`},
-    }
     return (
         <VStack minH="calc(100% - 12rem)" padding="2rem">
           <AlertMessage message={alertMessageParams.message} status={alertMessageParams.status} visibility={alertVisibility} />      

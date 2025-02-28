@@ -1,15 +1,14 @@
 "use client";
 
 // modulos externos
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { Box, Input, Textarea, NumberInput, VStack, Heading, Image, Button } from "@chakra-ui/react";
 import { Field } from "@/components/ui/field";
 import { useRouter } from 'next/navigation';
-import axios from 'axios';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { useForm} from 'react-hook-form';
+
 
 import { CourseInterface } from '../courses/page';
-import { InputType } from 'zlib';
 import axiosConfigs from '@/config/axios.config';
 import AlertMessage, { AlertMessageInterface } from '@/components/AlertMessage';
 
@@ -86,9 +85,9 @@ export default function RegisterCourse() {
     const [alertMessageParams, setAlertMessageParams] = useState<Omit<AlertMessageInterface, "visibility">>({ message: "", status: "neutral" });
     const [alertVisibility, setAlertVisibility] = useState(false);
 
-    const convertToValidFloat = (num: string | number)=>{
+    const convertToValidFloat = useCallback((num: string | number)=>{
       return Number(`${num}`.replace(",", "."))
-    }
+    }, [])
 
     const onSubmit = async(data: Omit<CourseInterface, "id">)=>{
       setIsLoading(true)

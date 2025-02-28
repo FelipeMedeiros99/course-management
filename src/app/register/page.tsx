@@ -10,6 +10,8 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 
 import { CourseInterface } from '../courses/page';
 import { InputType } from 'zlib';
+import axiosConfigs from '@/config/axios.config';
+import AlertMessage, { AlertMessageInterface } from '@/components/AlertMessage';
 
 interface InputCourseObjectInterface{
   identifier: "name" |"content" | "descountedPrice" | "price" | "url" | "workload";
@@ -20,9 +22,12 @@ interface InputCourseObjectInterface{
 
 export default function CadastroCurso() {
 
-    const { register, watch ,handleSubmit, formState: {errors}} = useForm<CourseInterface>()
-    const url = watch("url")
-    const [isLoading, setIsLoading] = useState(false)
+    const { register, watch ,handleSubmit, formState: {errors}} = useForm<CourseInterface>();
+    const url = watch("url");
+    const router = useRouter();
+    const [isLoading, setIsLoading] = useState(false);
+    const [alertMessageParams, setAlertMessageParams] = useState<Omit<AlertMessageInterface, "visibility">>({ message: "", status: "neutral" });
+    const [alertVisibility, setAlertVisibility] = useState(false);
     // hooks
     // const [formData, setFormData] = useState({
     //     nome: decodeURIComponent(query?.nome || ''),
@@ -33,9 +38,7 @@ export default function CadastroCurso() {
     //     imagem: decodeURIComponent(query?.imagem || ''),
     //     id: decodeURIComponent(query?.id || '')
     // });
-    const router = useRouter();
     // const [enviandoRequisicao, setEnviandoRequisicao] = useState(false)
-
     // vars
     // const linkServer = process.env.NEXT_PUBLIC_LINK_SERVER;
   
@@ -96,8 +99,30 @@ export default function CadastroCurso() {
     // url: string
     // workload: number
 
-    const onSubmit = (data: Omit<CourseInterface, "id">)=>{
-      console.log(data)
+    const onSubmit = async(data: Omit<CourseInterface, "id">)=>{
+      try{
+        const response = await axiosConfigs.createCourse(data);
+        if(response.status===200){
+          setAlertMessageParams({message: "Curso criado com sucesso", status: 'success'})
+        }
+      }catch (error: any) {
+        setAlertVisibility(true)
+        const messageError = error?.response?.data?.message || "";
+        switch(messageError){
+          case "Invalid token format": 
+          case "Expired token":
+            setAlertMessageParams({status: "error", message: "O token expirou, faça login novamente"});
+            break;
+
+          default:
+            setAlertMessageParams({status: "error", message: "Um erro inesperado aconteceu"});
+            console.log("erro: ", error)
+          }
+        setTimeout(()=>{
+          setAlertVisibility(false)
+          router.push("/sign-in")        
+        }, 4000)
+      }
     }
 
     const inputsObject: InputCourseObjectInterface[] = [
@@ -163,6 +188,7 @@ export default function CadastroCurso() {
     }
     return (
         <VStack minH="calc(100% - 12rem)" padding="2rem">
+          <AlertMessage message={alertMessageParams.message} status={alertMessageParams.status} visibility={alertVisibility} />      
           <VStack maxW="100rem" boxShadow="0 0 0.2rem #636161" w="100%" maxWidth="35rem" padding="2rem">
             <Heading as="h2" mb="6" fontSize="2xl" textAlign="center" color="#fe7502">Cadastro de Curso</Heading>
               <VStack as="form" onSubmit={handleSubmit(onSubmit)} w="100%">
@@ -201,12 +227,11 @@ export default function CadastroCurso() {
                 >
                   Salvar
                 </Button>
-
               </VStack>
 
               {url && (
               <Box>
-                  <Image src={url} alt="Imagem do Curso" boxSize="200px" borderRadius="1rem" />
+                <Image src={url} alt="Imagem do Curso" boxSize="200px" borderRadius="1rem" />
               </Box>
             )} 
           </VStack> 

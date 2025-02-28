@@ -12,16 +12,17 @@ import { CourseInterface } from '../courses/page';
 import { InputType } from 'zlib';
 
 interface InputCourseObjectInterface{
-  inputName: "name" |"content" | "descountedPrice" | "price" | "url" | "workload";
-  inputType: "text" | "number" | "url";
+  identifier: "name" |"content" | "descountedPrice" | "price" | "url" | "workload";
   label: string;
-  maxLength: number;
+  rules: object;
+  placeholder: string;
 }
 
 export default function CadastroCurso() {
 
     const { register, watch ,handleSubmit, formState: {errors}} = useForm<CourseInterface>()
     const url = watch("url")
+    const [isLoading, setIsLoading] = useState(false)
     // hooks
     // const [formData, setFormData] = useState({
     //     nome: decodeURIComponent(query?.nome || ''),
@@ -101,153 +102,114 @@ export default function CadastroCurso() {
 
     const inputsObject: InputCourseObjectInterface[] = [
       {
-        inputName: "name",
-        inputType: "text",
-        maxLength: 30,
+        identifier: "name",
         label: "Nome do curso",
+        placeholder: "ex: Análise de dados",
+        rules: {
+          required: `Obrigatório informar nome`, 
+          maxLength: {value: 100, message: `O tamanho máximo é 100 caracteres`}
+        },
       },
       {
-        inputName: "url",
-        inputType: "url",
-        maxLength: 100,
+        identifier: "url",
         label: "Url da imagem",
+        placeholder: "ex: https://imagem-de-analise-de-dados.com.br",
+        rules: {
+          required: `Obrigatório informar o link da imagem`, 
+          maxLength: {value: 200, message: `O tamanho máximo é 200 caracteres`},
+          pattern: {value: /^(https?:\/\/)?([\w\-]+(\.[\w\-]+)+)(:\d{2,5})?(\/.*)?$/, message: "Insira uma URL válida"}
+        }
       },
       {
-        inputName: "price",
-        inputType: "number",
-        maxLength: NaN,
+        identifier: "price",
         label: "Preço",
+        placeholder: "ex: 999.99",
+        rules: {
+          required: `Obrigatório informar o preço`, 
+          pattern: {value: /^\d+((\.)\d{0,2})?$/, message: "Insira um preço válido"}
+        }
       },
       {
-        inputName: "descountedPrice",
-        inputType: "number",
-        maxLength: NaN,
+        identifier: "descountedPrice",
         label: "Preço com desconto",
+        placeholder: "ex: 999.99",
+        rules: {
+          required: `Obrigatório informar o preço`, 
+          pattern: {value: /^\d+((\.)\d{0,2})?$/, message: "Insira um preço válido"}
+        }
       },
       {
-        inputName: "workload",
-        inputType: "number",
-        maxLength: NaN,
+        identifier: "workload",
         label: "Carga horária",
+        placeholder: "ex: 8.5",
+        rules: {
+          required: `Obrigatório informar a carga horária`, 
+          pattern: {value: /^\d+((\.)\d{0,2})?$/, message: "Insira uma carga horária válida"}
+        }
       },
       {
-        inputName: "content",
-        inputType: "text",
-        maxLength: NaN,
-        label: "Conteúdo",
+        identifier: "content",
+        label: "Conteúdo (descrição)",
+        placeholder: "ex: O curso ensina como criar algorítmos para análise de dados...",
+        rules: {
+          required: `Obrigatório informar uma descrição`, 
+        }
       },
     ]
 
+    const test = {
+      required: `Obrigatório informar nome`, 
+      maxLength: {value: 100, message: `O tamanho máximo é 100 caracteres`},
+    }
     return (
         <VStack minH="calc(100% - 12rem)" padding="2rem">
-            <VStack maxW="100rem" boxShadow="0 0 0.2rem #636161" w="100%" maxWidth="35rem" padding="2rem">
-              <Heading as="h2" mb="6" fontSize="2xl" textAlign="center" color="#fe7502">
-                  Cadastro de Curso
-              </Heading>
-                  <VStack
-                  as="form"
-                  onSubmit={handleSubmit(onSubmit)}
+          <VStack maxW="100rem" boxShadow="0 0 0.2rem #636161" w="100%" maxWidth="35rem" padding="2rem">
+            <Heading as="h2" mb="6" fontSize="2xl" textAlign="center" color="#fe7502">Cadastro de Curso</Heading>
+              <VStack as="form" onSubmit={handleSubmit(onSubmit)} w="100%">
+                {inputsObject.map((inputData)=>(
+                  <Field
+                  disabled={isLoading}
+                  maxW="30rem"
+                  label={inputData.label}
+                  invalid={!!errors?.[inputData.identifier]}
+                  errorText={errors?.[inputData.identifier]?.message}
+                > 
+                  {
+                    inputData.identifier !== "content"?
+                    <Input
+                      placeholder={inputData.placeholder}
+                      {...register(inputData.identifier, inputData.rules)}
+                    />:
+                    <Textarea
+                      resize="none"
+                      height="8rem" 
+                      placeholder={inputData.placeholder}
+                      {...register(inputData.identifier, inputData.rules)}
+                    />
+                  }
+                </Field>
+                ))}
+
+                <Button
+                  type="submit"
+                  backgroundColor="#206eb3"
                   w="100%"
-                  >
-                    {inputsObject.map((inputData)=>(
-                      <Field
-                        maxW="30rem"
-                        key={inputData.inputName}
-                        label={inputData.inputName}
-                        invalid={!!errors[inputData?.inputName]}
-                        errorText={errors[inputData?.inputName]?.message}
-                      >
-                        {
-                        inputData.inputName !== "content"?
-                        <Input
-                          {...register(inputData.inputName, {required: `Obrigatório informar ${inputData.label}`, maxLength: {value: inputData.maxLength, message: `O tamanho máximo é ${inputData.maxLength}`}})}
-                        />:
-                        <Textarea
-                          resize="none"
-                          height="8rem"
-                          {...register(inputData.inputName, {required: `Obrigatório informar ${inputData.label}`, maxLength: {value: inputData.maxLength, message: `O tamanho máximo é ${inputData.maxLength}`}})}
-                        />
-                        }
-                      </Field>
-                    ))}
-                          {/* <Field htmlFor="nome">Nome do Curso</Field>
-                          <Input
-                              isDisabled={enviandoRequisicao}
-                              id="nome"
-                              name="nome"
-                              type="text"
-                              value={formData.nome}
-                              onChange={editarInput}
-                          />
-                          <Field htmlFor="imagem">Imagem URL</Field>
-                          <Input
-                              isDisabled={enviandoRequisicao}
-                              id="imagem"
-                              name="imagem"
-                              type="url"
-                              value={formData.imagem}
-                              onChange={editarInput}
-                          />
-                          <Field htmlFor="preco">Preço</Field>
-                          <NumberInput
-                              isDisabled={enviandoRequisicao}
-                              id="preco"
-                              name="preco"
-                              value={formData.preco}
-                              onChange={(value) => setFormData({ ...formData, preco: value })}
-                              precision={2}
-                              step={0.01}
-                          >
-                              <NumberInputField />
-                          </NumberInput>
-                          <Field htmlFor="precoComDesconto">Preço com Desconto</Field>
-                          <NumberInput
-                              isDisabled={enviandoRequisicao}
-                              id="precoComDesconto"
-                              name="precoComDesconto"
-                              value={formData.precoComDesconto}
-                              onChange={(value) => setFormData({ ...formData, precoComDesconto: value })}
-                              precision={2}
-                              step={0.01}
-                          >
-                              <NumberInputField />
-                          </NumberInput>
-                          <Field htmlFor="cargaHoraria">Carga Horária</Field>
-                          <Input
-                              isDisabled={enviandoRequisicao}
-                              id="cargaHoraria"
-                              name="cargaHoraria"
-                              type="text"
-                              value={formData.cargaHoraria}
-                              onChange={editarInput}
-                          />
-                          <Field htmlFor="conteudo">Conteúdo (Descrição)</Field>
-                          <Textarea
-                              isDisabled={enviandoRequisicao}
-                              id="conteudo"
-                              name="conteudo"
-                              type="text"
-                              value={formData.conteudo}
-                              onChange={editarInput}
-                          /> */}
-                      <Button
-                        colorScheme="teal"
-                        type="submit"
-                        backgroundColor="#206eb3"
-                        _hover={{backgroundColor:"#134a7a"}}
-                      >
-                        enviar
-                          {/* {enviandoRequisicao ?
-                              <SpinCarregando />
-                              : "Cadastrar Curso"} */}
-                      </Button>
-                  </VStack>
-               {url && (
-                  <Box>
-                      <Image src={url} alt="Imagem do Curso" boxSize="200px" objectFit="cover" borderRadius="md" />
-                  </Box>
-              )}
-            </VStack> 
+                  maxW="30rem"
+                  marginTop="1rem"
+                  _hover={{backgroundColor:"#134a7a"}}
+                  loading={isLoading}
+                >
+                  Salvar
+                </Button>
+
+              </VStack>
+
+              {url && (
+              <Box>
+                  <Image src={url} alt="Imagem do Curso" boxSize="200px" borderRadius="1rem" />
+              </Box>
+            )} 
+          </VStack> 
         </VStack>
     );
 }

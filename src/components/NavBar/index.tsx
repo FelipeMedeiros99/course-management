@@ -20,6 +20,9 @@ export function NavBar() {
         <MenuItem height="2.5rem" fontSize="1rem" width="10rem" _hover={{cursor: "pointer"}} onClick={() => router.push("/cart")} value="cart">
           Carrinho
         </MenuItem>
+        <MenuItem height="2.5rem" fontSize="1rem" width="10rem" _hover={{cursor: "pointer"}} onClick={() => router.push("/register")} value="register">
+          Criar novo curso
+        </MenuItem>
       </MenuContent>
     </MenuRoot>
   )

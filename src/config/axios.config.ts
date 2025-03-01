@@ -62,13 +62,19 @@ const addCourseAtCart = async (userId: number, courseId: number)=>{
   return response;
 }
 
+const getUserCart = async(userId:number)=>{
+  const response = await config.get(`/cart/${userId}`);
+  return response;
+}
+
 const axiosConfigs = {
   signUp,
   signIn,
   getCourses,
   getCourse,
   createCourse,
-  addCourseAtCart
+  addCourseAtCart,
+  getUserCart
 }
 
 export default axiosConfigs;

@@ -7,7 +7,7 @@ import { moneyFormat } from "@/app/Tools";
 
 
 
-export default function CaixaProdutoCarrinho({ comprado, idDoCarrinho, setCoursesData, imagem, nome, preco, cargaHoraria, precoComDesconto, conteudo, id }) {
+export default function ProductCartBox({ courseData, userId, setCoursesData}) {
     const link = `${process.env.NEXT_PUBLIC_LINK_SERVER}/carrinho?id=${idDoCarrinho}&usuario_id=${JSON.parse(localStorage.getItem("usuario")).id}`
     const [carregando, setCarregando] = useState(false)
 

@@ -119,23 +119,12 @@ export default function CourseBox({ courseData, setAlertVisibility, setAlertMess
           textDecor="underline"
         >{name}</Text>
 
-        <Text
-          fontSize="md"
-          height="25px"
-          display="flex"
-          alignItems="center"
-        >
+        <Text fontSize="md" height="25px" display="flex" alignItems="center">
           <FiClock style={{ marginRight: '8px' }} size="15px" />
           Carga horária:
           <Box as="strong" ml={1}>{workload}h</Box>
         </Text>
-
-
-        <Text
-          fontSize="xl"
-          fontWeight="900"
-        >R${moneyFormat(descountedPrice)}
-        </Text>
+        <Text fontSize="xl" fontWeight="900" >R${moneyFormat(descountedPrice)}</Text>
       </Link>
       <Box as="div" position="absolute" bottom='0' width="100%" left="0" padding="2">
         <Button

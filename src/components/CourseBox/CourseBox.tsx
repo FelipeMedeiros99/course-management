@@ -57,10 +57,10 @@ export default function CourseBox({ courseData, setAlertVisibility, setAlertMess
 
   const addAtCart = async () => {
     try {
+      setAlertVisibility(false)
       const token = localStorage.getItem("userToken")
       const userData: UserData | null = jwtDecode(token!);
       const response = await axiosConfigs.addCourseAtCart(userData?.id!, courseData.id)
-      console.log(response)
       if(response.status===202){
         setAlertVisibility(true)
         setAlertMessageParams({message: "Curso adicionado ao carrinho", status: "success"})

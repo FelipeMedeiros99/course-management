@@ -3,7 +3,7 @@ import { Box, Heading, HStack, Spinner, Text, VStack } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { FiShoppingCart } from "react-icons/fi";
-import { jwtDecode } from "jwt-decode";
+import { InvalidTokenError, jwtDecode } from "jwt-decode";
 
 import CaixaProdutoCarrinho from "@/components/ProductCartBox";
 import axiosConfigs from "@/config/axios.config";
@@ -44,12 +44,28 @@ export default function CarrinhoUsuario() {
   useEffect(() => {
     try {
       const token = localStorage.getItem("userToken")
-      if (token !== null) {
-        const userData = jwtDecode(token) as UserDataInterface
-        setUserData(userData)
-      }
-    } catch (e) {
-      console.log(e)
+      const userData = jwtDecode(token!) as UserDataInterface
+      setUserData(userData)
+    } catch (error: AxiosError | any) {
+      setAlertVisibility(true)
+      if(error instanceof InvalidTokenError){
+        setAlertMessageParams({ status: "error", message: "O token expirou, faça login novamente" });
+      }else{
+      const messageError = error?.response?.data?.message || "";
+      switch (messageError) {
+        case "Invalid token format":
+        case "Expired token":
+          setAlertMessageParams({ status: "error", message: "O token expirou, faça login novamente" });
+          break;
+
+        default:
+          setAlertMessageParams({ status: "error", message: "Um erro inesperado aconteceu" });
+          console.log("erro: ", error)
+      }}
+      setTimeout(() => {
+        setAlertVisibility(false)
+        router.push("/sign-in")
+      }, 4000)
     }
   }, []);
 

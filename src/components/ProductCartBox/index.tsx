@@ -1,9 +1,10 @@
 "use client"
 import { useState } from "react";
-import { Box, Text, Image, ButtonGroup, Spinner, Button } from "@chakra-ui/react";
+import { Box, Text, Image, ButtonGroup, Spinner, Button, HStack } from "@chakra-ui/react";
 import axios from "axios";
 import { moneyFormat } from "@/app/Tools";
 import { CourseDataInterface } from "@/app/cart/page";
+import axiosConfigs from "@/config/axios.config";
 
 
 interface ProductCartBoxInterface {
@@ -17,18 +18,19 @@ export default function ProductCartBox({ courseData, userId, setCoursesData }: P
   const [carregando, setCarregando] = useState(false);
   const { course } = courseData;
 
-  // async function removerDoCarrinho() {
-  //     setCarregando(true)
-  //     try {
-  //         const promisse = await axios.delete(link)
-  //         //atualizando carrinho
-  //         setCursosNoCarrinho(promisse.data)
-  //     } catch (e) {
-  //         console.log("erro ao tentar remover do carrinho", e)
-  //     }
-  //     setCarregando(false)
-  //     // setProdutoSelecionado()
-  // }
+  async function removeAtCart() {
+      setCarregando(true)
+      try {
+          await axiosConfigs.removeCourseAtCart(userId, courseData.id);
+          const coursesRequestResponse = await axiosConfigs.getUserCart(userId)
+          setCoursesData(coursesRequestResponse.data)
+          
+      } catch (e) {
+          console.log("erro ao tentar remover do carrinho", e)
+      }
+      setCarregando(false)
+      // setProdutoSelecionado()
+  }
 
 
 
@@ -45,7 +47,7 @@ export default function ProductCartBox({ courseData, userId, setCoursesData }: P
 
 
   return (
-    <Box
+    <HStack
       display="flex"
       flexDir={{ md: "row", base: "column", }}
       alignItems="center"
@@ -108,7 +110,7 @@ export default function ProductCartBox({ courseData, userId, setCoursesData }: P
               }
             </Button>
             <Button
-              // onClick={removerDoCarrinho}
+              onClick={removeAtCart}
               color="white"
               minW="150px"
               backgroundColor="#ff4500"
@@ -124,6 +126,6 @@ export default function ProductCartBox({ courseData, userId, setCoursesData }: P
         }
       </Box>
 
-    </Box>
+    </HStack>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 import { Box, Heading, HStack, Spinner, Text, VStack } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
-import axios from "axios";
+import { useRouter } from "next/navigation";
 import { FiShoppingCart } from "react-icons/fi";
 import { jwtDecode } from "jwt-decode";
 
@@ -35,6 +35,7 @@ export default function CarrinhoUsuario() {
   const [isLoadingCourses, setIsLoadingCourses] = useState<boolean>(true);
   const [coursesData, setCoursesData] = useState<CourseDataInterface[]>([]);
   const [userData, setUserData] = useState<UserDataInterface>({ name: "", email: "", id: NaN });
+  const router = useRouter()
 
   console.log(coursesData)
   console.log(userData)
@@ -59,6 +60,8 @@ export default function CarrinhoUsuario() {
           setCoursesData(response.data);
         } catch (e) {
           console.log("Erro ao buscar produtos: ", e);
+          router.push("/sign-in")
+          
         } finally {
           setIsLoadingCourses(false);
         }

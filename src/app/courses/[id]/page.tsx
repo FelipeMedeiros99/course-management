@@ -87,8 +87,7 @@ export default function DetalhesCurso({ params }: { params: { id: string } }) {
   }, [])
 
   function editarCurso() {
-    // const url = `/cadastrar?nome=${encodeURIComponent(nome)}&preco=${encodeURIComponent(preco)}&cargaHoraria=${encodeURIComponent(cargaHoraria)}&precoComDesconto=${encodeURIComponent(precoComDesconto)}&conteudo=${encodeURIComponent(conteudo)}&imagem=${encodeURIComponent(imagem)}&id=${encodeURIComponent(id)}`;
-    // router.push(url)
+    router.push(`/register?courseId=${courseData.id}`)
   }
 
   return (
@@ -156,7 +155,7 @@ export default function DetalhesCurso({ params }: { params: { id: string } }) {
               </Button>
               <Button
                 width="100%"
-                // onClick={editarCurso}
+                onClick={editarCurso}
                 color="white"
                 bg="#e5521e"
                 _hover={{ backgroundColor: "#a73d16" }}

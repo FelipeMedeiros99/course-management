@@ -11,6 +11,7 @@ import { InvalidTokenError, jwtDecode } from "jwt-decode";
 import axiosConfigs from "@/config/axios.config";
 import { AlertMessageInterface } from "../AlertMessage";
 import { AxiosError } from "axios";
+import { moneyFormat } from "@/app/Tools";
 
 export interface CourseBoxParams{
   courseData: CourseInterface;
@@ -50,10 +51,6 @@ export default function CourseBox({ courseData, setAlertVisibility, setAlertMess
   const [isLoading, setIsLoading] = useState(false)
   const link = `${id}`
   const router = useRouter()
-
-  const moneyFormat = (price: number) => {
-    return String(price.toFixed(2)).replace(".", ",")
-  }
 
   const addAtCart = async () => {
     try {

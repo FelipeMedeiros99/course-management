@@ -4,9 +4,9 @@ import Link from "next/link";
 import { FiClock, FiEdit, FiShoppingCart } from "react-icons/fi";
 import { useState } from "react";
 
-import { CourseInterface } from "@/app/courses/page"
+import { CourseInterface } from "@/app/(dashboard)/courses/page"
 import { useRouter } from "next/navigation";
-import { UserData } from "@/app/courses/[id]/page";
+import { UserData } from "@/app/(dashboard)/courses/[id]/page";
 import { InvalidTokenError, jwtDecode } from "jwt-decode";
 import axiosConfigs from "@/config/axios.config";
 import { AlertMessageInterface } from "../AlertMessage";

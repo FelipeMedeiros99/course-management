@@ -1,4 +1,4 @@
-import { CourseInterface } from "@/app/courses/page";
+import { CourseInterface } from "@/app/(dashboard)/courses/page";
 import axios, { AxiosResponse } from "axios";
 
 interface UserDataSignUpInterface{

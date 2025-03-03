@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Box, Text, Image, ButtonGroup, Spinner, Button, HStack, VStack } from "@chakra-ui/react";
 import axios, { AxiosError } from "axios";
 import { moneyFormat } from "@/app/Tools";
-import { CourseDataInterface } from "@/app/cart/page";
+import { CourseDataInterface } from "@/app/(dashboard)/cart/page";
 import axiosConfigs from "@/config/axios.config";
 import { AlertMessageInterface } from "../AlertMessage";
 import { InvalidTokenError } from "jwt-decode";

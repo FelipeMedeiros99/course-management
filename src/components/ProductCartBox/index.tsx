@@ -1,6 +1,6 @@
 "use client"
 import { useState } from "react";
-import { Box, Text, Image, ButtonGroup, Spinner, Button, HStack } from "@chakra-ui/react";
+import { Box, Text, Image, ButtonGroup, Spinner, Button, HStack, VStack } from "@chakra-ui/react";
 import axios from "axios";
 import { moneyFormat } from "@/app/Tools";
 import { CourseDataInterface } from "@/app/cart/page";
@@ -52,21 +52,22 @@ export default function ProductCartBox({ courseData, userId, setCoursesData }: P
       flexDir={{ md: "row", base: "column", }}
       alignItems="center"
       justifyContent={{ sm: "center", md: "left" }}
-      as="div"
-      borderWidth="1px"
+      borderWidth="0.2rem"
       borderRadius="lg"
       overflow="hidden"
       boxShadow="md"
-      p="4"
-      mb="6"
+      padding="1rem 1rem 2rem 1rem"
+      mb="0.5rem"
       bg="white"
       transition="transform 0.2s"
       _hover={{ transform: "scale(1.03)" }}
 
     >
-      <Image src={course.url} alt={course.name} borderRadius="md" mb="4" mr="8" maxW="300px" />
+      <VStack width="18rem" minWidth="18rem" height="15rem" justifyContent="center" padding="0.5rem">
+        <Image src={course.url} alt={course.name} borderRadius="0.5rem" />
+      </VStack>
 
-      <Box width="100%">
+      <Box>
         <Text fontSize="xl" fontWeight="bold" mb="2">
           {course.name}
         </Text>

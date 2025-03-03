@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import logo from "@/assets/images/logo.png";
 import { NavBar } from "../NavBar";
 
-export default function Header() {
+export default function Header({...props}) {
   const localPath = usePathname();
   return (
     <VStack
@@ -16,6 +16,7 @@ export default function Header() {
       bg="#fe7502"
       height="8rem"
       justifyContent="center"
+      {...props}
     >
       {localPath !== "/sign-in" && localPath !== "/sign-up" &&
         <Box position="absolute" right="1rem">

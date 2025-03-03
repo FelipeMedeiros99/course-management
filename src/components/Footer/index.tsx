@@ -4,7 +4,7 @@ import Image from "next/image";
 import logo from "@/assets/images/logo.png"
 
 
-export default function Footer() {
+export default function Footer({...props}) {
   return (
     <VStack 
         as="footer" 
@@ -15,6 +15,7 @@ export default function Footer() {
         py={1} 
         textAlign="center" 
         justifyContent={"center"}
+        {...props}
     >
       <HStack width="3rem" height="3rem">
         <Text color="white" fontWeight="700">CURSOS ONLINE</Text>

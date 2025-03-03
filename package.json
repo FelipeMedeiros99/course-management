@@ -32,7 +32,7 @@
     "eslint": "^8",
     "eslint-config-next": "14.2.9",
     "ts-node": "^10.9.2",
-    "tsx": "^4.19.2",
+    "tsx": "^4.19.3",
     "typescript": "^5.7.3"
   }
 }

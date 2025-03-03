@@ -76,6 +76,16 @@ const removeCourseAtCart = async(userId:number, cartId: number)=>{
   return response;
 }
 
+const updateCart = async(userId: number, cartId: number)=>{
+  const data = {
+    userId,
+    cartId
+  };
+
+  const reponse = await config.put("/cart", data);
+  return reponse;
+}
+
 const axiosConfigs = {
   signUp,
   signIn,
@@ -85,6 +95,7 @@ const axiosConfigs = {
   addCourseAtCart,
   getUserCart,
   removeCourseAtCart,
+  updateCart,
 }
 
 export default axiosConfigs;

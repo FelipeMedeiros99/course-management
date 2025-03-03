@@ -4,11 +4,11 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { FiShoppingCart } from "react-icons/fi";
 import { InvalidTokenError, jwtDecode } from "jwt-decode";
+import { AxiosError } from "axios";
 
-import CaixaProdutoCarrinho from "@/components/ProductCartBox";
 import axiosConfigs from "@/config/axios.config";
 import AlertMessage, { AlertMessageInterface } from "@/components/AlertMessage";
-import { AxiosError } from "axios";
+import ProductCartBox from "@/components/ProductCartBox";
 
 export interface UserDataInterface {
   id: number,
@@ -146,10 +146,12 @@ export default function CarrinhoUsuario() {
           ) : (
             coursesData.length > 0 ? (
               coursesData.map((courseData, index) => (
-                <CaixaProdutoCarrinho
+                <ProductCartBox
+                  setAlertMessageParams={setAlertMessageParams}
                   courseData={courseData}
                   userId={userData.id}
                   setCoursesData={setCoursesData}
+                  setAlertVisibility={setAlertVisibility}
                 />
               ))
             ) : (

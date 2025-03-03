@@ -54,6 +54,11 @@ const createCourse = async(data: Omit<CourseInterface, 'id'>)=>{
   return response;
 }
 
+const editCourse = async(data: CourseInterface)=>{
+  const response = await config.put("/courses", data);
+  return response;
+}
+
 const addCourseAtCart = async (userId: number, courseId: number)=>{
   const response = await config.post("/cart", {
     userId,
@@ -92,6 +97,7 @@ const axiosConfigs = {
   getCourses,
   getCourse,
   createCourse,
+  editCourse,
   addCourseAtCart,
   getUserCart,
   removeCourseAtCart,

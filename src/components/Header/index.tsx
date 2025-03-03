@@ -3,41 +3,34 @@ import { Box, Heading, VStack } from "@chakra-ui/react";
 import Image from "next/image"
 import { usePathname } from "next/navigation";
 
-import logoInaed from "@/assets/images/inaed_logo.png";
+import logo from "@/assets/images/logo.png";
 import { NavBar } from "../NavBar";
 
 export default function Header() {
   const localPath = usePathname();
   return (
     <VStack
+      color="white"
       as="header"
-      top="0px"
       width="100%"
       bg="#fe7502"
-      color="white"
       height="8rem"
-      textAlign="center"
       justifyContent="center"
     >
       {localPath !== "/sign-in" && localPath !== "/sign-up" &&
-      <Box position="absolute" right="1rem">
-        <NavBar/>
-      </Box>}
+        <Box position="absolute" right="1rem">
+          <NavBar />
+        </Box>}
 
-      <Image
-        src={logoInaed}
-        alt="Logo do INAED"
-        width={64}
-        height={64}
-
-
-      />
+      <Box w="5rem" h="5rem">
+        <Image src={logo} alt="logo"/>
+      </Box>
       <Heading
+        color="white"
         as="h1"
         size="md"
-        mt={2}
       >
-        INAED CURSOS
+        CURSOS ONLINE
       </Heading>
     </VStack>
   );

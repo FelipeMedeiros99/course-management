@@ -1,7 +1,7 @@
 "use client"
 import { Box, Text, Image, Button, AlertContentProps } from "@chakra-ui/react"
 import Link from "next/link";
-import { FiClock, FiShoppingCart } from "react-icons/fi";
+import { FiClock, FiEdit, FiShoppingCart } from "react-icons/fi";
 import { useState } from "react";
 
 import { CourseInterface } from "@/app/courses/page"
@@ -13,11 +13,11 @@ import { AlertMessageInterface } from "../AlertMessage";
 import { AxiosError } from "axios";
 import { moneyFormat } from "@/app/Tools";
 
-export interface CourseBoxParams{
+export interface CourseBoxParams {
   courseData: CourseInterface;
-  setAlertVisibility: (newVisibility: boolean)=>void
-  setAlertMessageParams: (newAlertParams: Omit<AlertMessageInterface, "visibility">)=>void 
-} 
+  setAlertVisibility: (newVisibility: boolean) => void
+  setAlertMessageParams: (newAlertParams: Omit<AlertMessageInterface, "visibility">) => void
+}
 // import { converterEmMoedas } from "@/app/Tools";
 // import ModeloBotao from "../ModeloBotao";
 // import adicionarAoCarrinho from "@/app/Tools/adicionarAoCarrinho";
@@ -58,23 +58,23 @@ export default function CourseBox({ courseData, setAlertVisibility, setAlertMess
       const token = localStorage.getItem("userToken")
       const userData: UserData | null = jwtDecode(token!);
       const response = await axiosConfigs.addCourseAtCart(userData?.id!, courseData.id)
-      if(response.status===202){
+      if (response.status === 202) {
         setAlertVisibility(true)
-        setAlertMessageParams({message: "Curso adicionado ao carrinho", status: "success"})
+        setAlertMessageParams({ message: "Curso adicionado ao carrinho", status: "success" })
       };
     } catch (error: InvalidTokenError | AxiosError | any) {
       setAlertVisibility(true)
-      if(error?.status === 409){
-        return setAlertMessageParams({message: "Este curso já está no seu carrinho", status: "success"})
-      }else if(error instanceof InvalidTokenError){
-        setAlertMessageParams({message: "O token expirou, faça login novamente", status: "error"})
-      }else{
+      if (error?.status === 409) {
+        return setAlertMessageParams({ message: "Este curso já está no seu carrinho", status: "success" })
+      } else if (error instanceof InvalidTokenError) {
+        setAlertMessageParams({ message: "O token expirou, faça login novamente", status: "error" })
+      } else {
         console.log(error)
       }
       router.push("/sign-in")
-      
-    }finally{
-      setTimeout(()=>{
+
+    } finally {
+      setTimeout(() => {
         setAlertVisibility(false)
       }, 4000)
     }
@@ -131,9 +131,9 @@ export default function CourseBox({ courseData, setAlertVisibility, setAlertMess
           backgroundColor="#206eb3"
           _hover={{ backgroundColor: "#175388" }}
           color="white"
-        > 
-            <FiShoppingCart />
-            "Adicionar ao carrinho" 
+        >
+          <FiShoppingCart />
+          "Adicionar ao carrinho"
         </Button>
       </Box>
 

@@ -1,7 +1,7 @@
-import { Box, VStack } from "@chakra-ui/react";
+import { Box, HStack, Text, VStack } from "@chakra-ui/react";
 import Image from "next/image";
 
-import footerImage from "@/assets/images/logo_footer.png"
+import logo from "@/assets/images/logo.png"
 
 
 export default function Footer() {
@@ -16,10 +16,11 @@ export default function Footer() {
         textAlign="center" 
         justifyContent={"center"}
     >
-      <Image 
-        src={footerImage}
-        alt="Logo do INAED"
-      />
+      <HStack width="3rem" height="3rem">
+        <Text color="white" fontWeight="700">CURSOS ONLINE</Text>
+        <Image src={logo} alt="Logo" />
+      </HStack>
+
       
     </VStack>
   );

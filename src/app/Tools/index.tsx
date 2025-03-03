@@ -1,1 +1,7 @@
-export const moneyFormat = (value: number) => String(value.toFixed(2)).replace(".", ",")
+const moneyFormat = (value: number) => {
+  return new Intl.NumberFormat('pt-BR', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  }).format(value)
+}
+export {moneyFormat}

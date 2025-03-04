@@ -70,7 +70,7 @@ export default function SignIn() {
     <>
       <AlertMessage message={alertMessageParams.message} status={alertMessageParams.status} visibility={alertVisibility} />      
       
-      <Heading mb="6" color="#fe7502">Login</Heading>
+      <Heading color="#fe7502">Login</Heading>
       <Box as="form" onSubmit={handleSubmit(onSubmit)}>
         <VStack >
           <Field label="Email" invalid={!!errors.email} errorText={errors?.email?.message}>

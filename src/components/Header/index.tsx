@@ -16,6 +16,9 @@ export default function Header({...props}) {
       bg="#fe7502"
       height="8rem"
       justifyContent="center"
+      position="fixed"
+      top="0"
+      zIndex="4"
       {...props}
     >
       {localPath !== "/sign-in" && localPath !== "/sign-up" &&

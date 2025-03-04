@@ -1,0 +1,13 @@
+h2{
+  font-size: 3rem;
+  margin: 3rem 0rem;
+}
+
+label{
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+input{
+  width: 10rem;
+}

@@ -9,5 +9,12 @@ label{
 }
 
 input{
-  width: 10rem;
+  width: 20rem;
+  height: 3rem;
+  border-radius: 3rem;
+  font-size: 1.1rem;
+}
+
+button{
+  border-radius: 3rem;
 }

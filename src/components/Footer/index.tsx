@@ -6,7 +6,7 @@ import logo from "@/assets/images/logo.png"
 
 export default function Footer({...props}) {
   return (
-    <VStack 
+    <HStack 
         as="footer" 
         width="100%"
         height="4rem"
@@ -17,12 +17,12 @@ export default function Footer({...props}) {
         justifyContent={"center"}
         {...props}
     >
+      <Text color="white" fontWeight="700">CURSOS ONLINE</Text>
       <HStack width="3rem" height="3rem">
-        <Text color="white" fontWeight="700">CURSOS ONLINE</Text>
         <Image src={logo} alt="Logo" />
       </HStack>
 
       
-    </VStack>
+    </HStack>
   );
 }

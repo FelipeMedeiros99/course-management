@@ -12,6 +12,8 @@ import Link from "next/link";
 import axiosConfigs from "@/config/axios.config";
 import AlertMessage, { AlertMessageInterface } from "@/components/AlertMessage";
 
+import style from "../styles.module.css"
+
 interface Inputs {
   email: string;
   name: string;
@@ -75,11 +77,13 @@ export default function SignUp() {
   return (
     <>
       <AlertMessage message={alertMessageParams.message} status={alertMessageParams.status} visibility={alertVisibility}/>
-      <Heading color="#fe7502">Cadastro</Heading>
+      <Heading className={style.h2}>Cadastro</Heading>
       <Box as="form" onSubmit={handleSubmit(onSubmit)}>
         <VStack >
-          <Field label="Email" invalid={!!errors.email} errorText={errors?.email?.message}>
+          <Field className={style.label} label="Email" invalid={!!errors.email} errorText={errors?.email?.message}>
             <Input
+              
+              className={style.input}
               disabled={isLoading}
               {...register("email", {
                 required: { value: true, message: "Obrigatório informar o email" },
@@ -91,6 +95,7 @@ export default function SignUp() {
 
           <Field label="Nome completo" invalid={!!errors.name} errorText={errors?.name?.message}>
             <Input
+              className={style.input}
               disabled={isLoading}
               {...register("name", {
                 required: { value: true, message: "Obrigatório informar o nome" },
@@ -102,6 +107,7 @@ export default function SignUp() {
 
           <Field label="Senha" invalid={!!errors?.password} errorText={errors?.password?.message}>
             <PasswordInput
+              className={style.input}
               disabled={isLoading}
               {...register("password", {
                 minLength: { value: 6, message: "A senha precisa possuir no mínimo 6 caracteres" },
@@ -113,6 +119,7 @@ export default function SignUp() {
 
           <Field label="Confirme a senha" invalid={!!errors?.confirmPassword} errorText={errors?.confirmPassword?.message}>
             <PasswordInput
+              className={style.input}
               disabled={isLoading}
               {...register("confirmPassword", {
                 required: { value: true, message: "A confirmação de senha é obrigatória" }
@@ -120,25 +127,14 @@ export default function SignUp() {
             />
           </Field>
 
-          <Button
-            bgColor={"#206eb3"}
-            _hover={{ backgroundColor: "#124877" }}
-            color="white"
-            type="submit"
-            disabled={isLoading}
-            w="100%"
-            marginTop="1rem"
-          >
+          <Button type="submit" className={style.button} disabled={isLoading}>
             {!isLoading ?
               "Confirmar" :
               <Spinner />
             }
           </Button>
-
-
-          <Box fontStyle="italic" color="#535353" _hover={{textDecor: "underline"}} marginTop="0.5rem">
-            <Link href={"/sign-in"}>Já possui cadastro? Faça login!</Link>
-          </Box>
+          
+          <Link className={style.link} href={"/sign-in"}>Já possui cadastro? Faça login!</Link>
         </VStack>
       </Box>
     </>

@@ -12,6 +12,8 @@ import { motion } from "framer-motion";
 import AlertMessage, { AlertMessageInterface } from "@/components/AlertMessage";
 import axiosConfigs from "@/config/axios.config";
 
+import style from "../styles.module.css"
+
 interface Inputs {
   email: string;
   password: string
@@ -70,11 +72,12 @@ export default function SignIn() {
     <>
       <AlertMessage message={alertMessageParams.message} status={alertMessageParams.status} visibility={alertVisibility} />      
       
-      <Heading color="#fe7502">Login</Heading>
+      <Heading color="#fe7502" className={style.h2}>Login</Heading>
       <Box as="form" onSubmit={handleSubmit(onSubmit)}>
         <VStack >
-          <Field label="Email" invalid={!!errors.email} errorText={errors?.email?.message}>
+          <Field className={style.labe} label="Email" invalid={!!errors.email} errorText={errors?.email?.message}>
             <Input
+              className={style.input}
               value="felipe@gmail.com"
               disabled={isLoading}
               {...register("email", {
@@ -85,8 +88,9 @@ export default function SignIn() {
             />
           </Field>
 
-          <Field label="Senha" invalid={!!errors?.password} errorText={errors?.password?.message}>
+          <Field className={style.label} label="Senha" invalid={!!errors?.password} errorText={errors?.password?.message}>
             <PasswordInput
+              className={style.input}
               value="123456"
               disabled={isLoading}
               {...register("password", {
@@ -97,25 +101,13 @@ export default function SignIn() {
             />
           </Field>
 
-          <Button
-            bgColor={"#206eb3"}
-            _hover={{ backgroundColor: "#124877" }}
-            color="white"
-            type="submit"
-            disabled={isLoading}
-            w="100%"
-            marginTop="1rem"
-          >
+          <Button className={style.button} type="submit" disabled={isLoading}>
             {!isLoading ?
               "Confirmar" :
               <Spinner />
             }
           </Button>
-
-
-          <Box fontStyle="italic" color="#535353" _hover={{ textDecor: "underline" }} marginTop="0.5rem">
-            <Link href={"/sign-up"}>Não possui cadastro? Cadastre-se!</Link>
-          </Box>
+          <Link className={style.link} href={"/sign-up"}>Não possui cadastro? Cadastre-se!</Link>
         </VStack>
       </Box>
     </>

@@ -6,12 +6,10 @@
 .input{
   width: 20rem;
   height: 3rem;
-  border-radius: 3rem;
   font-size: 1.1rem;
 }
 
 .button{
-  border-radius: 3rem;
   background-color: #206eb3;
   color: white;
   width: 100%;

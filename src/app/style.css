@@ -3,3 +3,11 @@ h2{
   margin: 3rem 0rem;
   color: #fe7502;
 }
+
+input{
+  border-radius: 3rem;
+}
+
+button{
+  border-radius: 3rem;
+}

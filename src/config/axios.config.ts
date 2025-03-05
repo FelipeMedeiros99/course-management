@@ -14,7 +14,7 @@ interface UserDataSignInInterface{
 }
 
 const config = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_LINK_SERVER,
+  baseURL: "http://18.231.155.115:5001",
   timeout: 7000
 })
 

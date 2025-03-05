@@ -68,9 +68,6 @@ export default function Main() {
     })()
   }, [])
 
-  useEffect(()=>{
-  },[])
-
 
   return (
     <VStack as="main" minH="calc(100vh - 12rem )">
@@ -84,16 +81,13 @@ export default function Main() {
             color="#fe7502" />
         </VStack>
       }
-      <Text padding="1rem" textAlign="center" as="h2" fontSize="2rem" color="#fe7502">{emptyCoursesMessage}</Text>
-      <Box
-        as="div" display="flex" flexWrap="wrap" width="100%"
-        mx="auto" justifyContent="space-around" marginTop="2.5rem"
-        marginBottom="2.5rem"
+      {emptyCoursesMessage && <Text padding="1rem" textAlign="center" as="h2" fontSize="2rem" color="#fe7502">{emptyCoursesMessage}</Text>}
+      <HStack flexWrap="wrap" width="100%" justifyContent="center" margin="2.5rem 0"
         >
         {courses.map((course, index) => (
           <CourseBox courseData={course} key={index} setAlertMessageParams={setAlertMessageParams} setAlertVisibility={setAlertVisibility}/>
         ))}
-      </Box>
+      </HStack>
     </VStack>
   );
 }

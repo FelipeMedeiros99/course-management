@@ -1,8 +1,9 @@
 "use client"
-import { Box, Text, Image, Button, AlertContentProps } from "@chakra-ui/react"
+import { Box, Text, Button, Image, VStack, HStack } from "@chakra-ui/react"
 import Link from "next/link";
 import { FiClock, FiEdit, FiShoppingCart } from "react-icons/fi";
 import { useState } from "react";
+// import Image from "next/image";
 
 import { CourseInterface } from "@/app/(dashboard)/courses/page"
 import { useRouter } from "next/navigation";
@@ -12,6 +13,8 @@ import axiosConfigs from "@/config/axios.config";
 import { AlertMessageInterface } from "../AlertMessage";
 import { AxiosError } from "axios";
 import { moneyFormat } from "@/app/Tools";
+
+import style from "./style.module.css"
 
 export interface CourseBoxParams {
   courseData: CourseInterface;
@@ -42,6 +45,7 @@ export default function CourseBox({ courseData, setAlertVisibility, setAlertMess
       } else if (error instanceof InvalidTokenError) {
         setAlertMessageParams({ message: "O token expirou, faça login novamente", status: "error" })
       } else {
+        setAlertMessageParams({ message: "Um erro inesperado aconteceu, contate o desenvolvedor.", status: "error" })
         console.log(error)
       }
       router.push("/sign-in")
@@ -55,62 +59,27 @@ export default function CourseBox({ courseData, setAlertVisibility, setAlertMess
 
 
   return (
-    <Box
-      as="div"
-      width="300px"
-      height="460px"
-      boxShadow='0 0 3px black'
-      borderRadius="5px"
-      padding={2}
-      margin={2}
-      color="#545454"
-      position="relative"
-    >
+    <VStack className={style.container} >
 
-      <Link href={`/courses/${id}`}>
-        <Image
-          src={url}
-          alt={name}
-          width="100%"
-          height="200px"
-          objectFit="cover"
-          borderRadius="md"
-          mx="auto"
+      <Link href={`/courses/${id}`} className={style.link}>
+        <Image className={style.image} src={url} alt={name} borderRadius="0.4rem"/>
+        <Text className={style.title} >{name}</Text>
+        
+        <HStack className={style.workloadContainer}> 
+          <FiClock/>
+          <Text>Carga horária:</Text>
+          <Text as="strong">{workload}h</Text>
+        </HStack>
 
-        />
-        <Text
-          display="flex"
-          alignItems="center"
-          fontSize="xl"
-          fontWeight="700"
-          height="100px"
-          lineHeight="1"
-          overflow="auto"
-          textDecor="underline"
-        >{name}</Text>
+        <Text className={style.price}>R${moneyFormat(descountedPrice)}</Text>
 
-        <Text fontSize="md" height="25px" display="flex" alignItems="center">
-          <FiClock style={{ marginRight: '8px' }} size="15px" />
-          Carga horária:
-          <Box as="strong" ml={1}>{workload}h</Box>
-        </Text>
-        <Text fontSize="xl" fontWeight="900" >R${moneyFormat(descountedPrice)}</Text>
       </Link>
-      <Box as="div" position="absolute" bottom='0' width="100%" left="0" padding="2">
-        <Button
-          margin="0"
-          loading={isLoading}
-          onClick={addAtCart}
-          backgroundColor="#206eb3"
-          _hover={{ backgroundColor: "#175388" }}
-          color="white"
-        >
-          <FiShoppingCart />
-          "Adicionar ao carrinho"
-        </Button>
-      </Box>
 
-    </Box>
+        <Button className={style.button} loading={isLoading} onClick={addAtCart} >
+          <FiShoppingCart />
+          Adicionar ao carrinho
+        </Button>
+    </VStack>
 
 
   )

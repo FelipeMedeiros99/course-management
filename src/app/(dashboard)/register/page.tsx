@@ -81,8 +81,9 @@ const inputsObject: InputCourseObjectInterface[] = [
   },
 ]
 
-export default function RegisterCourse(
-  courseData: CourseInterface = {
+export default function RegisterCourse() {
+
+  const courseData: CourseInterface = {
     id: NaN,
     content: "",
     descountedPrice: NaN,
@@ -90,7 +91,7 @@ export default function RegisterCourse(
     price: NaN,
     url: "",
     workload: NaN
-  }) {
+  }
   const params = useSearchParams()
   const courseId = params.get("courseId")
   const { register, watch, reset, handleSubmit, formState: { errors } } = useForm<CourseInterface>({ defaultValues: courseData });
@@ -136,7 +137,7 @@ export default function RegisterCourse(
         })
       }
     })()
-  }, [courseId, reset])
+  }, [courseId, reset, validFunction])
 
   const onSubmit = async (data: Omit<CourseInterface, "id">) => {
     setIsLoading(true)

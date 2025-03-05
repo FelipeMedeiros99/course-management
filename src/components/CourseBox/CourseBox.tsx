@@ -18,33 +18,6 @@ export interface CourseBoxParams {
   setAlertVisibility: (newVisibility: boolean) => void
   setAlertMessageParams: (newAlertParams: Omit<AlertMessageInterface, "visibility">) => void
 }
-// import { converterEmMoedas } from "@/app/Tools";
-// import ModeloBotao from "../ModeloBotao";
-// import adicionarAoCarrinho from "@/app/Tools/adicionarAoCarrinho";
-// import SpinCarregando from "../SpinCarregando";
-// import { FiShoppingCart } from "react-icons/fi";
-// import { FiEdit } from "react-icons/fi";
-// import { FaDollarSign } from "react-icons/fa";
-
-// {
-//   "id": 2,
-//   "name": "Web",
-//   "url": "http://placeimg.com/640/480/abstract",
-//   "price": 838.79,
-//   "descountedPrice": 575.79,
-//   "workload": 534,
-//   "content": "Chief"
-// }
-
-
-// const {
-//     nome,
-//     preco,
-//     carga_horaria: cargaHoraria,
-//     preco_com_desconto: precoComDesconto,
-//     conteudo,
-//     url_foto: imagem,
-//     id } = props;
 
 export default function CourseBox({ courseData, setAlertVisibility, setAlertMessageParams }: CourseBoxParams) {
   const { content, descountedPrice, id, name, price, url, workload } = courseData;

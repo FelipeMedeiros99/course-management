@@ -77,7 +77,7 @@ export default function SignUp() {
   return (
     <>
       <AlertMessage message={alertMessageParams.message} status={alertMessageParams.status} visibility={alertVisibility}/>
-      <Heading className={style.h2}>Cadastro</Heading>
+      <Heading as="h2">Cadastro</Heading>
       <Box as="form" onSubmit={handleSubmit(onSubmit)}>
         <VStack >
           <Field className={style.label} label="Email" invalid={!!errors.email} errorText={errors?.email?.message}>

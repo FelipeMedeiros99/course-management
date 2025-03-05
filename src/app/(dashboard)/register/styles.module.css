@@ -1,0 +1,10 @@
+.mainContainer{
+  padding: 2rem;
+  min-height: calc(100% - 12rem);
+}
+
+.inputsContainer{
+  max-width: 35rem;
+  width: 100%;
+  padding: 2rem;
+}

@@ -15,6 +15,8 @@ import axiosConfigs from '@/config/axios.config';
 import AlertMessage, { AlertMessageInterface } from '@/components/AlertMessage';
 import { convertToValidFloat } from '@/app/Tools';
 
+import styles from "./styles.module.css"
+
 interface InputCourseObjectInterface {
   identifier: "name" | "content" | "descountedPrice" | "price" | "url" | "workload";
   label: string;
@@ -178,10 +180,10 @@ export default function RegisterCourse(
   }
 
   return (
-    <VStack minH="calc(100% - 12rem)" padding="2rem">
+    <VStack className={styles.mainContainer}>
       <AlertMessage message={alertMessageParams.message} status={alertMessageParams.status} visibility={alertVisibility} />
-      <VStack maxW="100rem" boxShadow="0 0 0.2rem #636161" w="100%" maxWidth="35rem" padding="2rem">
-        <Heading as="h2" mb="6" fontSize="2xl" textAlign="center" color="#fe7502">Cadastro de Curso</Heading>
+      <VStack className={styles.inputsContainer} >
+        <Heading className={styles.h2}>Cadastro de Curso</Heading>
         <VStack as="form" onSubmit={handleSubmit(onSubmit)} w="100%">
           {inputsObject.map((inputData) => (
             <Field

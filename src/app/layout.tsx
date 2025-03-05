@@ -4,6 +4,8 @@ import { Provider } from '@/components/ui/provider';
 import { ColorModeProvider } from '@/components/ui/color-mode';
 import { Theme } from '@chakra-ui/react';
 
+import "./style.css"
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-br" style={{height: "100%"}}>

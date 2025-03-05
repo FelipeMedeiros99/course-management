@@ -1,7 +1,7 @@
 "use client"
 
 import { Box, HStack, Spinner, Text, VStack } from "@chakra-ui/react"
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 
 import CourseBox from "@/components/CourseBox/CourseBox";
 import axiosConfigs from "@/config/axios.config";
@@ -27,7 +27,7 @@ export default function Main() {
   const [emptyCoursesMessage, setEmptyCoursesMessage] = useState("")
   const router = useRouter()
 
-  async function findCourses():Promise<void>{
+  const findCourses = useCallback(async():Promise<void>=>{
     try {
       const promise = await axiosConfigs.getCourses();
       setCourses(promise?.data)
@@ -58,7 +58,7 @@ export default function Main() {
       }, 4000)
       setCourses([])
     } 
-  }
+  }, [setCourses, setAlertVisibility, setAlertMessageParams, router])
 
   useEffect(() => {
     (async() =>{
@@ -66,7 +66,7 @@ export default function Main() {
       await findCourses();
       setIsLoadingCourses(false)
     })()
-  }, [])
+  }, [findCourses])
 
 
   return (

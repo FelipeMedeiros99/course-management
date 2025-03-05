@@ -100,7 +100,7 @@ export default function RegisterCourse(
   const [alertMessageParams, setAlertMessageParams] = useState<Omit<AlertMessageInterface, "visibility">>({ message: "", status: "neutral" });
   const [alertVisibility, setAlertVisibility] = useState(false);
 
-  async function validFunction(fn: () => Promise<void>) {
+  const validFunction = useCallback(async(fn: () => Promise<void>)=> {
     try {
       await fn()
     } catch (error: AxiosError | any) {
@@ -125,8 +125,8 @@ export default function RegisterCourse(
         router.push("/sign-in")
       }, 4000)
     }
-  }
-
+  }, [router])
+  
   useEffect(() => {
     (async () => {
       if (courseId) {
@@ -136,7 +136,7 @@ export default function RegisterCourse(
         })
       }
     })()
-  }, [])
+  }, [courseId, reset])
 
   const onSubmit = async (data: Omit<CourseInterface, "id">) => {
     setIsLoading(true)
@@ -185,8 +185,9 @@ export default function RegisterCourse(
       <VStack className={styles.inputsContainer} >
         <Heading className={styles.h2}>Cadastro de Curso</Heading>
         <VStack as="form" onSubmit={handleSubmit(onSubmit)} w="100%">
-          {inputsObject.map((inputData) => (
+          {inputsObject.map((inputData, index) => (
             <Field
+              key={index}
               disabled={isLoading}
               maxW="30rem"
               label={inputData.label}

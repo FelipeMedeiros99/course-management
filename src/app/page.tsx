@@ -9,7 +9,7 @@ export default function Redirect(){
   const router = useRouter()
   useEffect(()=>{
     router.push("/sign-in")
-  }, [])
+  }, [router])
 
   return(
     <VStack alignItems="center" justifyContent="center" position="absolute" top="50%" left="50%" translate="-50% -50%">

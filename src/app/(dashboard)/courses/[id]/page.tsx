@@ -84,7 +84,7 @@ export default function DetalhesCurso({ params }: { params: { id: string } }) {
       }
     })()
 
-  }, [])
+  }, [params, router])
 
   function editarCurso() {
     router.push(`/register?courseId=${courseData.id}`)

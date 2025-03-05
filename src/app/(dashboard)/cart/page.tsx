@@ -67,7 +67,7 @@ export default function CarrinhoUsuario() {
         router.push("/sign-in")
       }, 4000)
     }
-  }, []);
+  }, [router]);
 
   useEffect(() => {
     (async () => {
@@ -98,7 +98,7 @@ export default function CarrinhoUsuario() {
           }
         };
       })()
-  }, [userData]);
+  }, [userData, router]);
 
   return (
     <HStack w="100%" minH="calc(100% - 12rem)" padding="2rem">
@@ -147,6 +147,7 @@ export default function CarrinhoUsuario() {
             coursesData.length > 0 ? (
               coursesData.map((courseData, index) => (
                 <ProductCartBox
+                  key={index}
                   setAlertMessageParams={setAlertMessageParams}
                   courseData={courseData}
                   userId={userData.id}

@@ -82,19 +82,9 @@ const inputsObject: InputCourseObjectInterface[] = [
 ]
 
 export default function RegisterCourse() {
-
-  const courseData: CourseInterface = {
-    id: NaN,
-    content: "",
-    descountedPrice: NaN,
-    name: "",
-    price: NaN,
-    url: "",
-    workload: NaN
-  }
   const params = useSearchParams()
   const courseId = params.get("courseId")
-  const { register, watch, reset, handleSubmit, formState: { errors } } = useForm<CourseInterface>({ defaultValues: courseData });
+  const { register, watch, reset, handleSubmit, formState: { errors } } = useForm<CourseInterface>();
   const url = watch("url");
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);

@@ -6,6 +6,11 @@ h2{
 
 input{
   border-radius: 3rem;
+  font-size: 1.1rem;
+}
+
+textarea{
+  font-size: 1.1rem;
 }
 
 textarea{
@@ -14,4 +19,9 @@ textarea{
 
 button{
   border-radius: 3rem;
+}
+
+label{
+  font-size: 1rem;
+  font-weight: 500;
 }

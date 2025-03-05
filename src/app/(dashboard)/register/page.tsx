@@ -6,9 +6,9 @@ import { Box, Input, Textarea, VStack, Heading, Image, Button } from "@chakra-ui
 import { Field } from "@/components/ui/field";
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
-import { useSearchParams } from 'next/navigation';
 import { AxiosError } from 'axios';
 import { InvalidTokenError } from 'jwt-decode';
+import { Suspense } from 'react';
 
 import { CourseInterface } from '../courses/page'; 
 import axiosConfigs from '@/config/axios.config';
@@ -82,14 +82,13 @@ const inputsObject: InputCourseObjectInterface[] = [
 ]
 
 export default function RegisterCourse() {
-  const params = useSearchParams()
-  const courseId = params.get("courseId")
   const { register, watch, reset, handleSubmit, formState: { errors } } = useForm<CourseInterface>();
   const url = watch("url");
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [alertMessageParams, setAlertMessageParams] = useState<Omit<AlertMessageInterface, "visibility">>({ message: "", status: "neutral" });
   const [alertVisibility, setAlertVisibility] = useState(false);
+  const [courseId, setCourseId] = useState<string|null>()
 
   const validFunction = useCallback(async(fn: () => Promise<void>)=> {
     try {
@@ -128,6 +127,11 @@ export default function RegisterCourse() {
       }
     })()
   }, [courseId, reset, validFunction])
+
+  useEffect(()=>{
+    const queryParams = new URLSearchParams(window.location.search)
+    setCourseId(queryParams.get("courseId") || null)
+  }, [])
 
   const onSubmit = async (data: Omit<CourseInterface, "id">) => {
     setIsLoading(true)
@@ -171,55 +175,55 @@ export default function RegisterCourse() {
   }
 
   return (
-    <VStack className={styles.mainContainer}>
-      <AlertMessage message={alertMessageParams.message} status={alertMessageParams.status} visibility={alertVisibility} />
-      <VStack className={styles.inputsContainer} >
-        <Heading className={styles.h2}>Cadastro de Curso</Heading>
-        <VStack as="form" onSubmit={handleSubmit(onSubmit)} w="100%">
-          {inputsObject.map((inputData, index) => (
-            <Field
-              key={index}
-              disabled={isLoading}
+    <Suspense>
+      <VStack className={styles.mainContainer}>
+        <AlertMessage message={alertMessageParams.message} status={alertMessageParams.status} visibility={alertVisibility} />
+        <VStack className={styles.inputsContainer} >
+          <Heading className={styles.h2}>Cadastro de Curso</Heading>
+          <VStack as="form" onSubmit={handleSubmit(onSubmit)} w="100%">
+            {inputsObject.map((inputData, index) => (
+              <Field
+                key={index}
+                disabled={isLoading}
+                maxW="30rem"
+                label={inputData.label}
+                invalid={!!errors?.[inputData.identifier]}
+                errorText={errors?.[inputData.identifier]?.message}
+              >
+                {
+                  inputData.identifier !== "content" ?
+                    <Input
+                      placeholder={inputData.placeholder}
+                      {...register(inputData.identifier, inputData.rules)}
+                    /> :
+                    <Textarea
+                      resize="none"
+                      height="8rem"
+                      placeholder={inputData.placeholder}
+                      {...register(inputData.identifier, inputData.rules)}
+                    />
+                }
+              </Field>
+            ))}
+            <Button
+              type="submit"
+              backgroundColor="#206eb3"
+              w="100%"
               maxW="30rem"
-              label={inputData.label}
-              invalid={!!errors?.[inputData.identifier]}
-              errorText={errors?.[inputData.identifier]?.message}
+              marginTop="1rem"
+              _hover={{ backgroundColor: "#134a7a" }}
+              loading={isLoading}
             >
-              {
-                inputData.identifier !== "content" ?
-                  <Input
-                    placeholder={inputData.placeholder}
-                    {...register(inputData.identifier, inputData.rules)}
-                  /> :
-                  <Textarea
-                    resize="none"
-                    height="8rem"
-                    placeholder={inputData.placeholder}
-                    {...register(inputData.identifier, inputData.rules)}
-                  />
-              }
-            </Field>
-          ))}
-
-          <Button
-            type="submit"
-            backgroundColor="#206eb3"
-            w="100%"
-            maxW="30rem"
-            marginTop="1rem"
-            _hover={{ backgroundColor: "#134a7a" }}
-            loading={isLoading}
-          >
-            Salvar
-          </Button>
+              Salvar
+            </Button>
+          </VStack>
+          {url && (
+            <Box>
+              <Image src={url} alt="Imagem do Curso" boxSize="200px" borderRadius="1rem" />
+            </Box>
+          )}
         </VStack>
-
-        {url && (
-          <Box>
-            <Image src={url} alt="Imagem do Curso" boxSize="200px" borderRadius="1rem" />
-          </Box>
-        )}
       </VStack>
-    </VStack>
+    </Suspense>
   );
 }

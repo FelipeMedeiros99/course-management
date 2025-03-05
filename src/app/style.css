@@ -8,6 +8,10 @@ input{
   border-radius: 3rem;
 }
 
+textarea{
+  border-radius: 1rem;
+}
+
 button{
   border-radius: 3rem;
 }

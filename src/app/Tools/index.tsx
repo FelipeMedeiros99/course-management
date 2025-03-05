@@ -4,4 +4,10 @@ const moneyFormat = (value: number) => {
     maximumFractionDigits: 2
   }).format(value)
 }
-export {moneyFormat}
+
+const convertToValidFloat = (num: string | number) => {
+  return Number(`${num}`.replace(",", "."))
+}
+
+export { moneyFormat, convertToValidFloat }
+

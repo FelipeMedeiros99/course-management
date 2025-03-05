@@ -7,12 +7,13 @@ import { Field } from "@/components/ui/field";
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { useSearchParams } from 'next/navigation';
-
-import { CourseInterface } from '../courses/page';
-import axiosConfigs from '@/config/axios.config';
-import AlertMessage, { AlertMessageInterface } from '@/components/AlertMessage';
 import { AxiosError } from 'axios';
 import { InvalidTokenError } from 'jwt-decode';
+
+import { CourseInterface } from '../courses/page'; 
+import axiosConfigs from '@/config/axios.config';
+import AlertMessage, { AlertMessageInterface } from '@/components/AlertMessage';
+import { convertToValidFloat } from '@/app/Tools';
 
 interface InputCourseObjectInterface {
   identifier: "name" | "content" | "descountedPrice" | "price" | "url" | "workload";
@@ -133,10 +134,6 @@ export default function RegisterCourse(
         })
       }
     })()
-  }, [])
-
-  const convertToValidFloat = useCallback((num: string | number) => {
-    return Number(`${num}`.replace(",", "."))
   }, [])
 
   const onSubmit = async (data: Omit<CourseInterface, "id">) => {

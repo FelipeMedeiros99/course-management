@@ -14,7 +14,7 @@ interface UserDataSignInInterface{
 }
 
 const config = axios.create({
-  baseURL: "http://course-management-api:5001",
+  baseURL: "http://course-management-api:5000",
   // baseURL: "http://18.231.155.115:5001",
   // baseURL: "http://localhost:5000",
   timeout: 7000

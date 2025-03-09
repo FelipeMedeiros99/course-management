@@ -1,0 +1,22 @@
+services:
+  course-management-frontend:
+    image: course-management-frontend
+    container_name: course-management-frontend
+    build: .
+    ports:
+      - "3001:3001"
+    networks:
+      - web
+  nginx-course-management:
+    image: nginx:alpine
+    ports:
+      - "8080:81"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    networks:
+      - web
+
+networks:
+  web:
+    driver: bridge
+    

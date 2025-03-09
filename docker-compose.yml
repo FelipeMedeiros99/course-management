@@ -10,7 +10,7 @@ services:
   nginx-course-management:
     image: nginx:alpine
     ports:
-      - "8080:81"
+      - "81:81"
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
     networks:
